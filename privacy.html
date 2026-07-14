@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Nookab</title>
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/icon.png">
+    <meta name="description" content="Nookab Privacy Policy. Learn how Nookab handles your data — offline-first, private by default.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D5A27;
+            --primary-dark: #1e4019;
+            --primary-light: #3d7a34;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --text-primary: #f0f0f5;
+            --text-secondary: #8888a0;
+            --text-muted: #555570;
+            --border: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .legal-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .legal-page h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .legal-page .last-updated {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .legal-page hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .legal-page h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .legal-page h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-page p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .legal-page strong {
+            color: var(--text-primary);
+        }
+
+        .legal-page ul,
+        .legal-page ol {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .legal-page ul li,
+        .legal-page ol li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            padding: 0.3rem 0 0.3rem 1.25rem;
+            position: relative;
+        }
+
+        .legal-page ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .legal-page a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .legal-page a:hover {
+            text-decoration: underline;
+        }
+
+        .privacy-highlight {
+            background: rgba(45, 90, 39, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .privacy-highlight p {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+                    <path d="M 0 1024 C 0 682.667, 0 341.333, 0 0 C 341.333 0, 682.667 0, 1024 0 C 1024 341.333, 1024 682.667, 1024 1024 C 682.667 1024, 341.333 1024, 0 1024 Z" fill="#2D5A27" />
+                    <path d="M 204.01 304 C 207.752 248.541, 250.144 207.003, 303 207.003 C 323.302 207.003, 344.851 213.904, 359.994 225.256 C 363.022 227.526, 424.225 288.199, 496 360.085 C 568.497 432.693, 629.389 492.885, 633 495.507 C 663.606 517.736, 703.052 519.966, 734.925 501.269 C 742.84 496.627, 755.244 484.649, 760.967 476.122 C 766.484 467.904, 771.268 457.498, 774.14 447.47 C 776.384 439.637, 776.429 438.457, 776.785 379 C 777.174 314.097, 776.883 308.801, 772.281 297 C 768.716 287.855, 759.983 275.039, 753.23 269.041 C 745.911 262.541, 732.289 255.646, 722.432 253.453 C 707.279 250.081, 690.288 252.915, 676.165 261.17 C 672.149 263.517, 656.084 278.817, 620.968 313.74 C 589.023 345.51, 570.733 363, 569.455 363 C 567.038 363, 539 335.229, 539 332.835 C 539 330.618, 639.534 231.629, 647.323 226.177 C 670.889 209.682, 702.955 203.429, 732.587 209.55 C 773.57 218.015, 805.633 248.086, 817.818 289.487 C 818.702 292.491, 819.587 295.496, 820.471 298.5 C 820.566 363.315, 820.66 428.13, 820.755 492.944 C 821.007 665.177, 820.862 688.423, 819.484 696.444 C 807.243 767.713, 733.11 807.657, 669.148 777.447 C 664.005 775.018, 656.805 770.935, 653.148 768.375 C 648.951 765.435, 597.663 714.984, 514 631.496 C 441.125 558.774, 379.328 497.817, 376.673 496.036 C 369.484 491.214, 356.42 485.374, 348.5 483.442 C 337.199 480.686, 319.719 481.122, 308.5 483.442 C 284.035 491.676, 264.491 510.587, 254.699 536.5 C 248.368 553.251, 248.5 551.454, 248.5 621 C 248.5 642.167, 248.5 663.333, 248.5 684.5 C 249.408 687.167, 250.316 689.833, 251.224 692.5 C 255.177 704.107, 260.427 712.429, 269.519 721.5 C 278.796 730.756, 285.499 734.994, 297.739 739.344 C 305.979 742.272, 307.333 742.456, 320.5 742.427 C 333.326 742.399, 335.114 742.164, 341.817 739.627 C 356.699 733.996, 359.072 732.012, 403.927 687.705 C 427.262 664.655, 447.423 645.309, 448.73 644.713 C 450.938 643.707, 452.086 644.611, 465.052 657.552 C 473.626 666.11, 479 672.238, 479 673.459 C 479 675.899, 398.819 756.55, 389.132 766.237 C 360.551 794.818, 316.48 809.328, 273.315 806.098 C 231.594 802.971, 192.244 783.35, 163.923 750.96 C 152.365 737.605, 144.363 723.025, 136.13 702.819 C 127.173 680.938, 122.082 661.364, 117.783 635.477 C 114.587 616.199, 113.539 603.331, 113.453 573 C 113.371 543.765, 114.18 517.514, 116.806 491 C 119.109 467.56, 121.476 452.807, 125.819 433.5 C 130.484 413.142, 133.912 402.266, 142.483 388.19 C 152.599 371.593, 163.157 360.634, 178.974 350.578 C 190.175 343.413, 194.115 341.822, 204.01 340.326 L 204.01 304 Z" fill="rgb(254,254,254)" />
+                </svg>
+                <span>Nookab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="terms.html">Terms and Conditions</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="legal-page">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: July 2026</p>
+
+        <h2>1. Introduction</h2>
+        <p>Nookab ("the App," "we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our vocabulary learning application.</p>
+        <p>Nookab is designed to be <strong>offline-first and privacy-preserving by default</strong>. All user data accessed by the App is processed strictly locally on the user's device and is never transmitted off-device to us or any third party, unless you explicitly initiate a transfer (e.g., via manual CSV export).</p>
+        <p>By using the App, you agree to the practices described in this Privacy Policy. If you do not agree, please do not use the App.</p>
+        <p>Capitalized terms used but not defined in this Privacy Policy have the meanings assigned to them in the Terms and Conditions.</p>
+
+        <h2>2. Information Processed Locally on Your Device</h2>
+        <p>Because the App utilizes purely on-device access and processing, the data listed below remains within your exclusive physical possession and control.</p>
+
+        <h3>2.1 Data You Input and Manage</h3>
+        <p>The App stores the following data locally within its private sandbox directory:</p>
+        <ul>
+            <li><strong>Vocabulary Data</strong>: The words and phrases you manually add, including their translations, definitions, example sentences, parts of speech, and grammatical attributes</li>
+            <li><strong>Practice History</strong>: Records of your practice sessions, including correct/incorrect answers, response times, and mastery levels per word</li>
+            <li><strong>Profile Information</strong>: The display name, greeting title (if any), and profile photo you choose to set (profile photos are accessed via the secure native system picker and copied directly to the App's local sandboxed directory)</li>
+            <li><strong>App Preferences</strong>: Your language settings, notification preferences, theme selection, and other configuration choices</li>
+            <li><strong>Statistics</strong>: Aggregated usage data such as total practice time, words learned, and streak history</li>
+        </ul>
+        <p>All of the above data is created and controlled entirely by you. No data is stored or processed without your direct, manual action.</p>
+
+        <h3>2.2 Information We Do NOT Collect</h3>
+        <p>We deliberately do <strong>not</strong> collect, view, or transmit any off-device information, including:</p>
+        <ul>
+            <li><strong>Personal Identifiers</strong>: No email addresses, phone numbers, real names (unless voluntarily typed into your local profile), or government-issued IDs</li>
+            <li><strong>Account Credentials</strong>: No usernames, passwords, or authentication tokens — the App features no cloud account or registration system</li>
+            <li><strong>Location Data</strong>: No GPS, IP-based tracking, or geolocation information</li>
+            <li><strong>Device Identifiers</strong>: No device IDs, advertising IDs (GAID), IMEI numbers, serial numbers, or unique hardware identifiers</li>
+            <li><strong>Usage Analytics</strong>: No remote telemetry or background tracking of how you use the App</li>
+            <li><strong>Automated Crash Logs</strong>: No automatic collection or transmission of crash reports, diagnostic data, or performance metrics</li>
+            <li><strong>Browsing History</strong>: The App does not contain a web browser, nor does it deploy cookies, web beacons, or tracking pixels</li>
+            <li><strong>System Permissions</strong>: No access to your contact lists, camera, microphone, or social media graphs</li>
+            <li><strong>Financial or Biometric Information</strong>: No payment card data, bank details, or biometric logs (Face ID/Fingerprint information remains managed strictly by your mobile operating system)</li>
+        </ul>
+
+        <h3>2.3 Automatic Data and Ephemeral Network Requests</h3>
+        <p>The App does <strong>not</strong> automatically collect any data. No telemetry, analytics SDKs, usage reporting components, background diagnostic scrapers, or outbound network requests are built into the application code. The App does not communicate with any external server during normal operation.</p>
+        <p>When you manually submit a support request or bug description via email, we will receive only the technical details and information you explicitly choose to include in that email communication. We strongly advise against sending sensitive personal information in support emails.</p>
+
+        <h2>3. How Your Data is Used</h2>
+        <p>Since all processing is confined to your local hardware, we do not process, view, analyze, or exploit your data in any way. Data remains on your device solely to facilitate the App's core features:</p>
+        <ul>
+            <li>Vocabulary data powers your personal dictionary, search engine, and review cycles</li>
+            <li>Practice history enables spaced-repetition logic and progress calculation</li>
+            <li>Profile details personalize the localized interface layout</li>
+            <li>Preferences establish user-configured interface behaviors</li>
+        </ul>
+        <p><strong>No Artificial Intelligence / Machine Learning Training</strong>: We do <strong>not</strong> transmit, sell, or use any of your locally stored data—including vocabulary entries, custom definitions, or practice history—for artificial intelligence training, LLM fine-tuning, machine learning model development, automated profiling, or algorithmic analysis.</p>
+
+        <h2>4. Data Storage, Security, and Destruction</h2>
+
+        <h3>4.1 Sandboxed Local Storage</h3>
+        <p>All data is stored exclusively in a local SQLite database (<code>nookab.db</code>) within the App's isolated, secure application sandbox on your device storage. Profile photos are stored as isolated files inside the App's protected local document directory. Under standard mobile operating system security protocols, this sandbox isolates the App's data so that other applications installed on your device cannot access it.</p>
+
+        <h3>4.2 Data Retention &amp; Destruction</h3>
+        <p>Your data remains stored on your device as long as the application remains installed. Data persists safely across normal app updates. You maintain full execution control over data destruction via the following methods:</p>
+        <ul>
+            <li><strong>Granular Removal</strong>: Deleting specific vocabulary definitions or practice parameters directly within the interface</li>
+            <li><strong>Bulk Clear</strong>: Executing "Reset Practice Data" or "Delete All Words" options inside the Settings menu</li>
+            <li><strong>Full Data Obliteration</strong>: Uninstalling the application entirely from your device. Uninstallation triggers an immediate and permanent deletion of the application's entire private sandbox directory by the operating system. Because this data is never synchronized with an external server, the Developer cannot recover your data once the app is uninstalled.</li>
+        </ul>
+
+        <h3>4.3 Device-Level Security Measures</h3>
+        <p>Because data storage is entirely local, the security of your information relies on your physical device security infrastructure. We strongly recommend securing your smartphone using a strong device passcode, PIN, or biometric lock, keeping your mobile operating system updated, and activating full-disk device encryption.</p>
+
+        <h3>4.4 Software Vulnerability Disclosures</h3>
+        <p>Because we do not operate remote databases, an external network-side data breach is technically impossible. However, if a software vulnerability is identified within the App code that could expose the local database sandbox to other malicious software on a device, we will disclose this transparently via in-app update banners and through the Google Play Store release notes, alongside immediate instructions on installing the corresponding security patch.</p>
+
+        <h2>5. Third-Party Libraries and Data Sharing</h2>
+
+        <h3>5.1 Third-Party SDK Disclosures</h3>
+        <p>The App does <strong>not</strong> sell, rent, lease, or share data. The App contains no commercial third-party SDKs, marketing trackers, programmatic ad servers, or telemetry aggregators.</p>
+
+        <h3>5.2 User-Initiated Data Sharing (CSV Export)</h3>
+        <p>The App provides a built-in CSV export tool that compiles your local vocabulary entries into a standard file format. When you trigger an export, you initiate an on-device transfer to a destination of your choice (such as local file directories, device memory, or an external communication app). Once exported, this file leaves the security boundaries of the App's sandbox. You are solely responsible for securing, sharing, or encrypting your exported CSV files.</p>
+
+        <h3>5.3 Open-Source Software Dependencies</h3>
+        <p>The App integrates open-source framework libraries solely to facilitate local system functionality. These packages operate strictly within your device environment and do not transmit data or generate outbound network pings:</p>
+        <ul>
+            <li><strong>Expo Core SDK</strong> (including expo-sqlite, expo-sharing, expo-document-picker, expo-file-system)</li>
+            <li><strong>React Native Framework</strong> (and community layout utilities including react-native-svg, react-native-reanimated, react-native-safe-area-context, react-native-screens, expo-router)</li>
+        </ul>
+
+        <h2>6. Your Rights and Global Compliance</h2>
+        <p>Because Nookab processes all data on-device, you enjoy direct, unfettered access to your information without needing to file a data disclosure request.</p>
+
+        <h3>6.1 GDPR (EEA, United Kingdom, and Switzerland Compliance)</h3>
+        <ul>
+            <li><strong>Data Controller</strong>: The Developer acts as the data controller for the purpose of engineering the software. However, because data processing occurs entirely within your device hardware under your active execution, you retain operational control over your data.</li>
+            <li><strong>Legal Basis</strong>: Local processing is based on your consent provided during onboarding and is strictly necessary to perform the service requested (Articles 6(1)(a) and 6(1)(b) of the General Data Protection Regulation).</li>
+            <li><strong>Your Rights</strong>: You can fully exercise your rights to Access (Art. 15), Rectification (Art. 16), Erasure (Art. 17), Restriction of Processing (Art. 18), and Data Portability (Art. 20) instantly by interacting with the app's local settings, updating entries, or deleting the application.</li>
+            <li><strong>Complaints</strong>: You maintain the right to file a formal complaint with your local Data Protection Authority (Art. 77 GDPR), though we invite you to email us directly first to address any operational bugs.</li>
+        </ul>
+
+        <h3>6.2 CCPA/CPRA (California, USA Compliance)</h3>
+        <ul>
+            <li><strong>Right to Know &amp; Delete</strong>: You hold complete visibility into your data directly through the interactive user interface. You may delete all collected attributes at any time using the in-app wipe features or by performing a full uninstallation.</li>
+            <li><strong>No Sale or Sharing</strong>: We do not sell, rent, or share consumer personal information with third parties. No "Do Not Sell My Info" mechanisms are required because no such tracking or monetizing activities take place.</li>
+        </ul>
+
+        <h2>7. Children's Privacy</h2>
+        <p>The App is not targeted at or designed to attract children under 13 years of age. We do not knowingly collect, harvest, or request personal data from minors. Because the App operates entirely offline with zero network connectivity or tracker integration, it does not execute any behaviors restricted under the Children's Online Privacy Protection Act (COPPA) or the UK Age Appropriate Design Code.</p>
+        <p>If you are a parent or guardian and discover that a minor has entered personal information into the App, you can completely purge that data immediately by deleting the app from that child's device.</p>
+
+        <h2>8. International Jurisdictions &amp; Cross-Border Transfers</h2>
+        <p>Because the App functions strictly offline and never transfers data off your hardware, no international data transmissions or cross-border data routing take place. Your data remains in your geographic location at all times.</p>
+
+        <h2>9. Privacy Policy Updates</h2>
+        <p>We reserve the right to modify this Privacy Policy to reflect future changes in our architecture or legal frameworks. If we ever decide to introduce network-dependent features, third-party analytics libraries, cloud synchronization systems, or in-app commercialization structures, we will publish a prominent, material in-app notification prior to implementation and request your explicit, renewed consent.</p>
+
+        <h2>10. Contact Information</h2>
+        <p>If you have any inquiries regarding this Privacy Policy or local data handling practices, please connect with us via:</p>
+        <p><strong>Email</strong>: <a href="mailto:contact.nookab@gmail.com">contact.nookab@gmail.com</a><br>
+        <strong>Developer</strong>: Hanan Atelier<br>
+        <strong>Address</strong>: Dhaka, Bangladesh</p>
+    </main>
+
+    <footer>
+        <p><a href="index.html">Nookab</a> &mdash; Where words become yours. &copy; 2026</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions — Nookab</title>
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/icon.png">
+    <meta name="description" content="Nookab Terms and Conditions. Read the terms governing use of the Nookab vocabulary companion app.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D5A27;
+            --primary-dark: #1e4019;
+            --primary-light: #3d7a34;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --text-primary: #f0f0f5;
+            --text-secondary: #8888a0;
+            --text-muted: #555570;
+            --border: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .legal-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .legal-page h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .legal-page .last-updated {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .legal-page hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .legal-page h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .legal-page h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-page p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .legal-page strong {
+            color: var(--text-primary);
+        }
+
+        .legal-page ul,
+        .legal-page ol {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .legal-page ul li,
+        .legal-page ol li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            padding: 0.3rem 0 0.3rem 1.25rem;
+            position: relative;
+        }
+
+        .legal-page ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .legal-page a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .legal-page a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+                    <path d="M 0 1024 C 0 682.667, 0 341.333, 0 0 C 341.333 0, 682.667 0, 1024 0 C 1024 341.333, 1024 682.667, 1024 1024 C 682.667 1024, 341.333 1024, 0 1024 Z" fill="#2D5A27" />
+                    <path d="M 204.01 304 C 207.752 248.541, 250.144 207.003, 303 207.003 C 323.302 207.003, 344.851 213.904, 359.994 225.256 C 363.022 227.526, 424.225 288.199, 496 360.085 C 568.497 432.693, 629.389 492.885, 633 495.507 C 663.606 517.736, 703.052 519.966, 734.925 501.269 C 742.84 496.627, 755.244 484.649, 760.967 476.122 C 766.484 467.904, 771.268 457.498, 774.14 447.47 C 776.384 439.637, 776.429 438.457, 776.785 379 C 777.174 314.097, 776.883 308.801, 772.281 297 C 768.716 287.855, 759.983 275.039, 753.23 269.041 C 745.911 262.541, 732.289 255.646, 722.432 253.453 C 707.279 250.081, 690.288 252.915, 676.165 261.17 C 672.149 263.517, 656.084 278.817, 620.968 313.74 C 589.023 345.51, 570.733 363, 569.455 363 C 567.038 363, 539 335.229, 539 332.835 C 539 330.618, 639.534 231.629, 647.323 226.177 C 670.889 209.682, 702.955 203.429, 732.587 209.55 C 773.57 218.015, 805.633 248.086, 817.818 289.487 C 818.702 292.491, 819.587 295.496, 820.471 298.5 C 820.566 363.315, 820.66 428.13, 820.755 492.944 C 821.007 665.177, 820.862 688.423, 819.484 696.444 C 807.243 767.713, 733.11 807.657, 669.148 777.447 C 664.005 775.018, 656.805 770.935, 653.148 768.375 C 648.951 765.435, 597.663 714.984, 514 631.496 C 441.125 558.774, 379.328 497.817, 376.673 496.036 C 369.484 491.214, 356.42 485.374, 348.5 483.442 C 337.199 480.686, 319.719 481.122, 308.5 483.442 C 284.035 491.676, 264.491 510.587, 254.699 536.5 C 248.368 553.251, 248.5 551.454, 248.5 621 C 248.5 642.167, 248.5 663.333, 248.5 684.5 C 249.408 687.167, 250.316 689.833, 251.224 692.5 C 255.177 704.107, 260.427 712.429, 269.519 721.5 C 278.796 730.756, 285.499 734.994, 297.739 739.344 C 305.979 742.272, 307.333 742.456, 320.5 742.427 C 333.326 742.399, 335.114 742.164, 341.817 739.627 C 356.699 733.996, 359.072 732.012, 403.927 687.705 C 427.262 664.655, 447.423 645.309, 448.73 644.713 C 450.938 643.707, 452.086 644.611, 465.052 657.552 C 473.626 666.11, 479 672.238, 479 673.459 C 479 675.899, 398.819 756.55, 389.132 766.237 C 360.551 794.818, 316.48 809.328, 273.315 806.098 C 231.594 802.971, 192.244 783.35, 163.923 750.96 C 152.365 737.605, 144.363 723.025, 136.13 702.819 C 127.173 680.938, 122.082 661.364, 117.783 635.477 C 114.587 616.199, 113.539 603.331, 113.453 573 C 113.371 543.765, 114.18 517.514, 116.806 491 C 119.109 467.56, 121.476 452.807, 125.819 433.5 C 130.484 413.142, 133.912 402.266, 142.483 388.19 C 152.599 371.593, 163.157 360.634, 178.974 350.578 C 190.175 343.413, 194.115 341.822, 204.01 340.326 L 204.01 304 Z" fill="rgb(254,254,254)" />
+                </svg>
+                <span>Nookab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="legal-page">
+        <h1>Terms and Conditions</h1>
+        <p class="last-updated">Last updated: July 2026</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By downloading, installing, or using Nookab ("the App"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, do not download, install, or use the App.</p>
+        <p>These Terms are a legally binding agreement between you ("User") and [Developer Name] ("Developer," "we," "us," or "our"). By accepting, you acknowledge that you have read, understood, and agree to be bound by all provisions of these Terms.</p>
+
+        <h2>2. Eligibility</h2>
+        <p>You must be at least 13 years of age to use the App. By using the App, you represent and warrant that you meet this eligibility requirement. If you are under 13, you may not use the App. If you are between 13 and the age of majority in your jurisdiction, you affirm that your parent or legal guardian has reviewed and agreed to these Terms on your behalf.</p>
+        <p>The App is not directed at children under 13. We do not knowingly collect personal information from children under 13. If we learn that we have inadvertently collected such information, we will delete it promptly.</p>
+
+        <h2>3. Description of Service</h2>
+        <p>Nookab is an offline-first vocabulary learning application that allows users to:</p>
+        <ul>
+            <li>Add and manage personal vocabulary words</li>
+            <li>Practice words through Flashcard, Quiz, and Spelling modes</li>
+            <li>Track learning progress and statistics</li>
+            <li>Import and export vocabulary data via CSV files</li>
+            <li>Customize learning preferences and profile settings</li>
+        </ul>
+        <p>The App does <strong>not</strong> require account creation, registration, or any form of user authentication. All functionality is available without an internet connection, and no user data is transmitted to external servers.</p>
+        <p><strong>Pricing</strong>: The App is currently provided free of charge. There are no subscription fees, in-app purchases, premium tiers, or paid features at this time. The Developer reserves the right to introduce paid features in future versions, which will be communicated in advance with an updated Terms and renewed user consent if required. Since the App is provided free of charge, no refund policy applies.</p>
+        <p><strong>Distribution</strong>: The App is distributed exclusively through the Google Play Store and is subject to the Google Play Developer Program Policies. In the event of any conflict between these Terms and the Google Play Developer Program Policies, the Google Play policies shall prevail to the extent required by Google's terms.</p>
+
+        <h2>4. No Accounts, No Cloud Sync, and Local Data Deletion</h2>
+        <p>The App is designed for local, offline use on a single device. Nookab does <strong>not</strong> provide:</p>
+        <ul>
+            <li>User accounts or registration</li>
+            <li>Cloud sync or backup services</li>
+            <li>Multi-device data portability (beyond manual CSV export/import)</li>
+            <li>Any remote data storage or processing</li>
+        </ul>
+        <p>Users are solely responsible for maintaining backups of their data through the App's built-in CSV export feature. The Developer is not responsible for data loss resulting from device loss, damage, uninstallation, factory reset, OS updates, or any other event that causes local data to become irretrievable.</p>
+        <p><strong>Data Deletion Notice</strong>: Because the App does not collect, store, or transmit any data to external cloud servers, the Developer cannot delete your data for you. To completely and permanently delete all your user-generated vocabulary and application data, you must uninstall the App from your device or clear the App's storage/cache via your device's Android settings.</p>
+
+        <h2>5. User Responsibilities</h2>
+        <p>You agree to:</p>
+        <ul>
+            <li>Use the App only for lawful purposes and in accordance with these Terms</li>
+            <li>Not misuse, abuse, or attempt to reverse-engineer, decompile, or disassemble the App</li>
+            <li>Not attempt to circumvent any technical limitations or security measures of the App</li>
+            <li>Not use the App to store, transmit, or generate content that is illegal, harmful, defamatory, or violates any applicable law</li>
+            <li>Not scrape, extract, or reproduce the App's code, design, or branding without prior written consent</li>
+            <li>Not use the App in any way that could impair its functionality or interfere with other users' enjoyment</li>
+            <li>Take reasonable measures to secure your device against unauthorized access</li>
+            <li>Comply with all applicable local, national, and international laws while using the App</li>
+        </ul>
+
+        <h2>6. Intellectual Property</h2>
+        <p>All rights, title, and interest in and to the App, including but not limited to its source code, design, layout, graphics, visual interfaces, branding ("Nookab" name, logo, and associated marks), and underlying technology, are owned by the Developer and are protected by applicable copyright, trademark, patent, and intellectual property laws.</p>
+        <p>The App's source code is proprietary and confidential. You may not reproduce, distribute, modify, create derivative works from, or publicly display any portion of the App except as expressly permitted by these Terms.</p>
+        <p><strong>User-Generated Content</strong>: The vocabulary words, practice data, profile information, and other content you add to the App ("Your Content") belong to you. You retain all ownership rights to Your Content. The Developer claims no ownership, title, or interest in Your Content. You represent and warrant that you own or have the necessary rights to use and input Your Content into the App and that doing so does not infringe upon any third party's intellectual property rights. You grant the Developer a non-exclusive, royalty-free, worldwide license to store and process Your Content solely for the purpose of providing the App's functionality (all of which occurs locally on your device).</p>
+
+        <h2>7. Privacy</h2>
+        <p>Your use of the App is also governed by the <a href="privacy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. The Privacy Policy explains what data the App collects, how it is stored, your rights regarding your data, and our commitment to not collecting or transmitting your personal information without your explicit consent.</p>
+
+        <h2>8. App Store Compliance</h2>
+        <p>The App is distributed through the Google Play Store and complies with the Google Play Developer Program Policies. You acknowledge that:</p>
+        <ul>
+            <li>The App's functionality and description are accurately represented in its store listing</li>
+            <li>No prohibited content, deceptive behavior, malware, or malicious code is present</li>
+            <li>All required disclosures regarding data collection and privacy have been made via the Google Play Data Safety form</li>
+            <li>The App may be subject to review, suspension, or removal by Google at its sole discretion</li>
+            <li>Your use of the App must also comply with Google Play's Terms of Service</li>
+        </ul>
+
+        <h2>9. Third-Party Services</h2>
+        <p>The App currently does <strong>not</strong> integrate with any third-party services, analytics SDKs, advertising networks, payment processors, or external APIs. The App does not contain any third-party code that collects or transmits user data.</p>
+        <p>If future versions introduce third-party services, these Terms will be updated accordingly, and users will be notified within the App. Such services will be clearly disclosed, and any data shared with third parties will be described in the Privacy Policy.</p>
+
+        <h3>9.1 Open-Source Software</h3>
+        <p>The App incorporates open-source software components, including but not limited to the Expo SDK, React Native, and various community libraries (such as react-native-svg, react-native-reanimated, react-native-safe-area-context, expo-sqlite, expo-sharing, expo-document-picker, and expo-router). These components are used under their respective licenses (MIT, Apache 2.0, and others). Attribution notices and license texts for these components are available at the project's public repository or can be obtained by contacting the Developer. The use of these libraries does not result in any data collection or transmission beyond what is described in the Privacy Policy.</p>
+
+        <h2>10. No Artificial Intelligence / Machine Learning Training</h2>
+        <p>The Developer does <strong>not</strong> use Your Content for any artificial intelligence training, machine learning model development, automated decision-making, or any form of algorithmic profiling. Your vocabulary, practice data, and personal information are used solely to provide the App's functionality on your device and are never analyzed, processed, or extracted for any other purpose.</p>
+
+        <h2>11. Disclaimer of Warranties</h2>
+        <p>THE APP IS PROVIDED <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, THE DEVELOPER DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, QUIET ENJOYMENT, AND NON-INFRINGEMENT.</p>
+        <p>THE DEVELOPER DOES NOT WARRANT THAT:</p>
+        <ul>
+            <li>THE APP WILL MEET YOUR SPECIFIC REQUIREMENTS OR EXPECTATIONS</li>
+            <li>THE APP WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE</li>
+            <li>THE RESULTS OBTAINED FROM USING THE APP WILL BE ACCURATE, COMPLETE, OR RELIABLE</li>
+            <li>ANY ERRORS IN THE APP WILL BE CORRECTED</li>
+            <li>THE APP WILL BE COMPATIBLE WITH YOUR SPECIFIC DEVICE, THIRD-PARTY UTILITY SOFTWARE (E.G., STORAGE CLEANERS), OR FUTURE OPERATING SYSTEM VERSIONS</li>
+        </ul>
+        <p>NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM THE DEVELOPER OR THROUGH THE APP SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED IN THESE TERMS.</p>
+
+        <h2>12. Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE DEVELOPER, ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF DATA, LOSS OF PROFITS, LOSS OF GOODWILL, COST OF PROCUREMENT OF SUBSTITUTE SERVICES, OR PERSONAL INJURY, ARISING OUT OF OR RELATING TO YOUR USE OF OR INABILITY TO USE THE APP, EVEN IF THE DEVELOPER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+        <p>THE DEVELOPER'S TOTAL LIABILITY FOR ANY CLAIMS ARISING UNDER OR RELATING TO THESE TERMS SHALL NOT EXCEED THE GREATER OF (A) THE TOTAL AMOUNT YOU PAID TO USE THE APP (IF ANY) OR (B) ONE HUNDRED UNITED STATES DOLLARS ($100). THE APP IS PROVIDED FREE OF CHARGE, AND THE DEVELOPER MAKES NO GUARANTEE OF CONTINUED AVAILABILITY, FUNCTIONALITY, OR SUPPORT.</p>
+
+        <h2>13. Termination</h2>
+        <p>The Developer reserves the right to request removal of the App from distribution platforms or suspend updates for conduct that violates these Terms or is otherwise harmful to the App, its users, or the Developer.</p>
+        <p>Upon termination:</p>
+        <ul>
+            <li>Your right to use the App immediately ceases</li>
+            <li>All data stored locally on your device remains strictly under your physical control and can be deleted entirely by uninstalling the App</li>
+            <li>The Developer has no obligation or technical capacity to retrieve, store, or provide access to your locally saved data</li>
+        </ul>
+        <p>You may terminate these Terms at any time by uninstalling the App and deleting all local data. Termination of these Terms does not relieve you of any obligations that have accrued prior to termination.</p>
+
+        <h2>14. Discontinuation of Service</h2>
+        <p>The Developer reserves the right to discontinue the App, in whole or in part, at any time with or without notice. In the event of discontinuation:</p>
+        <ul>
+            <li>The Developer will endeavor to provide reasonable notice through the App or the store listing where practicable</li>
+            <li>You are encouraged to export your vocabulary data via CSV before the discontinuation date</li>
+            <li>The Developer assumes no obligation to provide alternative services, cloud migration, or hosting options</li>
+        </ul>
+
+        <h2>15. Export Compliance</h2>
+        <p>You represent and warrant that you are not located in, under the control of, or a national or resident of any country that is subject to applicable United States or international trade sanctions or embargoes. You agree not to use the App in violation of any applicable export control laws or economic sanctions.</p>
+
+        <h2>16. Governing Law and Dispute Resolution</h2>
+        <p>These Terms shall be governed by and construed in accordance with the laws of the People's Republic of Bangladesh, without regard to its conflict of law provisions.</p>
+        <p><strong>Informal Resolution</strong>: Before filing any claim, you agree to attempt to resolve any dispute informally by contacting the Developer. If the dispute cannot be resolved within 30 days of the Developer's receipt of your notice, either party may seek legal remedies.</p>
+        <p><strong>Binding Arbitration</strong>: Any dispute arising out of or relating to these Terms or the App that cannot be resolved informally shall be referred to and finally resolved by binding arbitration in accordance with the Arbitration Act, 2001 of Bangladesh and the rules of the Bangladesh International Arbitration Centre (BIAC). The place of arbitration shall be Dhaka, Bangladesh, and the proceedings shall be conducted in the English language. Judgment upon the award rendered by the arbitrator may be entered in any court having jurisdiction. You agree that claims must be brought on an individual basis only and not as a plaintiff or class member in any class, consolidated, or representative action.</p>
+
+        <h2>17. Waiver</h2>
+        <p>The failure of the Developer to enforce any right or provision of these Terms shall not constitute a waiver of such right or provision. No waiver of any term shall be deemed a further or continuing waiver of such term or any other term.</p>
+
+        <h2>18. Severability</h2>
+        <p>If any provision of these Terms is held to be invalid, illegal, or unenforceable by a court of competent jurisdiction, the remaining provisions shall continue in full force and effect. The invalid or unenforceable provision shall be replaced by a valid, enforceable provision that most closely matches the intent of the original provision, and the remainder of these Terms shall remain in effect.</p>
+
+        <h2>19. Entire Agreement</h2>
+        <p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and the Developer regarding your use of the App and supersede any prior or contemporaneous agreements, understandings, representations, or communications, whether written or oral.</p>
+
+        <h2>20. Governing Language</h2>
+        <p>These Terms may be translated into other languages for convenience (including German). In the event of any conflict or inconsistency between the English version and any translated version, the English version shall prevail and control.</p>
+
+        <h2>21. Changes to These Terms</h2>
+        <p>The Developer reserves the right to modify these Terms at any time. Material changes will be communicated through the App (e.g., via an in-app notice or updated onboarding flow). Your continued use of the App after the effective date of any changes constitutes acceptance of the revised Terms.</p>
+        <p>If you do not agree to the modified Terms, you must discontinue use of the App and uninstall it.</p>
+        <p>The date of the most recent revision is indicated at the top of this document.</p>
+
+        <h2>22. Contact</h2>
+        <p>If you have any questions, concerns, or requests regarding these Terms, please contact us:</p>
+        <p><strong>Email</strong>: <a href="mailto:contact.nookab@gmail.com">contact.nookab@gmail.com</a><br>
+        <strong>Developer</strong>: Hanan Atelier<br>
+        <strong>Address</strong>: Dhaka, Bangladesh</p>
+    </main>
+
+    <footer>
+        <p><a href="index.html">Nookab</a> &mdash; Where words become yours. &copy; 2026</p>
+    </footer>
+</body>
+
+</html>
