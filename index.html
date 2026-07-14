@@ -520,18 +520,31 @@
                 opacity: 1;
             }
 
-            .feature-card:nth-child(1):hover { background: rgba(34, 197, 94, 0.05); border-color: rgba(34, 197, 94, 0.2); }
-            .feature-card:nth-child(2):hover { background: rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.2); }
-            .feature-card:nth-child(3):hover { background: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2); }
-            .feature-card:nth-child(4):hover { background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.2); }
-            .feature-card:nth-child(5):hover { background: rgba(139, 92, 246, 0.05); border-color: rgba(139, 92, 246, 0.2); }
-            .feature-card:nth-child(6):hover { background: rgba(6, 182, 212, 0.05); border-color: rgba(6, 182, 212, 0.2); }
-            .feature-card:nth-child(7):hover { background: rgba(236, 72, 153, 0.05); border-color: rgba(236, 72, 153, 0.2); }
-            .feature-card:nth-child(8):hover { background: rgba(20, 184, 166, 0.05); border-color: rgba(20, 184, 166, 0.2); }
-            .feature-card:nth-child(9):hover { background: rgba(249, 115, 22, 0.05); border-color: rgba(249, 115, 22, 0.2); }
-            .feature-card:nth-child(10):hover { background: rgba(99, 102, 241, 0.05); border-color: rgba(99, 102, 241, 0.2); }
-            .feature-card:nth-child(11):hover { background: rgba(132, 204, 22, 0.05); border-color: rgba(132, 204, 22, 0.2); }
-            .feature-card:nth-child(12):hover { background: rgba(225, 29, 72, 0.05); border-color: rgba(225, 29, 72, 0.2); }
+            .feature-card:nth-child(1) { background: rgba(34, 197, 94, 0.08); border-color: rgba(34, 197, 94, 0.15); }
+            .feature-card:nth-child(2) { background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.15); }
+            .feature-card:nth-child(3) { background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.15); }
+            .feature-card:nth-child(4) { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.15); }
+            .feature-card:nth-child(5) { background: rgba(139, 92, 246, 0.08); border-color: rgba(139, 92, 246, 0.15); }
+            .feature-card:nth-child(6) { background: rgba(6, 182, 212, 0.08); border-color: rgba(6, 182, 212, 0.15); }
+            .feature-card:nth-child(7) { background: rgba(236, 72, 153, 0.08); border-color: rgba(236, 72, 153, 0.15); }
+            .feature-card:nth-child(8) { background: rgba(20, 184, 166, 0.08); border-color: rgba(20, 184, 166, 0.15); }
+            .feature-card:nth-child(9) { background: rgba(249, 115, 22, 0.08); border-color: rgba(249, 115, 22, 0.15); }
+            .feature-card:nth-child(10) { background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.15); }
+            .feature-card:nth-child(11) { background: rgba(132, 204, 22, 0.08); border-color: rgba(132, 204, 22, 0.15); }
+            .feature-card:nth-child(12) { background: rgba(225, 29, 72, 0.08); border-color: rgba(225, 29, 72, 0.15); }
+
+            .feature-card:nth-child(1):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(2):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(3):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(4):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(5):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(6):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(7):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(8):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(9):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(10):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(11):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(12):hover { background: var(--bg-card); border-color: var(--border); }
 
             .feature-card::after {
                 content: attr(data-number);
@@ -780,6 +793,10 @@
                 z-index: 0;
             }
 
+            .journey-svg-mobile {
+                display: none;
+            }
+
             .journey-path-bg {
                 fill: none;
                 stroke: rgba(45, 90, 39, 0.12);
@@ -903,7 +920,10 @@
             .journey-step-number {
                 width: 48px;
                 height: 48px;
-                background: linear-gradient(135deg, var(--primary), #4a8f3f);
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.12);
                 border-radius: 14px;
                 display: flex;
                 align-items: center;
@@ -912,7 +932,7 @@
                 font-weight: 800;
                 color: white;
                 margin-bottom: 1rem;
-                box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             }
 
             .journey-step-icon {
@@ -962,13 +982,26 @@
                     margin-top: 2rem;
                 }
 
-                .journey-svg {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    transform: none;
+                .journey-svg-desktop {
+                    display: none;
+                }
+
+                .journey-svg-mobile {
+                    display: block;
+                }
+
+                .journey-svg-mobile .journey-path-fill {
+                    stroke: var(--primary);
+                    stroke-width: 4;
+                }
+
+                .journey-svg-mobile .journey-glow {
+                    stroke-width: 10;
+                    opacity: 0;
+                }
+
+                .journey-svg-mobile .journey-glow.animate {
+                    opacity: 0.1;
                 }
 
                 .journey-step-inner {
@@ -1461,11 +1494,83 @@
             }
 
             .mode-card:nth-child(2) .mode-icon {
-                background: rgba(45, 90, 39, 0.1);
+                background: rgba(34, 197, 94, 0.1);
             }
 
             .mode-card:nth-child(3) .mode-icon {
-                background: rgba(74, 143, 63, 0.1);
+                background: rgba(34, 197, 94, 0.1);
+            }
+
+            .mode-card:nth-child(4) .mode-icon {
+                background: rgba(34, 197, 94, 0.1);
+            }
+
+            /* Animated SVG Icons */
+            .feature-icon svg,
+            .mode-icon svg,
+            .stack-card-icon svg,
+            .journey-step-icon svg {
+                width: 1em;
+                height: 1em;
+                vertical-align: -0.125em;
+            }
+
+            .icon-animated svg {
+                transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .icon-animated:hover svg {
+                transform: scale(1.2) rotate(-5deg);
+            }
+
+            .icon-fire svg {
+                animation: fireSway 1s ease-in-out infinite alternate;
+            }
+
+            .icon-fire svg .flame-back {
+                animation: flameWave 0.7s ease-in-out infinite alternate;
+                transform-origin: bottom center;
+            }
+
+            .icon-fire svg .flame-front {
+                animation: flameWave 0.5s ease-in-out infinite alternate-reverse;
+                transform-origin: bottom center;
+            }
+
+            .icon-fire svg .flame-core {
+                animation: flameWave 0.4s ease-in-out infinite alternate;
+                transform-origin: bottom center;
+            }
+
+            @keyframes fireSway {
+                0% { transform: rotate(-2deg); }
+                100% { transform: rotate(2deg); }
+            }
+
+            @keyframes flameWave {
+                0% { transform: scaleX(1) scaleY(1); }
+                33% { transform: scaleX(0.9) scaleY(1.08); }
+                66% { transform: scaleX(1.08) scaleY(0.94); }
+                100% { transform: scaleX(0.95) scaleY(1.03); }
+            }
+
+            @keyframes iconBounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-4px); }
+            }
+
+            .icon-animated.visible {
+                animation: iconBounce 2.5s ease-in-out infinite;
+            }
+
+            .founder-icon {
+                display: inline-flex;
+                vertical-align: -0.25em;
+            }
+
+            .founder-icon svg {
+                width: 1.1em;
+                height: 1.1em;
             }
 
             .mode-card h3 {
@@ -1566,79 +1671,90 @@
             }
 
             .founder-content {
-                max-width: 800px;
+                max-width: 900px;
                 margin: 0 auto;
+            }
+
+            .founder-headline {
+                font-size: 2.2rem;
+                font-weight: 800;
+                line-height: 1.3;
+                margin-bottom: 2.5rem;
+                color: var(--text-primary);
                 text-align: center;
             }
 
-            .founder-text {
-                font-size: 1.15rem;
-                color: var(--text-secondary);
-                margin-bottom: 2.5rem;
-                line-height: 1.8;
+            .founder-headline span {
+                background: linear-gradient(135deg, var(--primary), #4a8f3f);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
 
-            .founder-pain-points {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: left;
-                margin-bottom: 3rem;
+            .founder-problems {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem 3rem;
+                margin-bottom: 3.5rem;
             }
 
-            .pain-point {
-                display: flex;
-                gap: 1rem;
-                align-items: flex-start;
-                background: var(--bg-card);
-                border: 1px solid var(--border);
-                border-radius: 12px;
-                padding: 1.25rem 1.5rem;
-                transition: all 0.3s ease;
+            .founder-problem h4 {
+                font-size: 1.05rem;
+                font-weight: 700;
+                margin-bottom: 0.4rem;
+                color: var(--text-primary);
             }
 
-            .pain-point:hover {
-                border-color: rgba(45, 90, 39, 0.3);
-                transform: translateX(4px);
-            }
-
-            .pain-icon {
-                font-size: 1.5rem;
-                flex-shrink: 0;
-                margin-top: 0.1rem;
-            }
-
-            .pain-point h4 {
-                font-size: 1rem;
-                font-weight: 600;
-                margin-bottom: 0.25rem;
-            }
-
-            .pain-point p {
+            .founder-problem p {
                 font-size: 0.9rem;
                 color: var(--text-secondary);
                 line-height: 1.6;
             }
 
             .founder-mission {
-                border-top: 1px solid var(--border);
-                padding-top: 2rem;
+                text-align: center;
+                padding: 0 2rem;
             }
 
             .founder-mission p {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
                 color: var(--text-secondary);
-                margin-bottom: 1.5rem;
+                margin-bottom: 2rem;
                 line-height: 1.8;
             }
 
             .mission-quote {
-                font-size: 1.15rem !important;
-                color: var(--primary-light) !important;
+                font-size: 1.4rem !important;
+                color: var(--text-primary) !important;
                 font-style: italic;
-                border-left: 3px solid var(--primary);
-                padding-left: 1.25rem;
-                text-align: left;
+                font-weight: 600;
+                line-height: 1.5 !important;
+                position: relative;
+                margin-bottom: 0 !important;
+            }
+
+            .mission-quote::before {
+                content: '\201C';
+                font-size: 4rem;
+                color: var(--primary);
+                opacity: 0.3;
+                position: absolute;
+                top: -1.5rem;
+                left: -1rem;
+                font-style: normal;
+                line-height: 1;
+            }
+
+            .mission-quote::after {
+                content: '\201D';
+                font-size: 4rem;
+                color: var(--primary);
+                opacity: 0.3;
+                position: absolute;
+                bottom: -2rem;
+                right: -0.5rem;
+                font-style: normal;
+                line-height: 1;
             }
 
             /* Download CTA */
@@ -2255,6 +2371,25 @@
                     grid-template-columns: 1fr;
                 }
 
+                .founder-problems {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                }
+
+                .founder-headline {
+                    font-size: 1.6rem;
+                }
+
+                .mission-quote {
+                    font-size: 1.15rem !important;
+                }
+
+                .mission-quote::before {
+                    font-size: 3rem;
+                    top: -1rem;
+                    left: -0.5rem;
+                }
+
                 .card-stack-container {
                     padding: 0 1.5rem;
                 }
@@ -2858,7 +2993,7 @@
                         hassle.</p>
                 </div>
                 <div class="journey-container">
-                    <svg class="journey-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
+                    <svg class="journey-svg journey-svg-desktop" viewBox="0 0 1000 500" preserveAspectRatio="none">
                         <defs>
                             <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stop-color="var(--primary)" />
@@ -2869,6 +3004,18 @@
                         <path class="journey-path-bg" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
                         <path class="journey-path-fill" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
                         <path class="journey-glow" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
+                    </svg>
+                    <svg class="journey-svg journey-svg-mobile" viewBox="0 0 300 800" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="journeyGradientMobile" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="var(--primary)" />
+                                <stop offset="50%" stop-color="#4a8f3f" />
+                                <stop offset="100%" stop-color="var(--primary)" />
+                            </linearGradient>
+                        </defs>
+                        <path class="journey-path-bg" d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
+                        <path class="journey-path-fill" d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
+                        <path class="journey-glow" d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
                     </svg>
                     <div class="journey-steps">
                         <div class="journey-step" data-step="1">
@@ -2883,7 +3030,7 @@
                             <div class="journey-step-inner">
                                 <div class="journey-step-number">2</div>
                                 <div class="journey-step-icon">🧠</div>
-                                <h3>Learn Words</h3>
+                                <h3>Practice Words</h3>
                                 <p>Choose Flashcard, Quiz, or Spelling mode. The smart engine picks words that need attention.</p>
                             </div>
                         </div>
@@ -2913,49 +3060,28 @@
             <div class="container">
                 <div class="founder-content reveal">
                     <span class="section-label">Why Nookab Exists</span>
-                    <h2 class="section-title">Built by a learner, for learners</h2>
-                    <p class="founder-text">Nookab was born from a specific frustration. I'm an SQA Engineer who started
-                        learning a new language, and every vocabulary app I tried had the same four problems:</p>
-                    <div class="founder-pain-points">
-                        <div class="pain-point">
-                            <span class="pain-icon">📓</span>
-                            <div>
-                                <h4>Your vocabulary is stuck in notebooks</h4>
-                                <p>You collect words from videos, books, conversations — but they sit in a notebook you
-                                    don't always have. Spare moments go unused.</p>
-                            </div>
+                    <h2 class="founder-headline">Every vocabulary app had <span>the same four problems</span></h2>
+                    <div class="founder-problems">
+                        <div class="founder-problem">
+                            <h4>📓 Your vocabulary is stuck in notebooks</h4>
+                            <p>You collect words from videos, books, conversations — but they sit in a notebook you don't always have. Spare moments go unused.</p>
                         </div>
-                        <div class="pain-point">
-                            <span class="pain-icon">📚</span>
-                            <div>
-                                <h4>No app lets you practice only your words</h4>
-                                <p>Every app ships with 2,000 pre-built words you didn't ask for. Your own vocabulary
-                                    gets diluted by someone else's word list.</p>
-                            </div>
+                        <div class="founder-problem">
+                            <h4>📚 No app lets you practice only your words</h4>
+                            <p>Every app ships with 2,000 pre-built words you didn't ask for. Your own vocabulary gets diluted by someone else's word list.</p>
                         </div>
-                        <div class="pain-point">
-                            <span class="pain-icon">💳</span>
-                            <div>
-                                <h4>Paywalls block what actually helps</h4>
-                                <p>Spaced repetition, multiple practice modes, detailed stats — locked behind
-                                    $5-15/month subscriptions.</p>
-                            </div>
+                        <div class="founder-problem">
+                            <h4>💳 Paywalls block what actually helps</h4>
+                            <p>Spaced repetition, multiple practice modes, detailed stats — locked behind $5-15/month subscriptions.</p>
                         </div>
-                        <div class="pain-point">
-                            <span class="pain-icon">📡</span>
-                            <div>
-                                <h4>Internet dependency kills opportunistic learning</h4>
-                                <p>The moments you have free time — commutes, waiting rooms — are exactly when there's
-                                    no signal. Cloud tools fail when you need them most.</p>
-                            </div>
+                        <div class="founder-problem">
+                            <h4>📡 Internet dependency kills opportunistic learning</h4>
+                            <p>The moments you have free time — commutes, waiting rooms — are exactly when there's no signal. Cloud tools fail when you need them most.</p>
                         </div>
                     </div>
                     <div class="founder-mission">
-                        <p>Nookab is the answer to all four. It starts empty. You fill it with your words. It works
-                            offline. It's completely free. No account, no subscription, no catch.</p>
-                        <p class="mission-quote">"Democratize vocabulary mastery by making scientifically-backed
-                            learning algorithms accessible to everyone — completely offline and free of distractions."
-                        </p>
+                        <p>Nookab is the answer to all four. It starts empty. You fill it with your words. It works offline. It's completely free. No account, no subscription, no catch.</p>
+                        <p class="mission-quote">Democratize vocabulary mastery by making scientifically-backed learning algorithms accessible to everyone — completely offline and free of distractions.</p>
                     </div>
                 </div>
             </div>
@@ -3629,10 +3755,10 @@
             // Journey Path Animation
             const journeySection = document.querySelector('.journey-container');
             const journeySteps = document.querySelectorAll('.journey-step');
-            const pathFill = document.querySelector('.journey-path-fill');
-            const pathGlow = document.querySelector('.journey-glow');
+            const pathFills = document.querySelectorAll('.journey-path-fill');
+            const pathGlows = document.querySelectorAll('.journey-glow');
 
-            if (journeySection && pathFill && pathGlow) {
+            if (journeySection && pathFills.length && pathGlows.length) {
                 function animateJourney() {
                     const rect = journeySection.getBoundingClientRect();
                     const windowHeight = window.innerHeight;
@@ -3642,15 +3768,16 @@
                     let progress = (windowHeight - sectionTop) / (sectionHeight + windowHeight);
                     progress = Math.max(0, Math.min(1, progress));
 
-                    if (progress > 0.05) {
-                        pathFill.classList.add('animate');
-                        pathGlow.classList.add('animate');
-                    } else {
-                        pathFill.classList.remove('animate');
-                        pathGlow.classList.remove('animate');
-                    }
+                    pathFills.forEach(p => {
+                        if (progress > 0.05) p.classList.add('animate');
+                        else p.classList.remove('animate');
+                    });
+                    pathGlows.forEach(p => {
+                        if (progress > 0.05) p.classList.add('animate');
+                        else p.classList.remove('animate');
+                    });
 
-                    const thresholds = [0.1, 0.3, 0.5, 0.65];
+                    const thresholds = [0.1, 0.25, 0.4, 0.5];
                     journeySteps.forEach((step, index) => {
                         if (progress >= thresholds[index]) {
                             step.classList.add('visible');
@@ -3662,6 +3789,62 @@
                 window.addEventListener('load', animateJourney);
                 animateJourney();
             }
+
+            // Animated SVG Icons
+            const iconSVGs = {
+                '📚': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="#22c55e" stroke-width="2"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="#4a8f3f" stroke-width="2"/></svg>',
+                '🔒': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#22c55e" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="#4a8f3f" stroke-width="2"/></svg>',
+                '💰': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><line x1="12" y1="6" x2="12" y2="18" stroke="#f59e0b" stroke-width="2"/><path d="M15 9.5c0-1.38-1.34-2.5-3-2.5s-3 1.12-3 2.5 1.34 2.5 3 2.5 3 1.12 3 2.5-1.34 2.5-3 2.5" stroke="#f59e0b" stroke-width="2"/></svg>',
+                '⏱️': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="#f59e0b" stroke-width="2"/><circle cx="12" cy="12" r="1" fill="#f59e0b" stroke="none"/></svg>',
+                '⚙️': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" stroke="#22c55e" stroke-width="2"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#4a8f3f" stroke-width="2"/></svg>',
+                '🧠': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 2.5 2 4.5 4 5.5V16h2v-3.5c2-1 4-3 4-5.5a5 5 0 0 0-5-5z" stroke="#22c55e" stroke-width="2"/><line x1="10" y1="19" x2="14" y2="19" stroke="#4a8f3f" stroke-width="2"/><line x1="10" y1="22" x2="14" y2="22" stroke="#4a8f3f" stroke-width="2"/></svg>',
+                '⚡': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke="#f59e0b" stroke-width="2" fill="rgba(245,158,11,0.15)"/></svg>',
+                '📊': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9" rx="1" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.15)"/><rect x="10" y="7" width="4" height="14" rx="1" stroke="#4a8f3f" stroke-width="2" fill="rgba(74,143,63,0.15)"/><rect x="17" y="3" width="4" height="18" rx="1" stroke="#86efac" stroke-width="2" fill="rgba(134,239,172,0.15)"/></svg>',
+                '🎯': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><circle cx="12" cy="12" r="6" stroke="#4a8f3f" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#22c55e" stroke="none"/></svg>',
+                '🔊': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.1)"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="#4a8f3f" stroke-width="2"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="#86efac" stroke-width="2"/></svg>',
+                '💡': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6" stroke="#22c55e" stroke-width="2"/><path d="M10 22h4" stroke="#22c55e" stroke-width="2"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" stroke="#f59e0b" stroke-width="2" fill="rgba(245,158,11,0.1)"/></svg>',
+                '📂': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.08)"/><path d="M2 7h20" stroke="#4a8f3f" stroke-width="1.5"/></svg>',
+                '📈': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="#22c55e" stroke-width="2"/><polyline points="16 7 22 7 22 13" stroke="#4a8f3f" stroke-width="2"/></svg>',
+                '➕': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" stroke="#22c55e" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="#22c55e" stroke-width="2"/></svg>',
+                '🏆': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" stroke="#f59e0b" stroke-width="2"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" stroke="#f59e0b" stroke-width="2"/><path d="M4 22h16" stroke="#22c55e" stroke-width="2"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22" stroke="#22c55e" stroke-width="2"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22" stroke="#22c55e" stroke-width="2"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" stroke="#f59e0b" stroke-width="2" fill="rgba(245,158,11,0.1)"/></svg>',
+                '🃏': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.08)"/><path d="M12 8v8" stroke="#4a8f3f" stroke-width="2"/><path d="M8 12h8" stroke="#4a8f3f" stroke-width="2"/></svg>',
+                '❓': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="#4a8f3f" stroke-width="2"/><circle cx="12" cy="17" r=".5" fill="#22c55e" stroke="none"/></svg>',
+                '✏️': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.1)"/><path d="m15 5 4 4" stroke="#4a8f3f" stroke-width="2"/><path d="M2 22l3-3" stroke="#f59e0b" stroke-width="2"/></svg>',
+                '🌙': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.1)"/></svg>',
+                '⚠️': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="#f59e0b" stroke-width="2" fill="rgba(245,158,11,0.1)"/><line x1="12" y1="9" x2="12" y2="13" stroke="#f59e0b" stroke-width="2"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="#f59e0b" stroke-width="2"/></svg>',
+                '📓': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.08)"/><line x1="6" y1="8" x2="18" y2="8" stroke="#4a8f3f" stroke-width="1.5"/><line x1="6" y1="12" x2="18" y2="12" stroke="#4a8f3f" stroke-width="1.5"/><line x1="6" y1="16" x2="12" y2="16" stroke="#4a8f3f" stroke-width="1.5"/></svg>',
+                '💳': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" stroke="#22c55e" stroke-width="2" fill="rgba(34,197,94,0.08)"/><line x1="1" y1="10" x2="23" y2="10" stroke="#f59e0b" stroke-width="2"/></svg>',
+                '📡': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" stroke="#86efac" stroke-width="2"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" stroke="#4a8f3f" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#22c55e" stroke="none"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" stroke="#4a8f3f" stroke-width="2"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" stroke="#86efac" stroke-width="2"/></svg>',
+                '🔥': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path class="flame-back" d="M12 2C8.5 7.5 5 10.5 5 14.5a7 7 0 0 0 14 0c0-4-3.5-7-7-12.5z" stroke="#f97316" stroke-width="2" fill="rgba(249,115,22,0.25)"/><path class="flame-front" d="M12 7C10 10.5 8 12.5 8 15a4 4 0 0 0 8 0c0-2.5-2-4.5-4-8z" stroke="#f59e0b" stroke-width="1.5" fill="rgba(245,158,11,0.3)"/><path class="flame-core" d="M12 11c-1 1.5-2 2.5-2 4a2 2 0 0 0 4 0c0-1.5-1-2.5-2-4z" stroke="#ef4444" stroke-width="1" fill="rgba(239,68,68,0.3)"/></svg>',
+                '📥': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#22c55e" stroke-width="2"/><polyline points="7 10 12 15 17 10" stroke="#4a8f3f" stroke-width="2"/><line x1="12" y1="15" x2="12" y2="3" stroke="#22c55e" stroke-width="2"/></svg>',
+                '📤': '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#22c55e" stroke-width="2"/><polyline points="17 8 12 3 7 8" stroke="#4a8f3f" stroke-width="2"/><line x1="12" y1="3" x2="12" y2="15" stroke="#22c55e" stroke-width="2"/></svg>'
+            };
+
+            document.querySelectorAll('.feature-icon, .mode-icon, .stack-card-icon, .journey-step-icon').forEach(el => {
+                const text = el.textContent.trim();
+                if (iconSVGs[text]) {
+                    el.innerHTML = iconSVGs[text];
+                    el.classList.add('icon-animated');
+                    if (text === '🔥') el.classList.add('icon-fire');
+                }
+            });
+
+            document.querySelectorAll('.founder-problem h4').forEach(el => {
+                let html = el.innerHTML;
+                Object.keys(iconSVGs).forEach(emoji => {
+                    if (html.includes(emoji)) {
+                        html = html.replace(emoji, '<span class="icon-animated founder-icon">' + iconSVGs[emoji] + '</span>');
+                    }
+                });
+                el.innerHTML = html;
+            });
+
+            const iconObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.icon-animated').forEach(icon => iconObserver.observe(icon));
 
             // Initialize
             updateStack();
