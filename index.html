@@ -167,27 +167,39 @@
                 overflow: hidden;
             }
 
+            .hero-bg::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-image: url('images/abstract_line.svg');
+                background-size: cover;
+                background-position: center;
+                opacity: 0.12;
+                pointer-events: none;
+                mix-blend-mode: screen;
+            }
+
             .hero-gradient {
                 position: absolute;
-                width: 600px;
-                height: 600px;
+                width: 900px;
+                height: 900px;
                 border-radius: 50%;
-                filter: blur(120px);
-                opacity: 0.25;
+                filter: blur(150px);
+                opacity: 0.3;
                 animation: float 8s ease-in-out infinite;
             }
 
             .hero-gradient-1 {
                 background: var(--primary);
-                top: -200px;
-                right: -100px;
+                top: -300px;
+                right: -200px;
                 animation-delay: 0s;
             }
 
             .hero-gradient-2 {
                 background: #4a8f3f;
-                bottom: -200px;
-                left: -100px;
+                bottom: -300px;
+                left: -200px;
                 animation-delay: 4s;
             }
 
@@ -204,10 +216,72 @@
             }
 
             .hero-content {
-                max-width: 900px;
-                text-align: center;
+                max-width: 1100px;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: center;
                 position: relative;
                 z-index: 1;
+            }
+
+            .hero-left {
+                text-align: left;
+            }
+
+            .hero-left .hero-subtitle {
+                margin-left: 0;
+            }
+
+            .hero-left .hero-buttons {
+                justify-content: flex-start;
+            }
+
+            .hero-right {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .hero-phone-glow {
+                position: absolute;
+                width: 320px;
+                height: 400px;
+                background: radial-gradient(ellipse, rgba(45, 90, 39, 0.25) 0%, rgba(45, 90, 39, 0.08) 50%, transparent 70%);
+                border-radius: 50%;
+                filter: blur(40px);
+                z-index: 0;
+                animation: glowPulse 4s ease-in-out infinite;
+            }
+
+            @keyframes glowPulse {
+                0%, 100% { opacity: 0.7; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.05); }
+            }
+
+            .hero-phone-image {
+                position: relative;
+                z-index: 1;
+                width: 500px;
+                height: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: phoneFloat 6s ease-in-out infinite;
+            }
+
+            @keyframes phoneFloat {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-12px); }
+            }
+
+            .hero-app-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
             }
 
             .hero-badge {
@@ -335,114 +409,6 @@
             .btn-google-play img {
                 height: 48px;
                 width: auto;
-            }
-
-            .hero-visual {
-                margin-top: 4rem;
-                position: relative;
-                opacity: 0;
-                transform: translateY(40px);
-                animation: fadeInUp 0.8s ease 0.4s forwards;
-            }
-
-            .phones-container {
-                display: flex;
-                justify-content: center;
-                gap: 2rem;
-                flex-wrap: wrap;
-                perspective: 1000px;
-            }
-
-            .phone-frame {
-                position: relative;
-                transition: transform 0.3s ease;
-            }
-
-            .phone-frame:hover {
-                transform: translateY(-10px) rotateY(5deg);
-            }
-
-            .phone-body {
-                width: 260px;
-                height: 520px;
-                background: #1a1a1f;
-                border-radius: 36px;
-                border: 4px solid #2a2a30;
-                padding: 12px;
-                position: relative;
-                box-shadow:
-                    0 25px 60px rgba(0, 0, 0, 0.5),
-                    inset 0 0 0 2px rgba(255, 255, 255, 0.05);
-                overflow: hidden;
-            }
-
-            .phone-notch {
-                position: absolute;
-                top: 12px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 100px;
-                height: 24px;
-                background: #1a1a1f;
-                border-radius: 0 0 14px 14px;
-                z-index: 10;
-            }
-
-            .phone-notch::before {
-                content: '';
-                position: absolute;
-                top: 8px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 8px;
-                height: 8px;
-                background: #333;
-                border-radius: 50%;
-            }
-
-            .phone-screenshot {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 24px;
-                background: var(--bg-dark);
-            }
-
-            .phone-1 {
-                transform: rotate(-5deg);
-                z-index: 2;
-            }
-
-            .phone-1:hover {
-                transform: rotate(-2deg) translateY(-10px);
-            }
-
-            .phone-2 {
-                transform: rotate(5deg);
-                z-index: 1;
-            }
-
-            .phone-2:hover {
-                transform: rotate(2deg) translateY(-10px);
-            }
-
-            @media (max-width: 600px) {
-                .phones-container {
-                    gap: 1rem;
-                }
-
-                .phone-body {
-                    width: 200px;
-                    height: 400px;
-                }
-
-                .phone-1 {
-                    transform: rotate(-3deg);
-                }
-
-                .phone-2 {
-                    transform: rotate(3deg);
-                }
             }
 
             @keyframes fadeInUp {
@@ -798,7 +764,230 @@
                 background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(45, 90, 39, 0.03) 50%, var(--bg-dark) 100%);
             }
 
-            /* Your Nookab Pillars */
+            .journey-container {
+                max-width: 1000px;
+                margin: 3rem auto 0;
+                position: relative;
+            }
+
+            .journey-svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            .journey-path-bg {
+                fill: none;
+                stroke: rgba(45, 90, 39, 0.12);
+                stroke-width: 3;
+                stroke-linecap: round;
+            }
+
+            .journey-path-fill {
+                fill: none;
+                stroke: url(#journeyGradient);
+                stroke-width: 3;
+                stroke-linecap: round;
+                stroke-dasharray: 12 8;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .journey-path-fill.animate {
+                opacity: 1;
+                animation: dashFlow 1.5s linear infinite;
+            }
+
+            @keyframes dashFlow {
+                to {
+                    stroke-dashoffset: -20;
+                }
+            }
+
+            .journey-glow {
+                fill: none;
+                stroke: var(--primary);
+                stroke-width: 8;
+                stroke-linecap: round;
+                stroke-dasharray: 12 8;
+                opacity: 0;
+                filter: blur(6px);
+                transition: opacity 0.3s ease;
+            }
+
+            .journey-glow.animate {
+                opacity: 0.2;
+                animation: dashFlow 1.5s linear infinite;
+            }
+
+            .journey-traveler {
+                transition: offset-distance 0.1s linear;
+                offset-distance: 0%;
+            }
+
+            .journey-traveler-dot {
+                width: 18px;
+                height: 18px;
+                background: var(--primary);
+                border-radius: 50%;
+                box-shadow: 0 0 20px rgba(45, 90, 39, 0.8), 0 0 40px rgba(45, 90, 39, 0.4);
+                position: absolute;
+                z-index: 10;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .journey-steps {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                gap: 3rem 4rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .journey-step {
+                opacity: 0;
+                transform: translateY(40px);
+                transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .journey-step.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .journey-step:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+                align-self: start;
+            }
+
+            .journey-step:nth-child(2) {
+                grid-column: 2;
+                grid-row: 1;
+                margin-top: 6rem;
+            }
+
+            .journey-step:nth-child(3) {
+                grid-column: 1;
+                grid-row: 2;
+                margin-top: -2rem;
+            }
+
+            .journey-step:nth-child(4) {
+                grid-column: 2;
+                grid-row: 2;
+                margin-top: 4rem;
+            }
+
+            .journey-step-inner {
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 2rem;
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            .journey-step-inner:hover {
+                border-color: var(--primary);
+                box-shadow: 0 8px 40px rgba(45, 90, 39, 0.15);
+                transform: translateY(-4px);
+            }
+
+            .journey-step-number {
+                width: 48px;
+                height: 48px;
+                background: linear-gradient(135deg, var(--primary), #4a8f3f);
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                font-weight: 800;
+                color: white;
+                margin-bottom: 1rem;
+                box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
+            }
+
+            .journey-step-icon {
+                font-size: 1.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .journey-step h3 {
+                font-size: 1.15rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+            }
+
+            .journey-step p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            @media (max-width: 768px) {
+                .journey-steps {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                }
+
+                .journey-step:nth-child(1) {
+                    grid-column: 1;
+                    grid-row: 1;
+                    margin-top: 0;
+                }
+
+                .journey-step:nth-child(2) {
+                    grid-column: 2;
+                    grid-row: 1;
+                    margin-top: 3rem;
+                }
+
+                .journey-step:nth-child(3) {
+                    grid-column: 1;
+                    grid-row: 2;
+                    margin-top: -1rem;
+                }
+
+                .journey-step:nth-child(4) {
+                    grid-column: 2;
+                    grid-row: 2;
+                    margin-top: 2rem;
+                }
+
+                .journey-svg {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    transform: none;
+                }
+
+                .journey-step-inner {
+                    padding: 1rem;
+                }
+
+                .journey-step-icon {
+                    font-size: 1.3rem;
+                }
+
+                .journey-step h3 {
+                    font-size: 0.9rem;
+                }
+
+                .journey-step p {
+                    font-size: 0.75rem;
+                    line-height: 1.4;
+                }
+            }
             /* Card Stack */
             .card-stack-container {
                 position: relative;
@@ -1074,64 +1263,6 @@
             }
 
             /* Timeline */
-            .timeline {
-                position: relative;
-                max-width: 600px;
-                margin: 3rem auto 0;
-                padding-left: 40px;
-            }
-
-            .timeline::before {
-                content: '';
-                position: absolute;
-                left: 15px;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: linear-gradient(180deg, var(--primary), rgba(45, 90, 39, 0.2));
-            }
-
-            .timeline-item {
-                position: relative;
-                padding: 0 0 3rem 30px;
-            }
-
-            .timeline-item:last-child {
-                padding-bottom: 0;
-            }
-
-            .timeline-marker {
-                position: absolute;
-                left: -25px;
-                top: 0;
-            }
-
-            .timeline-dot {
-                width: 32px;
-                height: 32px;
-                background: linear-gradient(135deg, var(--primary), #4a8f3f);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 0.85rem;
-                font-weight: 800;
-                color: white;
-                box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
-            }
-
-            .timeline-content h3 {
-                font-size: 1.2rem;
-                font-weight: 700;
-                margin-bottom: 0.5rem;
-                margin-top: 0.25rem;
-            }
-
-            .timeline-content p {
-                color: var(--text-secondary);
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
 
             /* Mastery Progress Bar */
             .mastery-bar-container {
@@ -1683,36 +1814,61 @@
 
             /* Stats Bar */
             .stats-bar {
-                background: var(--bg-card);
-                border-bottom: 1px solid var(--border);
-                padding: 2rem;
+                background: transparent;
+                border: none;
+                padding: 3rem 2rem;
             }
 
             .stats-grid {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2rem;
+                max-width: 100%;
+                margin: 0;
+                padding: 0 4rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                flex-wrap: wrap;
             }
 
             .stat-item {
                 text-align: center;
+                padding: 1.25rem 2rem;
+                border: 1px solid var(--border);
+                border-radius: 100px;
+                background: var(--bg-card);
+                transition: all 0.3s ease;
+                min-width: 160px;
+                flex: 1;
+            }
+
+            .stat-item:nth-child(1) { transform: rotate(-2deg); }
+            .stat-item:nth-child(2) { transform: rotate(1.5deg) translateY(-6px); }
+            .stat-item:nth-child(3) { transform: rotate(-1deg) translateY(4px); }
+            .stat-item:nth-child(4) { transform: rotate(2deg); }
+
+            .stat-item:hover {
+                border-color: var(--primary);
+                background: rgba(45, 90, 39, 0.1);
+                transform: rotate(0deg) translateY(-4px) scale(1.05);
+                box-shadow: 0 8px 30px rgba(45, 90, 39, 0.2);
             }
 
             .stat-value {
-                font-size: 2rem;
+                font-size: 1.75rem;
                 font-weight: 800;
                 background: linear-gradient(135deg, var(--primary), #4a8f3f);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
+                line-height: 1;
             }
 
             .stat-label {
-                font-size: 0.85rem;
-                color: var(--text-secondary);
-                margin-top: 0.25rem;
+                font-size: 0.7rem;
+                color: var(--text-muted);
+                margin-top: 0.35rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
             }
 
             /* Smooth Section Transitions */
@@ -1773,43 +1929,6 @@
 
             .download-btn:active {
                 transform: scale(0.97);
-            }
-
-            /* Floating Phone Animation */
-            @keyframes floatPhone {
-
-                0%,
-                100% {
-                    transform: rotate(-5deg) translateY(0);
-                }
-
-                50% {
-                    transform: rotate(-5deg) translateY(-12px);
-                }
-            }
-
-            @keyframes floatPhoneReverse {
-
-                0%,
-                100% {
-                    transform: rotate(5deg) translateY(0);
-                }
-
-                50% {
-                    transform: rotate(5deg) translateY(-12px);
-                }
-            }
-
-            .phone-1 {
-                animation: floatPhone 4s ease-in-out infinite;
-            }
-
-            .phone-2 {
-                animation: floatPhoneReverse 4s ease-in-out infinite 0.5s;
-            }
-
-            .phone-frame:hover {
-                animation-play-state: paused;
             }
 
             /* Icon Bounce on Hover */
@@ -2052,6 +2171,41 @@
 
                 .hero {
                     padding-top: 5rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+
+                .hero-content {
+                    grid-template-columns: 1fr;
+                    gap: 2.5rem;
+                    text-align: center;
+                }
+
+                .hero-left {
+                    text-align: center;
+                    order: 1;
+                }
+
+                .hero-left .hero-subtitle {
+                    margin: 0 auto 2.5rem;
+                }
+
+                .hero-left .hero-buttons {
+                    justify-content: center;
+                }
+
+                .hero-right {
+                    order: 2;
+                }
+
+                .hero-phone-image {
+                    width: 280px;
+                    height: 280px;
+                }
+
+                .hero-phone-glow {
+                    width: 200px;
+                    height: 250px;
                 }
 
                 .hero-buttons {
@@ -2061,13 +2215,18 @@
 
                 .btn {
                     width: 100%;
-                    max-width: 280px;
+                    max-width: 420px;
                     justify-content: center;
                 }
 
                 .footer-content {
                     grid-template-columns: 1fr;
                     gap: 2rem;
+                    padding: 0 1rem;
+                }
+
+                footer {
+                    padding: 2rem 1.5rem 2rem;
                 }
 
                 .footer-bottom {
@@ -2076,7 +2235,19 @@
                 }
 
                 .stats-grid {
-                    grid-template-columns: repeat(2, 1fr);
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                    padding: 0 1rem;
+                }
+
+                .stat-item {
+                    min-width: 0;
+                    padding: 1rem 0.75rem;
+                }
+
+                .stat-item:nth-child(n) {
+                    transform: rotate(0deg);
                 }
 
                 .features-grid,
@@ -2085,58 +2256,58 @@
                 }
 
                 .card-stack-container {
-                    padding: 0 1rem;
+                    padding: 0 1.5rem;
                 }
 
                 .card-stack {
-                    max-width: 220px;
-                    height: 400px;
+                    max-width: 330px;
+                    height: 600px;
                 }
 
                 .stack-card {
-                    margin-left: -110px;
+                    margin-left: -165px;
                     border-radius: 24px;
                 }
 
                 .stack-card.behind-2 {
-                    transform: scale(0.7) translateX(-180px) translateY(8px);
+                    transform: scale(0.7) translateX(-270px) translateY(8px);
                     opacity: 0.3;
                 }
 
                 .stack-card.behind-1 {
-                    transform: scale(0.82) translateX(-100px) translateY(4px);
+                    transform: scale(0.82) translateX(-150px) translateY(4px);
                     opacity: 0.6;
                 }
 
                 .stack-card.ahead-1 {
-                    transform: scale(0.82) translateX(100px) translateY(4px);
+                    transform: scale(0.82) translateX(150px) translateY(4px);
                     opacity: 0.6;
                 }
 
                 .stack-card.ahead-2 {
-                    transform: scale(0.7) translateX(180px) translateY(8px);
+                    transform: scale(0.7) translateX(270px) translateY(8px);
                     opacity: 0.3;
                 }
 
                 .phone-notch {
-                    width: 60px;
-                    height: 18px;
+                    width: 90px;
+                    height: 27px;
                 }
 
                 .phone-screen {
-                    padding: 1.75rem 1rem 1.25rem;
+                    padding: 2.625rem 1.5rem 1.875rem;
                 }
 
                 .stack-card-icon {
-                    font-size: 2.25rem;
+                    font-size: 3.375rem;
                 }
 
                 .stack-card h3 {
-                    font-size: 1.05rem;
+                    font-size: 1.575rem;
                 }
 
                 .stack-card p {
-                    font-size: 0.8rem;
+                    font-size: 1.2rem;
                 }
 
                 .mastery-bar {
@@ -2146,7 +2317,7 @@
                 }
 
                 .mastery-segment {
-                    padding: 1rem;
+                    padding: 1.5rem;
                     border-right: none;
                     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
                 }
@@ -2157,7 +2328,7 @@
 
                 .mastery-segment-desc {
                     display: block;
-                    font-size: 0.8rem;
+                    font-size: 1.2rem;
                     color: rgba(255, 255, 255, 0.75);
                     margin-top: 0.25rem;
                     text-align: center;
@@ -2166,23 +2337,74 @@
                 .mastery-descriptions {
                     display: none;
                 }
+            }
 
-                .timeline {
-                    padding-left: 30px;
+            /* Small Screens */
+            @media (max-width: 375px) {
+                .card-stack-container {
+                    flex-direction: column;
+                    padding: 0 1rem;
+                    margin-top: 2rem;
                 }
 
-                .timeline::before {
-                    left: 10px;
+                .card-stack {
+                    max-width: 260px;
+                    height: 420px;
+                    margin: 0 auto;
                 }
 
-                .timeline-marker {
-                    left: -20px;
+                .stack-card {
+                    margin-left: -130px;
+                    border-radius: 20px;
                 }
 
-                .timeline-dot {
-                    width: 28px;
-                    height: 28px;
-                    font-size: 0.75rem;
+                .stack-card.behind-2,
+                .stack-card.behind-1,
+                .stack-card.ahead-1,
+                .stack-card.ahead-2 {
+                    transform: scale(0.7) translateX(0) translateY(0);
+                    opacity: 0;
+                    pointer-events: none;
+                }
+
+                .stack-card.active {
+                    transform: scale(1) translateX(0) translateY(0);
+                    opacity: 1;
+                    z-index: 5;
+                }
+
+                .phone-notch {
+                    width: 70px;
+                    height: 22px;
+                }
+
+                .phone-screen {
+                    padding: 2rem 1rem 1.5rem;
+                }
+
+                .stack-card-icon {
+                    font-size: 2.5rem;
+                }
+
+                .stack-card h3 {
+                    font-size: 1.2rem;
+                }
+
+                .stack-card p {
+                    font-size: 0.9rem;
+                }
+
+                .stack-dots {
+                    position: relative;
+                    bottom: auto;
+                    left: auto;
+                    transform: none;
+                    justify-content: center;
+                    margin-top: 1.5rem;
+                }
+
+                .bg-circles {
+                    display: none;
                 }
             }
 
@@ -2334,36 +2556,27 @@
                 <div class="hero-gradient hero-gradient-2"></div>
             </div>
             <div class="hero-content">
-                <div class="hero-badge">Launching Soon on Google Play</div>
-                <h1>Where words become<br><span class="highlight" id="typingText">yours</span><span
-                        class="typing-cursor" id="typingCursor"></span></h1>
-                <p class="hero-subtitle">Your vocabulary, always with you. Nookab starts empty. Add words as you
-                    encounter them — on the train, in a book, during a conversation. Nookab tracks your mastery, flags
-                    weak spots, and adapts to your pace. No account. No subscription. No internet required.</p>
-                <div class="hero-buttons">
-                    <a href="https://play.google.com/store/apps/details?id=com.nookab.app"
-                        class="btn btn-primary btn-google-play" target="_blank" rel="noopener">
-                        <img src="images/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play"
-                            width="180">
-                    </a>
+                <div class="hero-left">
+                    <div class="hero-badge">Launching Soon on Google Play</div>
+                    <h1>Where words become<br><span class="highlight" id="typingText">yours</span><span
+                            class="typing-cursor" id="typingCursor"></span></h1>
+                    <p class="hero-subtitle">Your vocabulary, always with you. Nookab starts empty. Add words as you
+                        encounter them — on the train, in a book, during a conversation. Nookab tracks your mastery, flags
+                        weak spots, and adapts to your pace. No account. No subscription. No internet required.</p>
+                    <div class="hero-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.nookab.app"
+                            class="btn btn-primary btn-google-play" target="_blank" rel="noopener">
+                            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play"
+                                width="180">
+                        </a>
+                    </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="phones-container">
-                        <!-- Phone 1: Dashboard -->
-                        <div class="phone-frame phone-1">
-                            <div class="phone-body">
-                                <div class="phone-notch"></div>
-                                <img src="icons/splash.png" alt="Nookab Dashboard" class="phone-screenshot"
-                                    onerror="this.src='icons/icon.png'">
-                            </div>
-                        </div>
-                        <!-- Phone 2: Practice -->
-                        <div class="phone-frame phone-2">
-                            <div class="phone-body">
-                                <div class="phone-notch"></div>
-                                <img src="icons/icon.png" alt="Nookab Practice" class="phone-screenshot">
-                            </div>
-                        </div>
+                <div class="hero-right">
+                    <div class="hero-phone-glow"></div>
+                    <div class="hero-phone-image">
+                        <img src="images/file.svg" alt="Nookab App" class="hero-app-image">
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -2644,41 +2857,51 @@
                     <p class="section-subtitle">Start learning in under 10 seconds. No accounts, no tutorials, no
                         hassle.</p>
                 </div>
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot">1</div>
+                <div class="journey-container">
+                    <svg class="journey-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="var(--primary)" />
+                                <stop offset="50%" stop-color="#4a8f3f" />
+                                <stop offset="100%" stop-color="var(--primary)" />
+                            </linearGradient>
+                        </defs>
+                        <path class="journey-path-bg" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
+                        <path class="journey-path-fill" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
+                        <path class="journey-glow" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
+                    </svg>
+                    <div class="journey-steps">
+                        <div class="journey-step" data-step="1">
+                            <div class="journey-step-inner">
+                                <div class="journey-step-number">1</div>
+                                <div class="journey-step-icon">➕</div>
+                                <h3>Add Words</h3>
+                                <p>Encounter a new word? Tap + and add it with translation, article, and category.</p>
+                            </div>
                         </div>
-                        <div class="timeline-content">
-                            <h3>Add Words</h3>
-                            <p>Encounter a new word? Tap + and add it with translation, article, and category.</p>
+                        <div class="journey-step" data-step="2">
+                            <div class="journey-step-inner">
+                                <div class="journey-step-number">2</div>
+                                <div class="journey-step-icon">🧠</div>
+                                <h3>Learn Words</h3>
+                                <p>Choose Flashcard, Quiz, or Spelling mode. The smart engine picks words that need attention.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot">2</div>
+                        <div class="journey-step" data-step="3">
+                            <div class="journey-step-inner">
+                                <div class="journey-step-number">3</div>
+                                <div class="journey-step-icon">📊</div>
+                                <h3>Track Progress</h3>
+                                <p>Watch words move from Learning to Mastered. Weak words are flagged automatically.</p>
+                            </div>
                         </div>
-                        <div class="timeline-content">
-                            <h3>Learn Words</h3>
-                            <p>Choose Flashcard, Quiz, or Spelling mode. The smart engine picks words that need attention.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot">3</div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Track Progress</h3>
-                            <p>Watch words move from Learning to Mastered. Weak words are flagged automatically.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-marker">
-                            <div class="timeline-dot">4</div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Master Words</h3>
-                            <p>Words need 5 consecutive correct answers across 2 days to be mastered. No shortcuts.</p>
+                        <div class="journey-step" data-step="4">
+                            <div class="journey-step-inner">
+                                <div class="journey-step-number">4</div>
+                                <div class="journey-step-icon">🏆</div>
+                                <h3>Master Words</h3>
+                                <p>Words need 5 consecutive correct answers across 2 days to be mastered. No shortcuts.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3402,6 +3625,43 @@
                 if (e.key === 'ArrowLeft') prevCard();
                 if (e.key === 'ArrowRight') nextCard();
             });
+
+            // Journey Path Animation
+            const journeySection = document.querySelector('.journey-container');
+            const journeySteps = document.querySelectorAll('.journey-step');
+            const pathFill = document.querySelector('.journey-path-fill');
+            const pathGlow = document.querySelector('.journey-glow');
+
+            if (journeySection && pathFill && pathGlow) {
+                function animateJourney() {
+                    const rect = journeySection.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    const sectionTop = rect.top;
+                    const sectionHeight = rect.height;
+
+                    let progress = (windowHeight - sectionTop) / (sectionHeight + windowHeight);
+                    progress = Math.max(0, Math.min(1, progress));
+
+                    if (progress > 0.05) {
+                        pathFill.classList.add('animate');
+                        pathGlow.classList.add('animate');
+                    } else {
+                        pathFill.classList.remove('animate');
+                        pathGlow.classList.remove('animate');
+                    }
+
+                    const thresholds = [0.1, 0.3, 0.5, 0.65];
+                    journeySteps.forEach((step, index) => {
+                        if (progress >= thresholds[index]) {
+                            step.classList.add('visible');
+                        }
+                    });
+                }
+
+                window.addEventListener('scroll', animateJourney);
+                window.addEventListener('load', animateJourney);
+                animateJourney();
+            }
 
             // Initialize
             updateStack();
