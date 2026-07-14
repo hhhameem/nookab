@@ -149,7 +149,7 @@
 
 - [ ] Screen switcher — dots to switch between app screens
 - [ ] Tap simulation — automated sequence showing app flow
-- [ ] Glow effect — phones have subtle colored glow that pulses
+- [x] Glow effect — phones have subtle colored glow that pulses
 
 ### 9.6 Background Energy
 
