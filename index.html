@@ -1505,6 +1505,31 @@
                 background: rgba(34, 197, 94, 0.1);
             }
 
+            .shortcuts-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .shortcut-card {
+                padding: 1.25rem;
+            }
+
+            .shortcut-card .mode-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.4rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .shortcut-card h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .shortcut-card p {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
             /* Animated SVG Icons */
             .feature-icon svg,
             .mode-icon svg,
@@ -3119,23 +3144,23 @@
                     <h3 class="section-title" style="font-size: 1.5rem;">Quick Practice Shortcuts</h3>
                     <p class="section-subtitle">Skip the setup — one tap and you're practicing.</p>
                 </div>
-                <div class="modes-grid">
-                    <div class="mode-card reveal">
+                <div class="modes-grid shortcuts-grid">
+                    <div class="mode-card shortcut-card reveal">
                         <div class="mode-icon">⚡</div>
                         <h3>Quick Sprint</h3>
                         <p>5-question Quiz from all words</p>
                     </div>
-                    <div class="mode-card reveal">
+                    <div class="mode-card shortcut-card reveal">
                         <div class="mode-icon">🌙</div>
                         <h3>Today's Words</h3>
                         <p>Focus on words you added today</p>
                     </div>
-                    <div class="mode-card reveal">
+                    <div class="mode-card shortcut-card reveal">
                         <div class="mode-icon">📈</div>
                         <h3>Mastery Boost</h3>
                         <p>Target low-mastery words</p>
                     </div>
-                    <div class="mode-card reveal">
+                    <div class="mode-card shortcut-card reveal">
                         <div class="mode-icon">⚠️</div>
                         <h3>Clear Weak Words</h3>
                         <p>Hone in on weak spots</p>
