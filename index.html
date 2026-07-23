@@ -15,7 +15,7 @@
         <meta property="og:title" content="Nookab — Where words become yours">
         <meta property="og:description"
             content="Your vocabulary, always with you. Add words as you encounter them, practice with spaced repetition, and track your mastery — all free, no account needed. Works offline.">
-        <meta property="og:image" content="icons/splash.png">
+        <meta property="og:image" content="icons/icon.png">
         <meta property="og:url" content="https://nookab.app">
 
         <!-- Twitter -->
@@ -23,7 +23,7 @@
         <meta name="twitter:title" content="Nookab — Where words become yours">
         <meta name="twitter:description"
             content="Your vocabulary, always with you. Add words as you encounter them, practice with spaced repetition, and track your mastery — all free, no account needed. Works offline.">
-        <meta name="twitter:image" content="icons/splash.png">
+        <meta name="twitter:image" content="icons/icon.png">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -177,18 +177,6 @@
                 overflow: hidden;
             }
 
-            .hero-bg::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background-image: url('images/abstract_line.svg');
-                background-size: cover;
-                background-position: center;
-                opacity: 0.12;
-                pointer-events: none;
-                mix-blend-mode: screen;
-            }
-
             .hero-gradient {
                 position: absolute;
                 width: 900px;
@@ -267,31 +255,84 @@
             }
 
             @keyframes glowPulse {
-                0%, 100% { opacity: 0.7; transform: scale(1); }
-                50% { opacity: 1; transform: scale(1.05); }
+
+                0%,
+                100% {
+                    opacity: 0.7;
+                    transform: scale(1);
+                }
+
+                50% {
+                    opacity: 1;
+                    transform: scale(1.05);
+                }
             }
 
-            .hero-phone-image {
+            .hero-slider {
                 position: relative;
                 z-index: 1;
                 width: 500px;
                 height: 500px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                overflow: hidden;
+                border-radius: 24px;
                 animation: phoneFloat 6s ease-in-out infinite;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
+
+            .hero-slider-track {
+                display: flex;
+                width: 400%;
+                height: 100%;
+                transition: transform 0.5s ease;
+            }
+
+            .hero-slider-track .hero-app-image {
+                width: 25%;
+                height: 100%;
+                object-fit: cover;
+                flex-shrink: 0;
+            }
+
+            .hero-slider-dots {
+                position: absolute;
+                bottom: 0px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 8px;
+                z-index: 2;
+            }
+
+            .hero-dot {
+                width: 15px;
+                height: 5px;
+                border-radius: 3px;
+                background: rgba(255, 255, 255, 0.4);
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+
+            .hero-dot.active {
+                background: #fff;
             }
 
             @keyframes phoneFloat {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-12px); }
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-12px);
+                }
             }
 
             .hero-app-image {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
-                filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+                object-fit: cover;
             }
 
             .hero-badge {
@@ -407,8 +448,10 @@
 
             .btn-google-play {
                 padding: 0;
-                background: transparent;
+                background: #000;
                 box-shadow: none;
+                border-radius: 8px;
+                overflow: hidden;
             }
 
             .btn-google-play:hover {
@@ -471,9 +514,12 @@
             }
 
             @keyframes glowPulse {
-                0%, 100% {
+
+                0%,
+                100% {
                     box-shadow: 0 0 4px #22c55e, 0 0 8px #22c55e;
                 }
+
                 50% {
                     box-shadow: 0 0 14px #22c55e, 0 0 28px #22c55e;
                 }
@@ -530,31 +576,125 @@
                 opacity: 1;
             }
 
-            .feature-card:nth-child(1) { background: rgba(34, 197, 94, 0.08); border-color: rgba(34, 197, 94, 0.15); }
-            .feature-card:nth-child(2) { background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.15); }
-            .feature-card:nth-child(3) { background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.15); }
-            .feature-card:nth-child(4) { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.15); }
-            .feature-card:nth-child(5) { background: rgba(139, 92, 246, 0.08); border-color: rgba(139, 92, 246, 0.15); }
-            .feature-card:nth-child(6) { background: rgba(6, 182, 212, 0.08); border-color: rgba(6, 182, 212, 0.15); }
-            .feature-card:nth-child(7) { background: rgba(236, 72, 153, 0.08); border-color: rgba(236, 72, 153, 0.15); }
-            .feature-card:nth-child(8) { background: rgba(20, 184, 166, 0.08); border-color: rgba(20, 184, 166, 0.15); }
-            .feature-card:nth-child(9) { background: rgba(249, 115, 22, 0.08); border-color: rgba(249, 115, 22, 0.15); }
-            .feature-card:nth-child(10) { background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.15); }
-            .feature-card:nth-child(11) { background: rgba(132, 204, 22, 0.08); border-color: rgba(132, 204, 22, 0.15); }
-            .feature-card:nth-child(12) { background: rgba(225, 29, 72, 0.08); border-color: rgba(225, 29, 72, 0.15); }
+            .feature-card:nth-child(1) {
+                background: rgba(34, 197, 94, 0.08);
+                border-color: rgba(34, 197, 94, 0.15);
+            }
 
-            .feature-card:nth-child(1):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(2):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(3):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(4):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(5):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(6):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(7):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(8):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(9):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(10):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(11):hover { background: var(--bg-card); border-color: var(--border); }
-            .feature-card:nth-child(12):hover { background: var(--bg-card); border-color: var(--border); }
+            .feature-card:nth-child(2) {
+                background: rgba(245, 158, 11, 0.08);
+                border-color: rgba(245, 158, 11, 0.15);
+            }
+
+            .feature-card:nth-child(3) {
+                background: rgba(59, 130, 246, 0.08);
+                border-color: rgba(59, 130, 246, 0.15);
+            }
+
+            .feature-card:nth-child(4) {
+                background: rgba(239, 68, 68, 0.08);
+                border-color: rgba(239, 68, 68, 0.15);
+            }
+
+            .feature-card:nth-child(5) {
+                background: rgba(139, 92, 246, 0.08);
+                border-color: rgba(139, 92, 246, 0.15);
+            }
+
+            .feature-card:nth-child(6) {
+                background: rgba(6, 182, 212, 0.08);
+                border-color: rgba(6, 182, 212, 0.15);
+            }
+
+            .feature-card:nth-child(7) {
+                background: rgba(236, 72, 153, 0.08);
+                border-color: rgba(236, 72, 153, 0.15);
+            }
+
+            .feature-card:nth-child(8) {
+                background: rgba(20, 184, 166, 0.08);
+                border-color: rgba(20, 184, 166, 0.15);
+            }
+
+            .feature-card:nth-child(9) {
+                background: rgba(249, 115, 22, 0.08);
+                border-color: rgba(249, 115, 22, 0.15);
+            }
+
+            .feature-card:nth-child(10) {
+                background: rgba(99, 102, 241, 0.08);
+                border-color: rgba(99, 102, 241, 0.15);
+            }
+
+            .feature-card:nth-child(11) {
+                background: rgba(132, 204, 22, 0.08);
+                border-color: rgba(132, 204, 22, 0.15);
+            }
+
+            .feature-card:nth-child(12) {
+                background: rgba(225, 29, 72, 0.08);
+                border-color: rgba(225, 29, 72, 0.15);
+            }
+
+            .feature-card:nth-child(1):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(2):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(3):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(4):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(5):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(6):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(7):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(8):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(9):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(10):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(11):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
+
+            .feature-card:nth-child(12):hover {
+                background: var(--bg-card);
+                border-color: var(--border);
+            }
 
             .feature-card::after {
                 content: attr(data-number);
@@ -575,18 +715,53 @@
                 opacity: 0.25;
             }
 
-            .feature-card:nth-child(1)::after { -webkit-text-stroke-color: #22c55e; }
-            .feature-card:nth-child(2)::after { -webkit-text-stroke-color: #f59e0b; }
-            .feature-card:nth-child(3)::after { -webkit-text-stroke-color: #3b82f6; }
-            .feature-card:nth-child(4)::after { -webkit-text-stroke-color: #ef4444; }
-            .feature-card:nth-child(5)::after { -webkit-text-stroke-color: #8b5cf6; }
-            .feature-card:nth-child(6)::after { -webkit-text-stroke-color: #06b6d4; }
-            .feature-card:nth-child(7)::after { -webkit-text-stroke-color: #ec4899; }
-            .feature-card:nth-child(8)::after { -webkit-text-stroke-color: #14b8a6; }
-            .feature-card:nth-child(9)::after { -webkit-text-stroke-color: #f97316; }
-            .feature-card:nth-child(10)::after { -webkit-text-stroke-color: #6366f1; }
-            .feature-card:nth-child(11)::after { -webkit-text-stroke-color: #84cc16; }
-            .feature-card:nth-child(12)::after { -webkit-text-stroke-color: #e11d48; }
+            .feature-card:nth-child(1)::after {
+                -webkit-text-stroke-color: #22c55e;
+            }
+
+            .feature-card:nth-child(2)::after {
+                -webkit-text-stroke-color: #f59e0b;
+            }
+
+            .feature-card:nth-child(3)::after {
+                -webkit-text-stroke-color: #3b82f6;
+            }
+
+            .feature-card:nth-child(4)::after {
+                -webkit-text-stroke-color: #ef4444;
+            }
+
+            .feature-card:nth-child(5)::after {
+                -webkit-text-stroke-color: #8b5cf6;
+            }
+
+            .feature-card:nth-child(6)::after {
+                -webkit-text-stroke-color: #06b6d4;
+            }
+
+            .feature-card:nth-child(7)::after {
+                -webkit-text-stroke-color: #ec4899;
+            }
+
+            .feature-card:nth-child(8)::after {
+                -webkit-text-stroke-color: #14b8a6;
+            }
+
+            .feature-card:nth-child(9)::after {
+                -webkit-text-stroke-color: #f97316;
+            }
+
+            .feature-card:nth-child(10)::after {
+                -webkit-text-stroke-color: #6366f1;
+            }
+
+            .feature-card:nth-child(11)::after {
+                -webkit-text-stroke-color: #84cc16;
+            }
+
+            .feature-card:nth-child(12)::after {
+                -webkit-text-stroke-color: #e11d48;
+            }
 
             .feature-icon {
                 width: 48px;
@@ -1031,6 +1206,7 @@
                     line-height: 1.4;
                 }
             }
+
             /* Card Stack */
             .card-stack-container {
                 position: relative;
@@ -1362,6 +1538,7 @@
                 from {
                     clip-path: inset(0 100% 0 0);
                 }
+
                 to {
                     clip-path: inset(0 0 0 0);
                 }
@@ -1578,20 +1755,43 @@
             }
 
             @keyframes fireSway {
-                0% { transform: rotate(-2deg); }
-                100% { transform: rotate(2deg); }
+                0% {
+                    transform: rotate(-2deg);
+                }
+
+                100% {
+                    transform: rotate(2deg);
+                }
             }
 
             @keyframes flameWave {
-                0% { transform: scaleX(1) scaleY(1); }
-                33% { transform: scaleX(0.9) scaleY(1.08); }
-                66% { transform: scaleX(1.08) scaleY(0.94); }
-                100% { transform: scaleX(0.95) scaleY(1.03); }
+                0% {
+                    transform: scaleX(1) scaleY(1);
+                }
+
+                33% {
+                    transform: scaleX(0.9) scaleY(1.08);
+                }
+
+                66% {
+                    transform: scaleX(1.08) scaleY(0.94);
+                }
+
+                100% {
+                    transform: scaleX(0.95) scaleY(1.03);
+                }
             }
 
             @keyframes iconBounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-4px); }
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-4px);
+                }
             }
 
             .icon-animated.visible {
@@ -1871,14 +2071,14 @@
                 padding: 4rem 2rem 2rem;
             }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            padding-top: 1rem;
-        }
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                gap: 3rem;
+                padding-top: 1rem;
+            }
 
             .footer-brand p {
                 color: var(--text-secondary);
@@ -1992,10 +2192,21 @@
                 flex: 1;
             }
 
-            .stat-item:nth-child(1) { transform: rotate(-2deg); }
-            .stat-item:nth-child(2) { transform: rotate(1.5deg) translateY(-6px); }
-            .stat-item:nth-child(3) { transform: rotate(-1deg) translateY(4px); }
-            .stat-item:nth-child(4) { transform: rotate(2deg); }
+            .stat-item:nth-child(1) {
+                transform: rotate(-2deg);
+            }
+
+            .stat-item:nth-child(2) {
+                transform: rotate(1.5deg) translateY(-6px);
+            }
+
+            .stat-item:nth-child(3) {
+                transform: rotate(-1deg) translateY(4px);
+            }
+
+            .stat-item:nth-child(4) {
+                transform: rotate(2deg);
+            }
 
             .stat-item:hover {
                 border-color: var(--primary);
@@ -2228,9 +2439,10 @@
                 content: '';
                 position: absolute;
                 inset: 0;
-                background-image: radial-gradient(circle, var(--primary) 1px, transparent 1px);
-                background-size: 40px 40px;
-                opacity: 0.12;
+                background-image: url('images/lines-grid.svg');
+                background-size: cover;
+                background-position: center;
+                opacity: 0.05;
                 pointer-events: none;
                 transform: translateY(var(--grid-offset, 0px));
                 will-change: transform;
@@ -2274,7 +2486,7 @@
             }
 
             /* No-JS Fallback */
-            noscript + .card-stack-container .stack-card {
+            noscript+.card-stack-container .stack-card {
                 position: relative !important;
                 transform: none !important;
                 opacity: 1 !important;
@@ -2286,14 +2498,14 @@
                 margin-left: 0 !important;
             }
 
-            noscript + .card-stack-container .card-stack {
+            noscript+.card-stack-container .card-stack {
                 display: flex;
                 flex-direction: column;
                 height: auto;
                 max-width: 280px;
             }
 
-            noscript + .card-stack-container .stack-dots {
+            noscript+.card-stack-container .stack-dots {
                 display: none !important;
             }
 
@@ -2349,7 +2561,7 @@
                     order: 2;
                 }
 
-                .hero-phone-image {
+                .hero-slider {
                     width: 280px;
                     height: 280px;
                 }
@@ -2710,10 +2922,13 @@
                     <a href="https://play.google.com/store/apps/details?id=com.nookab.app" class="nav-cta"
                         target="_blank" rel="noopener" aria-label="Get on Google Play">
                         <svg viewBox="0 0 48 48">
-                            <path d="M7.2 4.4L26.2 24 7.2 43.6c-.8-.5-1.2-1.4-1.2-2.6V7c0-1.2.4-2.1 1.2-2.6z" fill="#4285F4"/>
-                            <path d="M33.3 17.1L10.8 3.5C9.4 2.7 7.8 2.5 6.3 3c-.5.2-.9.5-1.2.9L26.2 24l7.1-6.9z" fill="#0F9D58"/>
-                            <path d="M33.3 30.9L26.2 24l7.1-6.9 7.5 4.3c2.1 1.2 2.1 3.2 0 4.4l-7.5 5.1z" fill="#FBBC04"/>
-                            <path d="M33.3 30.9L26.2 24 7.2 43.6c1 .6 2.1.8 3.2.4l22.9-13.1z" fill="#EA4335"/>
+                            <path d="M7.2 4.4L26.2 24 7.2 43.6c-.8-.5-1.2-1.4-1.2-2.6V7c0-1.2.4-2.1 1.2-2.6z"
+                                fill="#4285F4" />
+                            <path d="M33.3 17.1L10.8 3.5C9.4 2.7 7.8 2.5 6.3 3c-.5.2-.9.5-1.2.9L26.2 24l7.1-6.9z"
+                                fill="#0F9D58" />
+                            <path d="M33.3 30.9L26.2 24l7.1-6.9 7.5 4.3c2.1 1.2 2.1 3.2 0 4.4l-7.5 5.1z"
+                                fill="#FBBC04" />
+                            <path d="M33.3 30.9L26.2 24 7.2 43.6c1 .6 2.1.8 3.2.4l22.9-13.1z" fill="#EA4335" />
                         </svg>
                     </a>
                 </div>
@@ -2733,24 +2948,39 @@
                     <h1>Where words become<br><span class="highlight" id="typingText">yours</span><span
                             class="typing-cursor" id="typingCursor"></span></h1>
                     <p class="hero-subtitle">Your vocabulary, always with you. Nookab starts empty. Add words as you
-                        encounter them — on the train, in a book, during a conversation. Nookab tracks your mastery, flags
+                        encounter them — on the train, in a book, during a conversation. Nookab tracks your mastery,
+                        flags
                         weak spots, and adapts to your pace. No account. No subscription. No internet required.</p>
                     <div class="hero-buttons">
                         <a href="https://play.google.com/store/apps/details?id=com.nookab.app"
                             class="btn btn-primary btn-google-play" target="_blank" rel="noopener">
-                            <img src="images/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play"
-                                width="180" height="54">
+                            <img src="images/GooglePlay_Badge.svg" alt="Get it on Google Play" width="180" height="54">
                         </a>
                     </div>
                 </div>
                 <div class="hero-right">
                     <div class="hero-phone-glow"></div>
-                    <div class="hero-phone-image">
-                        <img src="images/file.svg" alt="Nookab App" class="hero-app-image" width="600" height="500">
+                    <div class="hero-slider">
+                        <div class="hero-slider-track">
+                            <img src="images/dash-dict_1.webp" alt="Nookab Dictionary" class="hero-app-image"
+                                width="600" height="500" loading="lazy">
+                            <img src="images/stat-practice_2.webp" alt="Nookab Practice Stats" class="hero-app-image"
+                                width="600" height="500" loading="lazy">
+                            <img src="images/flash-setup_3.webp" alt="Nookab Flashcard Setup" class="hero-app-image"
+                                width="600" height="500" loading="lazy">
+                            <img src="images/exp-imp_4.webp" alt="Nookab Export Import" class="hero-app-image"
+                                width="600" height="500" loading="lazy">
+                        </div>
+                        <div class="hero-slider-dots">
+                            <span class="hero-dot active" data-index="0"></span>
+                            <span class="hero-dot" data-index="1"></span>
+                            <span class="hero-dot" data-index="2"></span>
+                            <span class="hero-dot" data-index="3"></span>
+                        </div>
                     </div>
                 </div>
-                    </div>
-                </div>
+            </div>
+            </div>
             </div>
         </section>
 
@@ -2798,33 +3028,36 @@
                                 left: 0 !important;
                                 margin-left: 0 !important;
                             }
+
                             .card-stack-container .card-stack {
                                 display: flex;
                                 flex-direction: column;
                                 height: auto;
                                 max-width: 280px;
                             }
+
                             .card-stack-container .stack-dots {
                                 display: none !important;
                             }
+
                             .card-stack-container .bg-circles {
                                 display: none !important;
                             }
                         </style>
                     </noscript>
-                        <div class="bg-circles">
-                            <div class="bg-circle bg-circle-1"></div>
-                            <div class="bg-circle bg-circle-2"></div>
-                            <div class="bg-circle bg-circle-3"></div>
-                            <div class="bg-circle bg-circle-4"></div>
-                            <div class="bg-circle bg-circle-5"></div>
-                            <div class="bg-circle bg-circle-6"></div>
-                            <div class="bg-circle bg-circle-7"></div>
-                            <div class="bg-circle bg-circle-8"></div>
-                            <div class="bg-circle bg-circle-9"></div>
-                            <div class="bg-circle bg-circle-10"></div>
-                            <div class="bg-circle bg-circle-11"></div>
-                            <div class="bg-circle bg-circle-12"></div>
+                    <div class="bg-circles">
+                        <div class="bg-circle bg-circle-1"></div>
+                        <div class="bg-circle bg-circle-2"></div>
+                        <div class="bg-circle bg-circle-3"></div>
+                        <div class="bg-circle bg-circle-4"></div>
+                        <div class="bg-circle bg-circle-5"></div>
+                        <div class="bg-circle bg-circle-6"></div>
+                        <div class="bg-circle bg-circle-7"></div>
+                        <div class="bg-circle bg-circle-8"></div>
+                        <div class="bg-circle bg-circle-9"></div>
+                        <div class="bg-circle bg-circle-10"></div>
+                        <div class="bg-circle bg-circle-11"></div>
+                        <div class="bg-circle bg-circle-12"></div>
                     </div>
                     <div class="card-stack" id="cardStack">
                         <div class="stack-card" data-index="0">
@@ -2836,7 +3069,9 @@
                             <div class="phone-screen">
                                 <div class="stack-card-icon">📚</div>
                                 <h3>Your Words</h3>
-                                <p>Nookab ships empty — no pre-built word lists you didn't ask for. You add the words you encounter while reading, watching, or conversing. Every word in your vocabulary was added by you, for you.</p>
+                                <p>Nookab ships empty — no pre-built word lists you didn't ask for. You add the words
+                                    you encounter while reading, watching, or conversing. Every word in your vocabulary
+                                    was added by you, for you.</p>
                             </div>
                         </div>
                         <div class="stack-card" data-index="1">
@@ -2848,7 +3083,8 @@
                             <div class="phone-screen">
                                 <div class="stack-card-icon">🔒</div>
                                 <h3>Your Privacy</h3>
-                                <p>No accounts, no cloud required. Your vocabulary lives entirely on your device. No sign-up, no email, no password required. Your learning data stays yours.</p>
+                                <p>No accounts, no cloud required. Your vocabulary lives entirely on your device. No
+                                    sign-up, no email, no password required. Your learning data stays yours.</p>
                             </div>
                         </div>
                         <div class="stack-card" data-index="2">
@@ -2860,7 +3096,9 @@
                             <div class="phone-screen">
                                 <div class="stack-card-icon">💰</div>
                                 <h3>Your Investment</h3>
-                                <p>Completely free, forever. No subscriptions, no in-app purchases, no locked features, no premium tiers. Every practice mode, every chart, every setting is available from day one. There is no catch.</p>
+                                <p>Completely free, forever. No subscriptions, no in-app purchases, no locked features,
+                                    no premium tiers. Every practice mode, every chart, every setting is available from
+                                    day one. There is no catch.</p>
                             </div>
                         </div>
                         <div class="stack-card" data-index="3">
@@ -2872,7 +3110,9 @@
                             <div class="phone-screen">
                                 <div class="stack-card-icon">✨</div>
                                 <h3>Your Experience</h3>
-                                <p>No dark patterns, no fake scarcity, no engagement-for-engagement's-sake. Nookab doesn't use social feeds to distract you or leaderboards to guilt you. Every feature exists to help you learn.</p>
+                                <p>No dark patterns, no fake scarcity, no engagement-for-engagement's-sake. Nookab
+                                    doesn't use social feeds to distract you or leaderboards to guilt you. Every feature
+                                    exists to help you learn.</p>
                             </div>
                         </div>
                         <div class="stack-card" data-index="4">
@@ -2884,7 +3124,9 @@
                             <div class="phone-screen">
                                 <div class="stack-card-icon">⏱️</div>
                                 <h3>Your Pace</h3>
-                                <p>Mastery over memorization. No timers, no speed scoring, no pressure. Words move through learning tiers based on your actual retention, not how fast you can recall.</p>
+                                <p>Mastery over memorization. No timers, no speed scoring, no pressure. Words move
+                                    through learning tiers based on your actual retention, not how fast you can recall.
+                                </p>
                             </div>
                         </div>
                         <div class="stack-card" data-index="5">
@@ -2896,7 +3138,9 @@
                             <div class="phone-screen">
                                 <div class="stack-card-icon">⚙️</div>
                                 <h3>Your Preferences</h3>
-                                <p>Set daily goals, choose your week start day, and enable learning tools like text-to-speech and special characters. Customize your learning experience the way you want.</p>
+                                <p>Set daily goals, choose your week start day, and enable learning tools like
+                                    text-to-speech and special characters. Customize your learning experience the way
+                                    you want.</p>
                             </div>
                         </div>
                     </div>
@@ -2952,7 +3196,8 @@
                         <h3>CSV Import/Export</h3>
                         <p>Your vocabulary is yours — even if you leave. Export all your words before you go, and if you
                             ever come back, import them and voila — everything is exactly where you left it.
-                            <strong>Full data portability. No data loss, no starting over.</strong></p>
+                            <strong>Full data portability. No data loss, no starting over.</strong>
+                        </p>
                     </div>
                     <div class="feature-card reveal-left stagger-5" data-number="05">
                         <div class="feature-icon">🎯</div>
@@ -3006,7 +3251,8 @@
                         <p>Organize vocabulary into semantic groups like "Travel," "Food," or "Business."
                             <strong>Categories aid memory via chunking — words learned in a categorical context are
                                 recalled better when the same category is cued during practice.</strong> Create, edit,
-                            or delete categories anytime.</p>
+                            or delete categories anytime.
+                        </p>
                     </div>
                     <div class="feature-card reveal-right stagger-6" data-number="12">
                         <div class="feature-icon">📈</div>
@@ -3038,9 +3284,12 @@
                                 <stop offset="100%" stop-color="var(--primary)" />
                             </linearGradient>
                         </defs>
-                        <path class="journey-path-bg" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
-                        <path class="journey-path-fill" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
-                        <path class="journey-glow" d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
+                        <path class="journey-path-bg"
+                            d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
+                        <path class="journey-path-fill"
+                            d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
+                        <path class="journey-glow"
+                            d="M 150,80 C 300,80 350,200 500,200 C 650,200 650,300 500,340 C 350,380 350,420 500,460 C 650,500 700,500 850,500" />
                     </svg>
                     <svg class="journey-svg journey-svg-mobile" viewBox="0 0 300 800" preserveAspectRatio="none">
                         <defs>
@@ -3050,9 +3299,12 @@
                                 <stop offset="100%" stop-color="var(--primary)" />
                             </linearGradient>
                         </defs>
-                        <path class="journey-path-bg" d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
-                        <path class="journey-path-fill" d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
-                        <path class="journey-glow" d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
+                        <path class="journey-path-bg"
+                            d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
+                        <path class="journey-path-fill"
+                            d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
+                        <path class="journey-glow"
+                            d="M 75,50 C 75,100 75,140 225,200 C 225,260 225,300 75,380 C 75,440 75,480 225,560 C 225,620 225,660 225,750" />
                     </svg>
                     <div class="journey-steps">
                         <div class="journey-step" data-step="1">
@@ -3068,7 +3320,8 @@
                                 <div class="journey-step-number">2</div>
                                 <div class="journey-step-icon">🧠</div>
                                 <h3>Practice Words</h3>
-                                <p>Choose Flashcard, Quiz, or Spelling mode. The smart engine picks words that need attention.</p>
+                                <p>Choose Flashcard, Quiz, or Spelling mode. The smart engine picks words that need
+                                    attention.</p>
                             </div>
                         </div>
                         <div class="journey-step" data-step="3">
@@ -3084,7 +3337,8 @@
                                 <div class="journey-step-number">4</div>
                                 <div class="journey-step-icon">🏆</div>
                                 <h3>Master Words</h3>
-                                <p>Words need 5 consecutive correct answers across 2 days to be mastered. No shortcuts.</p>
+                                <p>Words need 5 consecutive correct answers across 2 days to be mastered. No shortcuts.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -3101,24 +3355,30 @@
                     <div class="founder-problems">
                         <div class="founder-problem">
                             <h4>📓 Your vocabulary is stuck in notebooks</h4>
-                            <p>You collect words from videos, books, conversations — but they sit in a notebook you don't always have. Spare moments go unused.</p>
+                            <p>You collect words from videos, books, conversations — but they sit in a notebook you
+                                don't always have. Spare moments go unused.</p>
                         </div>
                         <div class="founder-problem">
                             <h4>📚 No app lets you practice only your words</h4>
-                            <p>Every app ships with 2,000 pre-built words you didn't ask for. Your own vocabulary gets diluted by someone else's word list.</p>
+                            <p>Every app ships with 2,000 pre-built words you didn't ask for. Your own vocabulary gets
+                                diluted by someone else's word list.</p>
                         </div>
                         <div class="founder-problem">
                             <h4>💳 Paywalls block what actually helps</h4>
-                            <p>Spaced repetition, multiple practice modes, detailed stats — locked behind $5-15/month subscriptions.</p>
+                            <p>Spaced repetition, multiple practice modes, detailed stats — locked behind $5-15/month
+                                subscriptions.</p>
                         </div>
                         <div class="founder-problem">
                             <h4>📡 Internet dependency kills opportunistic learning</h4>
-                            <p>The moments you have free time — commutes, waiting rooms — are exactly when there's no signal. Cloud tools fail when you need them most.</p>
+                            <p>The moments you have free time — commutes, waiting rooms — are exactly when there's no
+                                signal. Cloud tools fail when you need them most.</p>
                         </div>
                     </div>
                     <div class="founder-mission">
-                        <p>Nookab is the answer to all four. It starts empty. You fill it with your words. It works offline. It's completely free. No account, no subscription, no catch.</p>
-                        <p class="mission-quote">Democratize vocabulary mastery by making scientifically-backed learning algorithms accessible to everyone — completely offline and free of distractions.</p>
+                        <p>Nookab is the answer to all four. It starts empty. You fill it with your words. It works
+                            offline. It's completely free. No account, no subscription, no catch.</p>
+                        <p class="mission-quote">Democratize vocabulary mastery by making scientifically-backed learning
+                            algorithms accessible to everyone — completely offline and free of distractions.</p>
                     </div>
                 </div>
             </div>
@@ -3195,17 +3455,20 @@
                         <div class="mastery-segment mastery-learning">
                             <span class="mastery-segment-label">🌱 Learning</span>
                             <span class="mastery-segment-range">0% — 40%</span>
-                            <span class="mastery-segment-desc">New or struggling words requiring frequent attention.</span>
+                            <span class="mastery-segment-desc">New or struggling words requiring frequent
+                                attention.</span>
                         </div>
                         <div class="mastery-segment mastery-practicing">
                             <span class="mastery-segment-label">📈 Practicing</span>
                             <span class="mastery-segment-range">41% — 90%</span>
-                            <span class="mastery-segment-desc">Words becoming familiar but not yet fully retained.</span>
+                            <span class="mastery-segment-desc">Words becoming familiar but not yet fully
+                                retained.</span>
                         </div>
                         <div class="mastery-segment mastery-mastered">
                             <span class="mastery-segment-label">🏆 Mastered</span>
                             <span class="mastery-segment-range">91% — 100%</span>
-                            <span class="mastery-segment-desc">High-confidence words with proven accuracy. Maintenance only.</span>
+                            <span class="mastery-segment-desc">High-confidence words with proven accuracy. Maintenance
+                                only.</span>
                         </div>
                     </div>
                     <div class="mastery-descriptions">
@@ -3398,8 +3661,8 @@
                 <p>Free on Google Play. No account needed. Works offline.</p>
                 <a href="https://play.google.com/store/apps/details?id=com.nookab.app" class="download-btn"
                     target="_blank" rel="noopener">
-                    <img src="images/GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get it on Google Play"
-                        width="200" height="60" loading="lazy">
+                    <img src="images/GooglePlay_Badge.svg" alt="Get it on Google Play" width="200" height="60"
+                        loading="lazy">
                 </a>
             </div>
         </section>
@@ -3520,12 +3783,17 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                    const href = this.getAttribute('href');
+                    if (href === '#') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
                     }
                 });
             });
@@ -3693,7 +3961,7 @@
                     card.classList.remove('active', 'behind-1', 'behind-2', 'ahead-1', 'ahead-2', 'hidden');
                     const diff = index - currentCard;
                     const wrappedDiff = ((diff + totalCards + Math.floor(totalCards / 2)) % totalCards) - Math.floor(totalCards / 2);
-                    
+
                     if (wrappedDiff === 0) {
                         card.classList.add('active');
                     } else if (wrappedDiff === -1) {
@@ -3885,6 +4153,26 @@
 
             // Initialize
             updateStack();
+
+            // Hero Image Slider
+            const sliderTrack = document.querySelector('.hero-slider-track');
+            const dots = document.querySelectorAll('.hero-dot');
+            let currentSlide = 0;
+            const totalSlides = 4;
+
+            function goToSlide(index) {
+                currentSlide = index;
+                sliderTrack.style.transform = `translateX(-${index * 25}%)`;
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            }
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+            });
+
+            setInterval(() => {
+                goToSlide((currentSlide + 1) % totalSlides);
+            }, 4000);
         </script>
     </body>
 
