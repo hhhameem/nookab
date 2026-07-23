@@ -9,7 +9,7 @@
 - [x] Replace placeholder icons with real app screenshots
 - [x] Add multiple screen variants (Dashboard, Practice, Stats, Dictionary)
 - [x] Consider adding subtle device frame effects
-- [ ] Ensure screenshots are optimized for web (WebP format recommended)
+- [x] Ensure screenshots are optimized for web (WebP format recommended)
 
 ---
 
