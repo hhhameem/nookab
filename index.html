@@ -27,10 +27,7 @@
         <meta name="twitter:image" content="icons/icon.png">
 
         <link rel="preload" as="image" href="images/dash-dict_1.webp">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-            rel="stylesheet">
+        <link rel="preload" href="css/style.css" as="style">
         <link rel="stylesheet" href="css/style.css">
 
 
@@ -905,6 +902,11 @@
         </footer>
 
         <script src="js/script.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./sw.js');
+            }
+        </script>
     </body>
 
 </html>
