@@ -2,6 +2,7 @@ const CACHE_NAME = 'nookab-cache-v1';
 const STATIC_ASSETS = [
   './',
   './index.html',
+  './site.webmanifest',
   './css/style.css',
   './js/script.js',
   './images/stat-practice_2.webp',
@@ -9,8 +10,10 @@ const STATIC_ASSETS = [
   './images/flash-setup_3.webp',
   './images/exp-imp_4.webp',
   './images/lines-grid.svg',
-  './images/nookab-green-vectorized.svg',
+  './images/nookab_logo.svg',
   './images/GooglePlay_Badge.svg',
+  './pages/terms.html',
+  './pages/privacy.html',
   './fonts/Inter-latin.woff2',
   './icons/favicon.ico',
   './icons/icon.png'

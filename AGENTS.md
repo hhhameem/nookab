@@ -17,3 +17,5 @@
    ```
 
 3. **Run Lighthouse** if changes affect performance (images, CSS, JS, loading behavior).
+
+4. **Update service worker cache**: When adding, removing, or modifying static assets (images, icons, HTML, CSS, JS, fonts), bump the cache version in `sw.js` by incrementing the number in `CACHE_NAME` (e.g., `nookab-cache-v1` → `nookab-cache-v2`). This ensures browsers download fresh assets.
