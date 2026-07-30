@@ -53,7 +53,7 @@ A mastery-based algorithm classifies words into tiers and surfaces the ones you'
 - **Weak Word Detection** — Automatically flags struggling words
 - **Quick Practice Shortcuts** — One-tap starters: Quick Sprint, Today's Words, Mastery Boost, Clear Weak Words
 - **Detailed Statistics** — Accuracy by word type, category, and over time
-- **CSV Import/Export** — Full data portability; export everything, reimport later
+- **XLSX Import/Export** — Full data portability; export everything, reimport later
 - **Consistency Streaks** — Visual weekly dots with a 7-day window
 - **Daily Targets** — Set a daily practice goal with a circular progress ring
 - **German Special Characters** — Floating keyboard helper for ä, ö, ü, ß and capitals

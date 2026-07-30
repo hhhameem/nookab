@@ -1,4 +1,4 @@
-const CACHE_NAME = "nookab-cache-v3";
+const CACHE_NAME = "nookab-cache-v4";
 const STATIC_ASSETS = [
   "./",
   "./index.html",
