@@ -217,7 +217,7 @@
 
         <main class="legal-page">
             <h1>Terms and Conditions</h1>
-            <p class="last-updated">Last updated: July 2026</p>
+            <p class="last-updated">Last updated: October 2026</p>
 
             <h2>1. Acceptance of Terms</h2>
             <p>By downloading, installing, or using Nookab ("the App"), you agree to be bound by these Terms and
@@ -231,9 +231,9 @@
                 meet this eligibility requirement. If you are under 13, you may not use the App. If you are between 13
                 and the age of majority in your jurisdiction, you affirm that your parent or legal guardian has reviewed
                 and agreed to these Terms on your behalf.</p>
-            <p>The App is not directed at children under 13. We do not knowingly collect personal information from
-                children under 13. If we learn that we have inadvertently collected such information, we will delete it
-                promptly.</p>
+            <p>The App is not directed at children under 13. The Developer does not knowingly collect personal
+                information from any user, including children under 13. If we learn that we have inadvertently collected
+                such information, we will delete it promptly.</p>
 
             <h2>3. Description of Service</h2>
             <p>Nookab is an offline-first vocabulary learning application that allows users to:</p>
@@ -243,10 +243,15 @@
                 <li>Track learning progress and statistics</li>
                 <li>Import and export vocabulary data via XLSX files</li>
                 <li>Customize learning preferences and profile settings</li>
+                <li>Optionally auto-fill word details using AI (requires your own Google Gemini API key and an
+                    internet connection; off by default)</li>
             </ul>
             <p>The App does <strong>not</strong> require account creation, registration, or any form of user
-                authentication. All functionality is available without an internet connection, and no user data is
-                transmitted to external servers.</p>
+                authentication. All core functionality — adding and managing words, the practice modes, statistics, and
+                XLSX import/export — is available without an internet connection. The Developer operates no server and
+                receives no user data. The only external request the App can make is the optional AI Auto-Fill, which
+                you must explicitly enable and which sends the single word you typed from your device directly to
+                Google's Gemini API using your own key (see §9).</p>
             <p><strong>Pricing</strong>: The App is currently provided free of charge. There are no subscription fees,
                 in-app purchases, premium tiers, or paid features at this time. The Developer reserves the right to
                 introduce paid features in future versions, which will be communicated in advance with an updated Terms
@@ -258,22 +263,27 @@
                 required by Google's terms.</p>
 
             <h2>4. No Accounts, No Cloud Sync, and Local Data Deletion</h2>
-            <p>The App is designed for local, offline use on a single device. Nookab does <strong>not</strong> provide:
-            </p>
+            <p>The App is designed for local, offline-first use on a single device. Nookab does <strong>not</strong>
+                provide:</p>
             <ul>
                 <li>User accounts or registration</li>
                 <li>Cloud sync or backup services</li>
                 <li>Multi-device data portability (beyond manual XLSX export/import)</li>
-                <li>Any remote data storage or processing</li>
+                <li>Any remote storage of your vocabulary or practice data by the Developer</li>
             </ul>
+            <p>The optional AI Auto-Fill is a one-off request to Google's Gemini API for suggestions. It is not cloud
+                storage, not a backup, and the Developer does not store or process that request.</p>
             <p>Users are solely responsible for maintaining backups of their data through the App's built-in XLSX export
                 feature. The Developer is not responsible for data loss resulting from device loss, damage,
                 uninstallation, factory reset, OS updates, or any other event that causes local data to become
                 irretrievable.</p>
-            <p><strong>Data Deletion Notice</strong>: Because the App does not collect, store, or transmit any data to
-                external cloud servers, the Developer cannot delete your data for you. To completely and permanently
-                delete all your user-generated vocabulary and application data, you must uninstall the App from your
-                device or clear the App's storage/cache via your device's Android settings.</p>
+            <p><strong>Data Deletion Notice</strong>: Because the Developer does not collect, store, or transmit your
+                data to any server it operates, the Developer cannot delete your data for you. To completely and
+                permanently delete all your user-generated vocabulary, application data, and your stored AI Auto-Fill
+                API key, you must uninstall the App from your device or clear the App's storage/cache via your device's
+                Android settings. To stop future AI Auto-Fill requests without uninstalling, disable the feature or
+                delete your key in Settings → Preferences → AI Auto-Fill. Content that Google may already have
+                processed is subject to Google's retention practices (§9).</p>
 
             <h2>5. User Responsibilities</h2>
             <p>You agree to:</p>
@@ -289,6 +299,12 @@
                     enjoyment</li>
                 <li>Take reasonable measures to secure your device against unauthorized access</li>
                 <li>Comply with all applicable local, national, and international laws while using the App</li>
+                <li>If you enable AI Auto-Fill, use your own Google Gemini API key in compliance with Google's terms,
+                    keep it confidential, and bear any quotas, usage limits, or charges associated with it</li>
+                <li>Not use AI Auto-Fill to submit unlawful, harmful, or infringing content, or to attempt to circumvent
+                    Google's usage policies</li>
+                <li>Review AI-generated suggestions before saving them, and not rely on them as accurate without
+                    verification</li>
             </ul>
 
             <h2>6. Intellectual Property</h2>
@@ -305,13 +321,16 @@
                 warrant that you own or have the necessary rights to use and input Your Content into the App and that
                 doing so does not infringe upon any third party's intellectual property rights. You grant the Developer
                 a non-exclusive, royalty-free, worldwide license to store and process Your Content solely for the
-                purpose of providing the App's functionality (all of which occurs locally on your device).</p>
+                purpose of providing the App's functionality (all of which occurs locally on your device). When you use
+                the optional AI Auto-Fill, the single word you typed is transmitted to Google's Gemini API at your
+                direction; the Developer receives no copy of it (see §9).</p>
 
             <h2>7. Privacy</h2>
             <p>Your use of the App is also governed by the <strong>Privacy Policy</strong>, which is
-                incorporated into these Terms by reference. The Privacy Policy explains what data the App collects, how
+                incorporated into these Terms by reference. The Privacy Policy explains what data the App processes, how
                 it is stored, your rights regarding your data, and our commitment to not collecting or transmitting your
-                personal information without your explicit consent.</p>
+                personal information without your explicit consent — except for the optional AI Auto-Fill you explicitly
+                enable, which transmits only the word you typed to Google's Gemini API under Google's terms.</p>
 
             <h2>8. App Store Compliance</h2>
             <p>The App is distributed through the Google Play Store and complies with the Google Play Developer Program
@@ -319,34 +338,51 @@
             <ul>
                 <li>The App's functionality and description are accurately represented in its store listing</li>
                 <li>No prohibited content, deceptive behavior, malware, or malicious code is present</li>
-                <li>All required disclosures regarding data collection and privacy have been made via the Google Play
-                    Data Safety form</li>
+                <li>All required disclosures regarding data collection and privacy — including the optional AI
+                    Auto-Fill — have been made via the Google Play Data Safety form</li>
                 <li>The App may be subject to review, suspension, or removal by Google at its sole discretion</li>
                 <li>Your use of the App must also comply with Google Play's Terms of Service</li>
             </ul>
 
             <h2>9. Third-Party Services</h2>
-            <p>The App currently does <strong>not</strong> integrate with any third-party services, analytics SDKs,
-                advertising networks, payment processors, or external APIs. The App does not contain any third-party
-                code that collects or transmits user data.</p>
-            <p>If future versions introduce third-party services, these Terms will be updated accordingly, and users
-                will be notified within the App. Such services will be clearly disclosed, and any data shared with third
-                parties will be described in the Privacy Policy.</p>
+            <p>The App integrates with one third-party service: the <strong>Google Gemini API</strong>, and only for the
+                optional AI Auto-Fill feature. It does not integrate with analytics SDKs, advertising networks, or
+                payment processors.</p>
+            <p><strong>Google Gemini API (optional AI Auto-Fill)</strong>. AI Auto-Fill is off by default and requires
+                you to enable it and supply your own Google Gemini API key. When you tap "Auto-Fill", the App sends the
+                single word you typed — together with your learning language, variant count, and target translation
+                language — directly from your device to Google's Gemini API. The Developer operates no server for this
+                feature, receives no copy of the request, the response, or your key, and does not control Google's
+                processing. Your use of the Gemini API is governed by Google's applicable terms and privacy policy,
+                including any quotas, usage limits, charges, retention, and any use of API content to improve Google's
+                products depending on your key's tier. AI-generated output may be inaccurate, and you are responsible
+                for reviewing it before saving. The Developer may modify, suspend, or remove the AI Auto-Fill feature at
+                any time.</p>
+            <p>If future versions introduce additional third-party services, these Terms will be updated accordingly,
+                and users will be notified within the App. Such services will be clearly disclosed, and any data shared
+                with third parties will be described in the Privacy Policy.</p>
 
             <h3>9.1 Open-Source Software</h3>
             <p>The App incorporates open-source software components, including but not limited to the Expo SDK, React
                 Native, and various community libraries (such as react-native-svg, react-native-reanimated,
-                react-native-safe-area-context, expo-sqlite, expo-sharing, expo-document-picker, and expo-router). These
-                components are used under their respective licenses (MIT, Apache 2.0, and others). Attribution notices
-                and license texts for these components are available at the project's public repository or can be
-                obtained by contacting the Developer. The use of these libraries does not result in any data collection
-                or transmission beyond what is described in the Privacy Policy.</p>
+                react-native-safe-area-context, expo-sqlite, expo-secure-store, expo-sharing, expo-document-picker, and
+                expo-router). These components are used under their respective licenses (MIT, Apache 2.0, and others).
+                Attribution notices and license texts for these components are available at the project's public
+                repository or can be obtained by contacting the Developer. The use of these libraries does not result in
+                any data collection or transmission beyond what is described in the Privacy Policy.</p>
 
             <h2>10. No Artificial Intelligence / Machine Learning Training</h2>
             <p>The Developer does <strong>not</strong> use Your Content for any artificial intelligence training,
-                machine learning model development, automated decision-making, or any form of algorithmic profiling.
-                Your vocabulary, practice data, and personal information are used solely to provide the App's
-                functionality on your device and are never analyzed, processed, or extracted for any other purpose.</p>
+                machine learning model development, automated decision-making, or any form of algorithmic profiling, and
+                does not transmit Your Content to any AI provider for those purposes. Your vocabulary, practice data, and
+                personal information are used solely to provide the App's functionality on your device and are not
+                analyzed, processed, or extracted by the Developer for any other purpose.</p>
+            <p><strong>Optional AI Auto-Fill</strong>. AI Auto-Fill is a user-initiated feature, not training. When you
+                choose to use it, only the single word you typed is sent to Google's Gemini API to generate suggestions
+                for that word (see §9). The Developer neither receives that request nor uses it to train any model.
+                Google's handling of the request is governed by Google's terms, which may provide for the use of API
+                content to improve Google's products depending on your key's tier. You can disable the feature or delete
+                your key at any time.</p>
 
             <h2>11. Disclaimer of Warranties</h2>
             <p>THE APP IS PROVIDED <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> WITHOUT WARRANTIES OF
@@ -361,9 +397,14 @@
                 <li>ANY ERRORS IN THE APP WILL BE CORRECTED</li>
                 <li>THE APP WILL BE COMPATIBLE WITH YOUR SPECIFIC DEVICE, THIRD-PARTY UTILITY SOFTWARE (E.G., STORAGE
                     CLEANERS), OR FUTURE OPERATING SYSTEM VERSIONS</li>
+                <li>ANY THIRD-PARTY SERVICE (INCLUDING GOOGLE'S GEMINI API) WILL BE AVAILABLE, UNINTERRUPTED, OR
+                    ERROR-FREE, OR THAT AI AUTO-FILL RESULTS WILL BE ACCURATE, COMPLETE, OR SUITABLE</li>
             </ul>
             <p>NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM THE DEVELOPER OR THROUGH THE APP
                 SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED IN THESE TERMS.</p>
+            <p>The optional AI Auto-Fill depends on a third-party service that the Developer does not control. The
+                Developer does not warrant that it will be available, uninterrupted, or error-free, or that its output
+                will be correct, and is not responsible for any third-party outage, error, or data handling.</p>
 
             <h2>12. Limitation of Liability</h2>
             <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE DEVELOPER, ITS AFFILIATES,
@@ -372,10 +413,14 @@
                 PROFITS, LOSS OF GOODWILL, COST OF PROCUREMENT OF SUBSTITUTE SERVICES, OR PERSONAL INJURY, ARISING OUT
                 OF OR RELATING TO YOUR USE OF OR INABILITY TO USE THE APP, EVEN IF THE DEVELOPER HAS BEEN ADVISED OF THE
                 POSSIBILITY OF SUCH DAMAGES.</p>
-            <p>THE DEVELOPER'S TOTAL LIABILITY FOR ANY CLAIMS ARISING UNDER OR RELATING TO THESE TERMS SHALL NOT EXCEED
-                THE GREATER OF (A) THE TOTAL AMOUNT YOU PAID TO USE THE APP (IF ANY) OR (B) ONE HUNDRED UNITED STATES
-                DOLLARS ($100). THE APP IS PROVIDED FREE OF CHARGE, AND THE DEVELOPER MAKES NO GUARANTEE OF CONTINUED
-                AVAILABILITY, FUNCTIONALITY, OR SUPPORT.</p>
+            <p>THE APP IS PROVIDED FREE OF CHARGE AND WITHOUT ANY MONETARY OBLIGATION FROM THE USER. ACCORDINGLY, TO THE
+                MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE DEVELOPER SHALL HAVE ZERO MONETARY LIABILITY FOR ANY
+                CLAIMS ARISING UNDER OR RELATING TO THESE TERMS OR THE APP. THE USER'S SOLE REMEDY IS TO DISCONTINUE USE
+                OF THE APP AND UNINSTALL IT. THE USER ACKNOWLEDGES THAT THEY ARE USING THE APP VOLUNTARILY AND MAY CEASE
+                USE AT ANY TIME IF THEY BELIEVE THE APP MAY CAUSE THEM HARM.</p>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE DEVELOPER SHALL HAVE NO LIABILITY FOR ANY ACTS,
+                OMISSIONS, OUTAGES, ERRORS, OR DATA HANDLING BY ANY THIRD-PARTY SERVICE YOU CHOOSE TO USE, INCLUDING
+                GOOGLE'S GEMINI API, OR FOR ANY RELIANCE ON AI-GENERATED CONTENT.</p>
 
             <h2>13. Termination</h2>
             <p>The Developer reserves the right to request removal of the App from distribution platforms or suspend
@@ -386,6 +431,8 @@
                 <li>Your right to use the App immediately ceases</li>
                 <li>All data stored locally on your device remains strictly under your physical control and can be
                     deleted entirely by uninstalling the App</li>
+                <li>Uninstalling the App removes your locally stored AI Auto-Fill API key; content already processed by
+                    Google is subject to Google's retention practices (§9)</li>
                 <li>The Developer has no obligation or technical capacity to retrieve, store, or provide access to your
                     locally saved data</li>
             </ul>
@@ -403,6 +450,9 @@
                 <li>The Developer assumes no obligation to provide alternative services, cloud migration, or hosting
                     options</li>
             </ul>
+            <p>The Developer may also modify, suspend, or discontinue the optional AI Auto-Fill feature, or its
+                compatibility with any third-party API, at any time without notice, and assumes no obligation to
+                maintain it.</p>
 
             <h2>15. Export Compliance</h2>
             <p>You represent and warrant that you are not located in, under the control of, or a national or resident of
@@ -450,7 +500,9 @@
                 through the App (e.g., via an in-app notice or updated onboarding flow). Your continued use of the App
                 after the effective date of any changes constitutes acceptance of the revised Terms.</p>
             <p>If you do not agree to the modified Terms, you must discontinue use of the App and uninstall it.</p>
-            <p>The date of the most recent revision is indicated at the top of this document.</p>
+            <p>The date of the most recent revision is indicated at the top of this document. Minor changes that do not
+                materially affect your rights, or updates required to comply with changes in law or store policy, may be
+                made with notice through an updated "Last updated" date without renewed consent.</p>
 
             <h2>22. Contact</h2>
             <p>If you have any questions, concerns, or requests regarding these Terms, please contact us:</p>
