@@ -1,17 +1,16 @@
-const CACHE_NAME = "nookab-cache-v5";
+const CACHE_NAME = "nookab-cache-v6";
 const STATIC_ASSETS = [
   "./",
   "./index.html",
   "./site.webmanifest",
   "./css/style.css",
   "./js/script.js",
-  "./images/stat-practice_2.webp",
-  "./images/dash-dict_1.webp",
-  "./images/flash-setup_3.webp",
-  "./images/exp-imp_4.webp",
-  "./images/lines-grid.svg",
-  "./images/nookab_logo.svg",
+  "./js/vendor/gsap.min.js",
+  "./js/vendor/ScrollTrigger.min.js",
+  "./js/vendor/lenis.min.js",
+  "./images/app/dashboard.webp",
   "./images/GooglePlay_Badge.svg",
+  "./media/promo-poster.webp",
   "./pages/terms.html",
   "./pages/privacy.html",
   "./fonts/Inter-latin.woff2",
@@ -44,6 +43,8 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   if (e.request.method !== "GET") return;
   if (!e.request.url.startsWith("http")) return;
+  // Let the browser stream video with range requests directly
+  if (e.request.headers.has("range")) return;
 
   e.respondWith(
     caches.match(e.request).then((cached) => {
