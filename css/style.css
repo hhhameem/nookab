@@ -1127,11 +1127,21 @@ html.js .chip-streak { animation-delay: 1.3s, 3s; }
 .mw.die b { color: var(--die); }
 .mw.das b { color: var(--das); }
 
-.mw:not(.der):not(.die):not(.das) {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -.01em;
+.mw .flag {
+    align-self: center;
+    width: .78em;
+    height: .52em;
+    margin-right: .18em;
+    border-radius: 4px;
+}
+
+/* English words: the eye-catcher of the band */
+.mw.en {
+    color: var(--accent);
+}
+
+/* German words without an article */
+.mw.de {
     color: var(--text-2);
 }
 
@@ -3536,4 +3546,303 @@ html.reveal-ready .flip-card:nth-child(3) { transition-delay: .24s; }
     .btn-ghost-text {
         display: none;
     }
+}
+
+/* =========================================================
+   Languages: German + English
+   ========================================================= */
+:root {
+    --verb: #7c3aed;
+    --adj: #d97706;
+    --noun: #0891b2;
+}
+
+:root[data-theme="dark"] {
+    --verb: #a78bfa;
+    --adj: #fbbf24;
+    --noun: #22d3ee;
+}
+
+.flag {
+    width: 22px;
+    height: 15px;
+    border-radius: 3px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px var(--line-2);
+}
+
+/* hero language pills */
+.lang-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 26px;
+}
+
+.lang-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 18px 9px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform .4s var(--ease-spring), border-color .3s, background-color .3s;
+}
+
+.lang-pill:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: var(--surface);
+}
+
+html.js .lang-pills { animation-delay: .36s; }
+html.js .hero-cta { animation-delay: .46s; }
+html.js .hero-proof { animation-delay: .56s; }
+
+.hero-cta {
+    margin-top: 30px;
+}
+
+/* hero word cards: flag + tag */
+.wc-meta {
+    justify-self: end;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wc-meta .flag {
+    width: 20px;
+    height: 14px;
+}
+
+.wc-tag.tag-adj {
+    color: var(--adj);
+    background: color-mix(in srgb, var(--adj) 14%, transparent);
+}
+
+.word-card.wc-4 {
+    --card-c: var(--adj);
+}
+
+/* language switcher */
+.lang-switch-wrap {
+    display: flex;
+    justify-content: center;
+    margin: -30px 0 56px;
+}
+
+.lang-switch {
+    display: inline-flex;
+    gap: 4px;
+    padding: 5px;
+    border-radius: 999px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+}
+
+.lang-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 22px 11px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-2);
+    position: relative;
+    transition: color .3s, background-color .35s, box-shadow .35s;
+}
+
+.lang-tab:hover {
+    color: var(--text);
+}
+
+.lang-tab.is-active {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
+}
+
+.lang-tab .flag {
+    filter: saturate(.4);
+    opacity: .7;
+    transition: filter .3s, opacity .3s;
+}
+
+.lang-tab.is-active .flag {
+    filter: none;
+    opacity: 1;
+}
+
+/* auto-cycle progress line under the active tab */
+.lang-tab::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 4px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: .55;
+}
+
+.lang-switch.is-cycling .lang-tab.is-active::after {
+    animation: tab-progress var(--cycle, 7s) linear forwards;
+}
+
+@keyframes tab-progress {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.lang-panel.is-active {
+    animation: fade-up .8s var(--ease-out) both;
+}
+
+.lang-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -.03em;
+}
+
+.lang-lead {
+    max-width: 640px;
+    margin: 14px auto clamp(36px, 5vw, 56px);
+    text-align: center;
+    color: var(--text-2);
+    font-size: 1.08rem;
+}
+
+.flip-card.is-verb { --card-c: var(--verb); }
+.flip-card.is-adj { --card-c: var(--adj); }
+.flip-card.is-noun { --card-c: var(--noun); }
+
+.flip-card.is-verb .fc-article,
+.flip-card.is-adj .fc-article,
+.flip-card.is-noun .fc-article {
+    font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+}
+
+@media (max-width: 960px) {
+    .lang-pills {
+        justify-content: center;
+    }
+
+    .lang-switch-wrap {
+        margin-top: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lang-tab {
+        padding: 10px 14px 10px 12px;
+        font-size: 14px;
+        gap: 8px;
+    }
+}
+
+.tts-word {
+    transition: opacity .25s;
+}
+
+/* hero background: extra German/English glyphs + faint flags */
+.g8 { left: 3%; bottom: 24%; font-size: 72px; animation-delay: -7s; }
+.g9 { right: 2%; top: 20%; font-size: 96px; animation-delay: -2.5s; }
+.g10 { left: 56%; bottom: 3%; font-size: 58px; animation-delay: -4.5s; }
+.g11 { left: 15%; top: 5%; font-size: 64px; animation-delay: -1.5s; }
+.g12 { right: 46%; top: 14%; font-size: 50px; animation-delay: -6.5s; }
+
+.glyph-flag {
+    position: absolute;
+    width: 58px;
+    height: 38px;
+    border-radius: 7px;
+    opacity: .16;
+    animation: bob-t 10s ease-in-out infinite alternate;
+}
+
+:root[data-theme="dark"] .glyph-flag {
+    opacity: .2;
+}
+
+.gf-de { left: 4%; bottom: 36%; rotate: -10deg; animation-delay: -3s; }
+.gf-gb { left: 31%; top: 9%; rotate: 8deg; animation-delay: -6s; }
+
+.hero-sub strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* import/export: part-of-speech colors */
+.t-verb { color: var(--verb); font-weight: 700; }
+.t-adj { color: var(--adj); font-weight: 700; }
+.t-noun { color: var(--noun); font-weight: 700; }
+
+/* "German only" badge on the special characters tile */
+.only-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    padding: 4px 10px 4px 7px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    font-size: 11px;
+    letter-spacing: .04em;
+    color: var(--text-2);
+}
+
+.only-badge .flag {
+    width: 16px;
+    height: 11px;
+}
+
+.tile-keys .tile-head {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+}
+
+.tile-keys .only-badge {
+    margin-left: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .gf-gb { left: 70%; top: 6%; }
+    .g10, .g12 { display: none; }
+}
+
+/* film: poster + YouTube iframe (loaded on click) */
+.film-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.film-frame iframe,
+.modal-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.modal-player {
+    position: absolute;
+    inset: 0;
 }

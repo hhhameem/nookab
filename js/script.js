@@ -211,8 +211,96 @@
         card.addEventListener('click', function () {
             card.classList.toggle('is-flipped');
             card.setAttribute('aria-pressed', card.classList.contains('is-flipped'));
+            stopCycle();
         });
     });
+
+    /* ---------------- language switcher (German / English) ---------------- */
+    var langSwitch = $('.lang-switch');
+    var langTabs = $$('.lang-tab');
+    var CYCLE_MS = 7000;
+    var cycleTimer = null;
+    var userPicked = false;
+
+    function showLang(lang, focus) {
+        langTabs.forEach(function (t) {
+            var on = t.getAttribute('data-lang') === lang;
+            t.classList.toggle('is-active', on);
+            t.setAttribute('aria-selected', String(on));
+            t.tabIndex = on ? 0 : -1;
+            if (on && focus) t.focus();
+            var panel = document.getElementById(t.getAttribute('aria-controls'));
+            panel.hidden = !on;
+            panel.classList.toggle('is-active', on);
+            if (on) $$('.flip-card', panel).forEach(function (c) { c.classList.remove('is-flipped'); });
+        });
+        if (langSwitch && langSwitch.classList.contains('is-cycling')) {
+            // restart the progress line
+            langSwitch.classList.remove('is-cycling');
+            void langSwitch.offsetWidth;
+            langSwitch.classList.add('is-cycling');
+        }
+    }
+
+    function stopCycle() {
+        userPicked = true;
+        clearInterval(cycleTimer);
+        cycleTimer = null;
+        if (langSwitch) langSwitch.classList.remove('is-cycling');
+    }
+
+    function startCycle() {
+        if (reduceMotion || userPicked || cycleTimer || !langSwitch) return;
+        langSwitch.style.setProperty('--cycle', CYCLE_MS + 'ms');
+        langSwitch.classList.add('is-cycling');
+        cycleTimer = setInterval(function () {
+            var current = $('.lang-tab.is-active').getAttribute('data-lang');
+            showLang(current === 'de' ? 'en' : 'de');
+        }, CYCLE_MS);
+    }
+
+    function pauseCycle() {
+        clearInterval(cycleTimer);
+        cycleTimer = null;
+        if (langSwitch) langSwitch.classList.remove('is-cycling');
+    }
+
+    langTabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { stopCycle(); showLang(t.getAttribute('data-lang')); });
+        t.addEventListener('keydown', function (e) {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            e.preventDefault();
+            stopCycle();
+            var next = langTabs[(i + (e.key === 'ArrowRight' ? 1 : langTabs.length - 1)) % langTabs.length];
+            showLang(next.getAttribute('data-lang'), true);
+        });
+    });
+
+    // hero "Learn German / Learn English" pills preselect the language
+    $$('[data-lang-link]').forEach(function (a) {
+        a.addEventListener('click', function () { stopCycle(); showLang(a.getAttribute('data-lang-link')); });
+    });
+
+    var langSection = document.getElementById('languages');
+    if (langSection && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) startCycle(); else pauseCycle(); });
+        }, { threshold: 0.35 }).observe(langSection);
+        langSection.addEventListener('pointerenter', pauseCycle);
+        langSection.addEventListener('pointerleave', function () { if (!userPicked) startCycle(); });
+    }
+
+    /* ---------------- pronunciation tile: alternate German / English words ---------------- */
+    var ttsWord = $('#ttsWord');
+    if (ttsWord && !reduceMotion) {
+        var ttsWords = ['Ausstellung', 'thoroughly', 'Bahnhof', 'serendipity', 'übrigens', 'although'];
+        var ttsI = 0;
+        setInterval(function () {
+            ttsI = (ttsI + 1) % ttsWords.length;
+            ttsWord.style.opacity = 0;
+            setTimeout(function () { ttsWord.textContent = ttsWords[ttsI]; ttsWord.style.opacity = 1; }, 250);
+        }, 2600);
+    }
 
     /* ---------------- keys auto-press ---------------- */
     function pressKeys(wrap) {
@@ -247,6 +335,16 @@
         screens.forEach(function (s, i) { s.classList.toggle('is-active', i === n); });
         dots.forEach(function (d, i) { d.classList.toggle('is-active', i === n); });
     }
+    // stacked screens are lazy; start loading all of them as the section approaches
+    var howSection = document.getElementById('how');
+    if (howSection && 'IntersectionObserver' in window) {
+        var preloadIO = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting) return;
+            screens.forEach(function (img) { img.loading = 'eager'; });
+            preloadIO.disconnect();
+        }, { rootMargin: '1200px 0px' });
+        preloadIO.observe(howSection);
+    }
     if ('IntersectionObserver' in window && steps.length) {
         var stepIO = new IntersectionObserver(function (entries) {
             entries.forEach(function (en) {
@@ -271,20 +369,30 @@
     }
 
     /* ---------------- film ---------------- */
+    // The YouTube player is only loaded when someone presses play (nothing is
+    // requested from YouTube before that). youtube-nocookie = privacy-enhanced mode.
+    var YT_ID = 'iPCEq-z2nJI';
+    function ytIframe() {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + YT_ID + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+        f.title = 'Nookab — promo film';
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.allowFullscreen = true;
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        return f;
+    }
+
     var filmFrame = $('#filmFrame');
-    var promo = $('#promoVideo');
     var filmPlay = $('#filmPlay');
-    if (filmPlay && promo) {
+    if (filmPlay && filmFrame) {
         filmPlay.addEventListener('click', function () {
-            promo.setAttribute('controls', '');
+            if (!$('iframe', filmFrame)) filmFrame.appendChild(ytIframe());
             filmFrame.classList.add('is-playing');
-            var p = promo.play();
-            if (p && p.catch) p.catch(function () { });
         });
     }
 
     var modal = $('#filmModal');
-    var modalVideo = $('#modalVideo');
+    var modalPlayer = $('#modalPlayer');
     var lastFocus = null;
     function openFilm() {
         if (!modal) return;
@@ -292,12 +400,11 @@
         modal.hidden = false;
         if (lenis) lenis.stop();
         $('.modal-close', modal).focus();
-        var p = modalVideo.play();
-        if (p && p.catch) p.catch(function () { });
+        modalPlayer.appendChild(ytIframe());
     }
     function closeFilm() {
         if (!modal || modal.hidden) return;
-        modalVideo.pause();
+        modalPlayer.textContent = ''; // removing the iframe stops playback
         modal.hidden = true;
         if (lenis) lenis.start();
         if (lastFocus) lastFocus.focus();
