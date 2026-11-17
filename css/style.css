@@ -2234,6 +2234,19 @@ html.js .mix-card.is-in .mix-seg {
     border-left: 0;
 }
 
+/* one shared column grid for every row, so the borders always line up */
+@supports (grid-template-columns: subgrid) {
+    .sheet {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .sheet-row {
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+    }
+}
+
 .sheet-row.head {
     border-top: 0;
     background: color-mix(in srgb, #107c41 14%, var(--surface));
@@ -3187,6 +3200,10 @@ html.reveal-ready .flip-card:nth-child(3) { transition-delay: .24s; }
     .how-inline-shot {
         display: block;
         width: min(270px, 70vw);
+        height: auto;
+        aspect-ratio: 1016 / 2206;
+        object-fit: cover;
+        object-position: top;
         margin-top: 32px;
         border-radius: 30px;
         border: 8px solid #0f1210;
@@ -3311,10 +3328,33 @@ html.reveal-ready .flip-card:nth-child(3) { transition-delay: .24s; }
         --pw: 210px;
     }
 
-    .wc-2,
-    .wc-4 {
+    /* keep all four cards (German + English), just smaller and tucked into the corners */
+    .word-card {
+        padding: 8px 11px 8px 13px;
+        column-gap: 6px;
+        border-radius: 13px;
+    }
+
+    .wc-word {
+        font-size: 16px;
+    }
+
+    .wc-article {
+        font-size: 13px;
+    }
+
+    .wc-trans {
+        font-size: 12px;
+    }
+
+    .wc-meta .wc-tag {
         display: none;
     }
+
+    .wc-1 { left: 0; top: 13%; translate: 0 0 30px; }
+    .wc-2 { right: 0; top: 33%; translate: 0 0 20px; }
+    .wc-3 { left: 0; bottom: 27%; translate: 0 0 40px; }
+    .wc-4 { right: 0; bottom: 11%; translate: 0 0 25px; }
 
     .chip {
         font-size: 13px;
@@ -3350,13 +3390,29 @@ html.reveal-ready .flip-card:nth-child(3) { transition-delay: .24s; }
         gap: 8px;
     }
 
+    .week {
+        padding: 16px 14px;
+    }
+
+    .week-dots {
+        gap: 6px;
+    }
+
     .week-dots i {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .week-dots i::after {
+        width: 8px;
+        height: 5px;
+        border-width: 0 0 2px 2px;
     }
 
     .week-dots::before {
-        top: 12px;
+        top: 11px;
+        left: 12px;
+        right: 12px;
     }
 
     .mastery-grid {
@@ -3372,9 +3428,14 @@ html.reveal-ready .flip-card:nth-child(3) { transition-delay: .24s; }
         gap: 4px;
     }
 
+    /* keep the percentages: share space by weight, but never narrower than the label */
     .mix-seg {
-        font-size: 0;
+        flex: var(--w) 1 0;
+        width: auto;
+        min-width: 38px;
         padding: 0;
+        justify-content: center;
+        font-size: 11.5px;
     }
 
     .privacy-cards {
@@ -4023,5 +4084,62 @@ html.i18n-pending body {
 
     .lang-btn {
         padding: 0 9px;
+    }
+}
+
+/* small phones (≈320–400px): keep the nav pill, tables and tiles inside the screen */
+@media (max-width: 400px) {
+    .nav-inner {
+        gap: 6px;
+        padding: 0 4px 0 10px;
+    }
+
+    .brand {
+        gap: 8px;
+        font-size: 18px;
+        min-width: 0;
+    }
+
+    .brand-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+    }
+
+    .brand-mark svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .nav-actions {
+        gap: 0;
+    }
+
+    .theme-toggle,
+    .menu-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .lang-btn {
+        height: 36px;
+        gap: 4px;
+        padding: 0 6px;
+    }
+
+    .tile {
+        padding: 22px 18px;
+    }
+
+    .sheet {
+        font-size: 12.5px;
+    }
+
+    .sheet-row span {
+        padding: 8px 8px;
+    }
+
+    .sheet-row.head {
+        font-size: 10.5px;
     }
 }
