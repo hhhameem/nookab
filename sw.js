@@ -4,6 +4,7 @@ const STATIC_ASSETS = [
   "./index.html",
   "./site.webmanifest",
   "./css/style.css",
+  "./js/i18n.js",
   "./js/script.js",
   "./js/vendor/gsap.min.js",
   "./js/vendor/ScrollTrigger.min.js",

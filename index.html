@@ -27,18 +27,24 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#f5f0eb">
 
-    <!-- Set theme before first paint to avoid a flash -->
+    <!-- Set theme + language before first paint to avoid a flash -->
     <script>
         (function () {
-            var t = null;
+            var d = document.documentElement, t = null, l = null;
+            // light is the default theme; dark only when the visitor picked it
             try { t = localStorage.getItem('nookab-theme'); } catch (e) { }
-            if (t !== 'light' && t !== 'dark') {
-                t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-            document.documentElement.setAttribute('data-theme', t);
-            document.documentElement.classList.add('js');
+            if (t !== 'dark') t = 'light';
+            d.setAttribute('data-theme', t);
+            d.classList.add('js');
             var m = document.querySelector('meta[name="theme-color"]');
             if (m) m.setAttribute('content', t === 'dark' ? '#070a08' : '#f5f0eb');
+            // language: ?lang= link wins, then the saved choice, else English
+            try { l = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nookab-lang'); } catch (e) { }
+            if (l === 'bn' || l === 'de') {
+                d.setAttribute('lang', l === 'bn' ? 'bn-BD' : 'de');
+                d.classList.add('i18n-pending'); // hidden until js/i18n.js swaps the copy in
+                setTimeout(function () { d.classList.remove('i18n-pending'); }, 1500); // failsafe
+            }
         })();
     </script>
 
@@ -99,6 +105,8 @@
             </symbol>
             <symbol id="flag-de" viewBox="0 0 5 3"><rect width="5" height="1" fill="#000" /><rect y="1" width="5" height="1" fill="#DD0000" /><rect y="2" width="5" height="1" fill="#FFCE00" /></symbol>
             <symbol id="flag-gb" viewBox="0 0 60 30"><rect width="60" height="30" fill="#012169" /><path d="M0 0l60 30M60 0L0 30" stroke="#fff" stroke-width="6" /><path d="M0 0l60 30M60 0L0 30" stroke="#C8102E" stroke-width="2.4" /><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10" /><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6" /></symbol>
+            <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></symbol>
+            <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol>
             <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
             <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></symbol>
             <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></symbol>
@@ -129,34 +137,47 @@
         </defs>
     </svg>
 
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
     <div class="grain" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"></div>
 
     <!-- ===================== NAV ===================== -->
     <header class="nav" id="nav">
         <div class="nav-inner">
-            <a href="#top" class="brand" aria-label="Nookab home">
+            <a href="#top" class="brand" aria-label="Nookab home" data-i18n-aria-label="nav.home">
                 <span class="brand-mark"><svg viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo-mark" /></svg></span>
                 <span class="brand-name">Nookab</span>
             </a>
             <nav class="nav-links" id="navLinks" aria-label="Main">
-                <a href="#how">How it works</a>
-                <a href="#languages">Languages</a>
-                <a href="#practice">Practice</a>
-                <a href="#mastery">Mastery</a>
-                <a href="#offline">Offline</a>
-                <a href="#faq">FAQ</a>
+                <a href="#how" data-i18n="nav.how">How it works</a>
+                <a href="#languages" data-i18n="nav.languages">Languages</a>
+                <a href="#practice" data-i18n="nav.practice">Practice</a>
+                <a href="#mastery" data-i18n="nav.mastery">Mastery</a>
+                <a href="#offline" data-i18n="nav.offline">Offline</a>
+                <a href="#faq" data-i18n="nav.faq">FAQ</a>
             </nav>
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme" data-i18n-aria-label="nav.theme">
                     <svg class="i i-sun"><use href="#i-sun" /></svg>
                     <svg class="i i-moon"><use href="#i-moon" /></svg>
                 </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false"
+                        aria-controls="langList" aria-label="Change language" data-i18n-aria-label="nav.lang">
+                        <svg class="i"><use href="#i-globe" /></svg>
+                        <span class="lang-code" id="langCode">EN</span>
+                        <svg class="i lang-chev"><use href="#i-chevron" /></svg>
+                    </button>
+                    <ul class="lang-list" id="langList" role="menu" hidden>
+                        <li role="none"><button type="button" role="menuitemradio" aria-checked="true" data-set-lang="en" lang="en"><span>English</span><small>EN</small></button></li>
+                        <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-set-lang="bn" lang="bn"><span>বাংলা</span><small>BN</small></button></li>
+                        <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-set-lang="de" lang="de"><span>Deutsch</span><small>DE</small></button></li>
+                    </ul>
+                </div>
                 <a class="btn btn-primary btn-sm nav-cta"
                     href="https://play.google.com/store/apps/details?id=com.hananatelier.nookab" target="_blank"
-                    rel="noopener">Get the app</a>
-                <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"
+                    rel="noopener" data-i18n="nav.cta">Get the app</a>
+                <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" data-i18n-aria-label="nav.menu" aria-expanded="false"
                     aria-controls="navLinks">
                     <svg class="i i-open"><use href="#i-menu" /></svg>
                     <svg class="i i-close"><use href="#i-x" /></svg>
@@ -191,33 +212,32 @@
 
             <div class="container hero-layout">
                 <div class="hero-copy">
-                    <p class="eyebrow hero-eyebrow" data-intro><span class="pulse-dot"></span>Free on Google Play · No
-                        account needed</p>
+                    <p class="eyebrow hero-eyebrow" data-intro><span class="pulse-dot"></span><span data-i18n="hero.eyebrow">Free on Google Play · No account needed</span></p>
                     <h1 class="hero-title">
-                        <span class="line"><span class="line-inner">Where words</span></span>
-                        <span class="line"><span class="line-inner">become <em class="serif">yours.</em></span></span>
+                        <span class="line"><span class="line-inner" data-i18n="hero.t1">Where words</span></span>
+                        <span class="line"><span class="line-inner" data-i18n="hero.t2">become <em class="serif">yours.</em></span></span>
                     </h1>
-                    <p class="hero-sub" data-intro>The offline vocabulary notebook with <strong>no pre-built word
+                    <p class="hero-sub" data-intro data-i18n="hero.sub">The offline vocabulary notebook with <strong>no pre-built word
                         lists</strong>. You fill it with the words you actually meet — in books, shows and
                         conversations — then practise them three ways and watch them stick.</p>
                     <div class="lang-pills" data-intro>
-                        <a class="lang-pill" href="#languages" data-lang-link="de"><svg class="flag" aria-hidden="true"><use href="#flag-de" /></svg>Learn German</a>
-                        <a class="lang-pill" href="#languages" data-lang-link="en"><svg class="flag" aria-hidden="true"><use href="#flag-gb" /></svg>Learn English</a>
+                        <a class="lang-pill" href="#languages" data-lang-link="de"><svg class="flag" aria-hidden="true"><use href="#flag-de" /></svg><span data-i18n="hero.learnDe">Learn German</span></a>
+                        <a class="lang-pill" href="#languages" data-lang-link="en"><svg class="flag" aria-hidden="true"><use href="#flag-gb" /></svg><span data-i18n="hero.learnEn">Learn English</span></a>
                     </div>
                     <div class="hero-cta" data-intro>
                         <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.hananatelier.nookab"
-                            target="_blank" rel="noopener" aria-label="Get it on Google Play">
-                            <img src="images/GooglePlay_Badge.svg" alt="Get it on Google Play" width="180" height="53">
+                            target="_blank" rel="noopener" aria-label="Get it on Google Play" data-i18n-aria-label="cta.play">
+                            <img src="images/GooglePlay_Badge.svg" alt="Get it on Google Play" data-i18n-alt="cta.play" width="180" height="53">
                         </a>
                         <button class="btn btn-ghost" type="button" data-open-film>
                             <span class="play-ring"><svg class="i"><use href="#i-play" /></svg></span>
-                            Watch the 90-second film
+                            <span data-i18n="hero.film">Watch the 90-second film</span>
                         </button>
                     </div>
                     <ul class="hero-proof" data-intro>
-                        <li><svg class="i"><use href="#i-check" /></svg>No account</li>
-                        <li><svg class="i"><use href="#i-check" /></svg>Works offline</li>
-                        <li><svg class="i"><use href="#i-check" /></svg>Every feature free</li>
+                        <li><svg class="i"><use href="#i-check" /></svg><span data-i18n="hero.proof1">No account</span></li>
+                        <li><svg class="i"><use href="#i-check" /></svg><span data-i18n="hero.proof2">Works offline</span></li>
+                        <li><svg class="i"><use href="#i-check" /></svg><span data-i18n="hero.proof3">Every feature free</span></li>
                     </ul>
                 </div>
 
@@ -273,8 +293,8 @@
         <!-- ===================== MANIFESTO ===================== -->
         <section class="manifesto">
             <div class="container">
-                <p class="eyebrow center">Why Nookab</p>
-                <p class="manifesto-text" id="manifesto">Most vocabulary apps hand you someone else's word list. Nookab
+                <p class="eyebrow center" data-i18n="why.eyebrow">Why Nookab</p>
+                <p class="manifesto-text" id="manifesto" data-i18n="why.text">Most vocabulary apps hand you someone else's word list. Nookab
                     starts with yours — the words from your books, your shows, your conversations. Every word you
                     practise is one you chose to learn.</p>
             </div>
@@ -284,54 +304,54 @@
         <section class="how" id="how">
             <div class="container">
                 <header class="section-head" data-reveal>
-                    <p class="eyebrow">How it works</p>
-                    <h2 class="section-title">From <em class="serif">“what was that word?”</em> to mastered.</h2>
+                    <p class="eyebrow" data-i18n="how.eyebrow">How it works</p>
+                    <h2 class="section-title" data-i18n="how.title">From <em class="serif">“what was that word?”</em> to mastered.</h2>
                 </header>
 
                 <div class="how-layout">
                     <div class="how-steps">
                         <article class="how-step is-active" data-step="0">
                             <span class="step-num">01</span>
-                            <h3>Collect the words you meet</h3>
-                            <p>Type the word and its translation, pick a word type, done. Add plural, example
+                            <h3 data-i18n="how.s1.title">Collect the words you meet</h3>
+                            <p data-i18n="how.s1.text">Type the word and its translation, pick a word type, done. Add plural, example
                                 sentences, synonyms and notes whenever you want more. Type <strong>“der
                                     Hund”</strong> and Nookab files the article for you.</p>
-                            <img class="how-inline-shot" src="images/app/add-word.webp" alt="Nookab Add Word screen"
+                            <img class="how-inline-shot" src="images/app/add-word.webp" alt="Nookab Add Word screen" data-i18n-alt="how.s1.alt"
                                 loading="lazy" width="600" height="1303">
                         </article>
                         <article class="how-step" data-step="1">
                             <span class="step-num">02</span>
-                            <h3>Let AI do the busywork <span class="pill">Optional</span></h3>
-                            <p>Turn on AI Auto-Fill with your own free Gemini key and one tap suggests translations,
+                            <h3 data-i18n="how.s2.title">Let AI do the busywork <span class="pill">Optional</span></h3>
+                            <p data-i18n="how.s2.text">Turn on AI Auto-Fill with your own free Gemini key and one tap suggests translations,
                                 grammar and examples for you to review. It's off by default, and your word goes
                                 straight from your phone to Google — never to us.</p>
                             <img class="how-inline-shot" src="images/app/autofill.webp"
-                                alt="Nookab AI Auto-Fill settings" loading="lazy" width="600" height="1303">
+                                alt="Nookab AI Auto-Fill settings" data-i18n-alt="how.s2.alt" loading="lazy" width="600" height="1303">
                         </article>
                         <article class="how-step" data-step="2">
                             <span class="step-num">03</span>
-                            <h3>Practise in short bursts</h3>
-                            <p>Flashcards, a four-option quiz or spelling from memory. Sessions run from 5 to 100
+                            <h3 data-i18n="how.s3.title">Practise in short bursts</h3>
+                            <p data-i18n="how.s3.text">Flashcards, a four-option quiz or spelling from memory. Sessions run from 5 to 100
                                 questions and can be narrowed to any category — Travel, Food, Work, whatever you
                                 made.</p>
                             <img class="how-inline-shot" src="images/app/practice.webp"
-                                alt="Nookab practice mode picker" loading="lazy" width="600" height="1303">
+                                alt="Nookab practice mode picker" data-i18n-alt="how.s3.alt" loading="lazy" width="600" height="1303">
                         </article>
                         <article class="how-step" data-step="3">
                             <span class="step-num">04</span>
-                            <h3>Watch them become yours</h3>
-                            <p>Every answer moves a word's mastery score. Get it right across modes and days, and it
+                            <h3 data-i18n="how.s4.title">Watch them become yours</h3>
+                            <p data-i18n="how.s4.text">Every answer moves a word's mastery score. Get it right across modes and days, and it
                                 earns its trophy. Get it wrong, and Nookab brings it back sooner.</p>
                             <img class="how-inline-shot" src="images/app/mastered.webp"
-                                alt="Nookab mastered words list" loading="lazy" width="600" height="1303">
+                                alt="Nookab mastered words list" data-i18n-alt="how.s4.alt" loading="lazy" width="600" height="1303">
                         </article>
                         <article class="how-step" data-step="4">
                             <span class="step-num">05</span>
-                            <h3>See how far you've come</h3>
-                            <p>Your statistics show 14 days of activity, accuracy by word type and category, your
+                            <h3 data-i18n="how.s5.title">See how far you've come</h3>
+                            <p data-i18n="how.s5.text">Your statistics show 14 days of activity, accuracy by word type and category, your
                                 longest streak, and the words that still give you trouble — so you know exactly what to
                                 practise next.</p>
-                            <img class="how-inline-shot" src="images/app/stats.webp" alt="Nookab statistics screen"
+                            <img class="how-inline-shot" src="images/app/stats.webp" alt="Nookab statistics screen" data-i18n-alt="how.s5.alt"
                                 loading="lazy" width="600" height="1303">
                         </article>
                     </div>
@@ -372,29 +392,29 @@
         <section class="articles" id="languages">
             <div class="container">
                 <header class="section-head center" data-reveal>
-                    <p class="eyebrow">Two languages</p>
-                    <h2 class="section-title">German or English. <em class="serif">Both built in.</em></h2>
-                    <p class="section-lead">Pick the language you're learning when you start, and Nookab shapes every
+                    <p class="eyebrow" data-i18n="langs.eyebrow">Two languages</p>
+                    <h2 class="section-title" data-i18n="langs.title">German or English. <em class="serif">Both built in.</em></h2>
+                    <p class="section-lead" data-i18n="langs.lead">Pick the language you're learning when you start, and Nookab shapes every
                         word card, grammar field and practice session around it.</p>
                 </header>
 
                 <div class="lang-switch-wrap" data-reveal>
-                    <div class="lang-switch" role="tablist" aria-label="Choose the language you are learning">
+                    <div class="lang-switch" role="tablist" aria-label="Choose the language you are learning" data-i18n-aria-label="langs.switch">
                         <button class="lang-tab is-active" type="button" role="tab" id="tab-de" aria-controls="panel-de"
-                            aria-selected="true" data-lang="de"><svg class="flag" aria-hidden="true"><use href="#flag-de" /></svg>Learning German</button>
+                            aria-selected="true" data-lang="de"><svg class="flag" aria-hidden="true"><use href="#flag-de" /></svg><span data-i18n="langs.tabDe">Learning German</span></button>
                         <button class="lang-tab" type="button" role="tab" id="tab-en" aria-controls="panel-en"
-                            aria-selected="false" tabindex="-1" data-lang="en"><svg class="flag" aria-hidden="true"><use href="#flag-gb" /></svg>Learning English</button>
+                            aria-selected="false" tabindex="-1" data-lang="en"><svg class="flag" aria-hidden="true"><use href="#flag-gb" /></svg><span data-i18n="langs.tabEn">Learning English</span></button>
                     </div>
                 </div>
 
                 <div class="lang-panel is-active" id="panel-de" role="tabpanel" aria-labelledby="tab-de">
-                    <h3 class="lang-title">See the gender in <em class="serif">every color.</em></h3>
-                    <p class="lang-lead"><span class="t-der">der</span> is blue, <span class="t-die">die</span> is pink,
+                    <h3 class="lang-title" data-i18n="langs.de.title">See the gender in <em class="serif">every color.</em></h3>
+                    <p class="lang-lead" data-i18n="langs.de.lead"><span class="t-der">der</span> is blue, <span class="t-die">die</span> is pink,
                         <span class="t-das">das</span> is green — on every list, card and quiz. After a while, you stop
                         guessing. Tap a card to flip it.</p>
 
                     <div class="flip-row">
-                        <button class="flip-card is-der" type="button" aria-label="der Löffel — flip to see translation">
+                        <button class="flip-card is-der" type="button" aria-label="der Löffel — flip to see translation" data-i18n-aria-label="langs.flip.de1">
                             <span class="flip-inner">
                                 <span class="flip-face flip-front">
                                     <span class="fc-article">der</span>
@@ -408,7 +428,7 @@
                                 </span>
                             </span>
                         </button>
-                        <button class="flip-card is-die" type="button" aria-label="die Brücke — flip to see translation">
+                        <button class="flip-card is-die" type="button" aria-label="die Brücke — flip to see translation" data-i18n-aria-label="langs.flip.de2">
                             <span class="flip-inner">
                                 <span class="flip-face flip-front">
                                     <span class="fc-article">die</span>
@@ -422,7 +442,7 @@
                                 </span>
                             </span>
                         </button>
-                        <button class="flip-card is-das" type="button" aria-label="das Fenster — flip to see translation">
+                        <button class="flip-card is-das" type="button" aria-label="das Fenster — flip to see translation" data-i18n-aria-label="langs.flip.de3">
                             <span class="flip-inner">
                                 <span class="flip-face flip-front">
                                     <span class="fc-article">das</span>
@@ -441,28 +461,28 @@
                     <div class="articles-extra">
                         <div class="mini-feature">
                             <svg class="i"><use href="#i-keyboard" /></svg>
-                            <div><b>ä ö ü ß, one tap away.</b> A special-character bar sits right above your keyboard.</div>
+                            <div data-i18n="langs.de.m1"><b>ä ö ü ß, one tap away.</b> A special-character bar sits right above your keyboard.</div>
                         </div>
                         <div class="mini-feature">
                             <svg class="i"><use href="#i-sheet" /></svg>
-                            <div><b>Verbs, fully conjugated.</b> Present tense, Präteritum, Perfekt and haben/sein — on
+                            <div data-i18n="langs.de.m2"><b>Verbs, fully conjugated.</b> Present tense, Präteritum, Perfekt and haben/sein — on
                                 the word card.</div>
                         </div>
                         <div class="mini-feature">
                             <svg class="i"><use href="#i-volume" /></svg>
-                            <div><b>Hear it in German.</b> Tap the speaker for pronunciation using your phone's German
+                            <div data-i18n="langs.de.m3"><b>Hear it in German.</b> Tap the speaker for pronunciation using your phone's German
                                 voice.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="lang-panel" id="panel-en" role="tabpanel" aria-labelledby="tab-en" hidden>
-                    <h3 class="lang-title">The tricky parts, <em class="serif">on every card.</em></h3>
-                    <p class="lang-lead">Irregular verbs, comparatives, plurals that break the rules — Nookab keeps them
+                    <h3 class="lang-title" data-i18n="langs.en.title">The tricky parts, <em class="serif">on every card.</em></h3>
+                    <p class="lang-lead" data-i18n="langs.en.lead">Irregular verbs, comparatives, plurals that break the rules — Nookab keeps them
                         right next to the word, so you learn the whole thing at once. Tap a card to flip it.</p>
 
                     <div class="flip-row">
-                        <button class="flip-card is-verb" type="button" aria-label="go — flip to see its forms">
+                        <button class="flip-card is-verb" type="button" aria-label="go — flip to see its forms" data-i18n-aria-label="langs.flip.en1">
                             <span class="flip-inner">
                                 <span class="flip-face flip-front">
                                     <span class="fc-article">verb</span>
@@ -476,7 +496,7 @@
                                 </span>
                             </span>
                         </button>
-                        <button class="flip-card is-adj" type="button" aria-label="good — flip to see its forms">
+                        <button class="flip-card is-adj" type="button" aria-label="good — flip to see its forms" data-i18n-aria-label="langs.flip.en2">
                             <span class="flip-inner">
                                 <span class="flip-face flip-front">
                                     <span class="fc-article">adjective</span>
@@ -490,7 +510,7 @@
                                 </span>
                             </span>
                         </button>
-                        <button class="flip-card is-noun" type="button" aria-label="child — flip to see its forms">
+                        <button class="flip-card is-noun" type="button" aria-label="child — flip to see its forms" data-i18n-aria-label="langs.flip.en3">
                             <span class="flip-inner">
                                 <span class="flip-face flip-front">
                                     <span class="fc-article">noun</span>
@@ -509,17 +529,17 @@
                     <div class="articles-extra">
                         <div class="mini-feature">
                             <svg class="i"><use href="#i-sheet" /></svg>
-                            <div><b>Every verb, three forms.</b> Past tense and past participle live on the card — no
+                            <div data-i18n="langs.en.m1"><b>Every verb, three forms.</b> Past tense and past participle live on the card — no
                                 more mixing up “went” and “gone”.</div>
                         </div>
                         <div class="mini-feature">
                             <svg class="i"><use href="#i-sparkles" /></svg>
-                            <div><b>Translations in your language.</b> AI Auto-Fill can translate into Bangla, Spanish,
+                            <div data-i18n="langs.en.m2"><b>Translations in your language.</b> AI Auto-Fill can translate into Bangla, Spanish,
                                 Portuguese, French or German.</div>
                         </div>
                         <div class="mini-feature">
                             <svg class="i"><use href="#i-volume" /></svg>
-                            <div><b>Hear it in English.</b> Tap the speaker for pronunciation using your phone's English
+                            <div data-i18n="langs.en.m3"><b>Hear it in English.</b> Tap the speaker for pronunciation using your phone's English
                                 voice.</div>
                         </div>
                     </div>
@@ -532,19 +552,19 @@
             <div class="practice-pin">
                 <div class="practice-track" id="practiceTrack">
                     <div class="practice-panel practice-intro">
-                        <p class="eyebrow">Practice</p>
-                        <h2 class="section-title">Every word,<br><em class="serif">three ways.</em></h2>
-                        <p class="section-lead">Recognise it, choose it, then spell it. Each mode is a little harder —
+                        <p class="eyebrow" data-i18n="practice.eyebrow">Practice</p>
+                        <h2 class="section-title" data-i18n="practice.title">Every word,<br><em class="serif">three ways.</em></h2>
+                        <p class="section-lead" data-i18n="practice.lead">Recognise it, choose it, then spell it. Each mode is a little harder —
                             and is worth a little more.</p>
-                        <p class="practice-hint"><svg class="i"><use href="#i-arrow" /></svg>Keep scrolling</p>
+                        <p class="practice-hint"><svg class="i"><use href="#i-arrow" /></svg><span data-i18n="practice.hint">Keep scrolling</span></p>
                     </div>
 
                     <article class="practice-panel mode-panel" style="--mode: var(--das)">
                         <div class="mode-copy">
                             <span class="mode-num">01</span>
                             <h3>Flashcards</h3>
-                            <p class="mode-tagline">Flip. Recall. Remember.</p>
-                            <p>Choose your direction, flip the card, then be honest with yourself: <em>Got it</em> or
+                            <p class="mode-tagline" data-i18n="practice.flash.tag">Flip. Recall. Remember.</p>
+                            <p data-i18n="practice.flash.text">Choose your direction, flip the card, then be honest with yourself: <em>Got it</em> or
                                 <em>Wrong</em>. The back shows the article, plural, examples and your notes.
                             </p>
                             <span class="mode-points">+5 mastery</span>
@@ -553,7 +573,7 @@
                             <div class="phone phone-mode">
                                 <div class="phone-body">
                                     <div class="phone-screen"><img src="images/app/flash-noun.webp"
-                                            alt="Nookab flashcard showing die Ausstellung" loading="lazy" width="600"
+                                            alt="Nookab flashcard showing die Ausstellung" data-i18n-alt="practice.flash.alt" loading="lazy" width="600"
                                             height="1303"></div>
                                 </div>
                             </div>
@@ -564,8 +584,8 @@
                         <div class="mode-copy">
                             <span class="mode-num">02</span>
                             <h3>Quiz</h3>
-                            <p class="mode-tagline">Pick the one that fits.</p>
-                            <p>Four options, built only from words you added. Right answers light up green instantly,
+                            <p class="mode-tagline" data-i18n="practice.quiz.tag">Pick the one that fits.</p>
+                            <p data-i18n="practice.quiz.text">Four options, built only from words you added. Right answers light up green instantly,
                                 so you know what's sticking.</p>
                             <span class="mode-points">+10 mastery</span>
                         </div>
@@ -573,7 +593,7 @@
                             <div class="phone phone-mode">
                                 <div class="phone-body">
                                     <div class="phone-screen"><img src="images/app/quiz-correct.webp"
-                                            alt="Nookab quiz: the English word achieve with Bangla answer options, answered correctly" loading="lazy" width="600"
+                                            alt="Nookab quiz: the English word achieve with Bangla answer options, answered correctly" data-i18n-alt="practice.quiz.alt" loading="lazy" width="600"
                                             height="1303"></div>
                                 </div>
                             </div>
@@ -584,8 +604,8 @@
                         <div class="mode-copy">
                             <span class="mode-num">03</span>
                             <h3>Spelling</h3>
-                            <p class="mode-tagline">Type it from memory.</p>
-                            <p>No options, no hints — full recall. Capitals don't count against you, and German
+                            <p class="mode-tagline" data-i18n="practice.spell.tag">Type it from memory.</p>
+                            <p data-i18n="practice.spell.text">No options, no hints — full recall. Capitals don't count against you, and German
                                 learners get an ä ö ü ß bar right above the keyboard.</p>
                             <span class="mode-points">+15 mastery</span>
                         </div>
@@ -593,7 +613,7 @@
                             <div class="phone phone-mode">
                                 <div class="phone-body">
                                     <div class="phone-screen"><img src="images/app/spelling.webp"
-                                            alt="Nookab spelling practice with special character bar" loading="lazy"
+                                            alt="Nookab spelling practice with special character bar" data-i18n-alt="practice.spell.alt" loading="lazy"
                                             width="600" height="1303"></div>
                                 </div>
                             </div>
@@ -607,9 +627,9 @@
         <section class="mastery" id="mastery">
             <div class="container">
                 <header class="section-head" data-reveal>
-                    <p class="eyebrow">Mastery</p>
-                    <h2 class="section-title">Progress you can <em class="serif">actually see.</em></h2>
-                    <p class="section-lead">Every word carries a score from 0 to 100. Right answers push it up; a wrong
+                    <p class="eyebrow" data-i18n="mastery.eyebrow">Mastery</p>
+                    <h2 class="section-title" data-i18n="mastery.title">Progress you can <em class="serif">actually see.</em></h2>
+                    <p class="section-lead" data-i18n="mastery.lead">Every word carries a score from 0 to 100. Right answers push it up; a wrong
                         one costs 20 points. No streak-padding, no shortcuts.</p>
                 </header>
 
@@ -642,14 +662,14 @@
                 <div class="mastery-grid">
                     <div class="weak-card" data-reveal>
                         <span class="badge badge-weak"><svg class="i"><use href="#i-alert" /></svg>Weak word</span>
-                        <h3>Weak words don't get to hide.</h3>
-                        <p>Miss a word twice in a row — or drop below 60% accuracy after five reviews — and Nookab flags
+                        <h3 data-i18n="mastery.weak.title">Weak words don't get to hide.</h3>
+                        <p data-i18n="mastery.weak.text">Miss a word twice in a row — or drop below 60% accuracy after five reviews — and Nookab flags
                             it. To lose the flag, it has to prove itself:</p>
                         <ol class="proof-list">
-                            <li><span>1</span><div><b>5 correct in a row</b>No lucky guesses.</div></li>
-                            <li><span>2</span><div><b>Across at least 2 days</b>The “sleep test” — it has to survive a
+                            <li><span>1</span><div data-i18n="mastery.weak.l1"><b>5 correct in a row</b>No lucky guesses.</div></li>
+                            <li><span>2</span><div data-i18n="mastery.weak.l2"><b>Across at least 2 days</b>The “sleep test” — it has to survive a
                                     night.</div></li>
-                            <li><span>3</span><div><b>Accuracy back to 60%+</b>Overall, not just today.</div></li>
+                            <li><span>3</span><div data-i18n="mastery.weak.l3"><b>Accuracy back to 60%+</b>Overall, not just today.</div></li>
                         </ol>
                     </div>
 
@@ -657,15 +677,15 @@
                         <div class="phone phone-tilt-l">
                             <div class="phone-body">
                                 <div class="phone-screen"><img src="images/app/weak.webp"
-                                        alt="Nookab word detail flagged as weak" loading="lazy" width="600"
+                                        alt="Nookab word detail flagged as weak" data-i18n-alt="mastery.weak.alt" loading="lazy" width="600"
                                         height="1303"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="mix-card" data-reveal>
-                        <h3>Sessions that lean toward what you're about to forget.</h3>
-                        <p>Each practice round is built from your riskiest words first. It suggests — it never locks a
+                        <h3 data-i18n="mastery.mix.title">Sessions that lean toward what you're about to forget.</h3>
+                        <p data-i18n="mastery.mix.text">Each practice round is built from your riskiest words first. It suggests — it never locks a
                             word away. Practise whatever you want, whenever you want.</p>
                         <div class="mix-bar" id="mixBar">
                             <span class="mix-seg seg-weak" style="--w: 40">40%</span>
@@ -688,15 +708,15 @@
         <section class="features" id="features">
             <div class="container">
                 <header class="section-head center" data-reveal>
-                    <p class="eyebrow">Everything else</p>
-                    <h2 class="section-title">Small things that <em class="serif">add up.</em></h2>
+                    <p class="eyebrow" data-i18n="features.eyebrow">Everything else</p>
+                    <h2 class="section-title" data-i18n="features.title">Small things that <em class="serif">add up.</em></h2>
                 </header>
 
                 <div class="bento">
                     <article class="tile tile-streak" data-reveal>
-                        <div class="tile-head"><svg class="i"><use href="#i-flame" /></svg>Streaks</div>
-                        <h3>A habit you can see.</h3>
-                        <p>A day counts when you finish a session, add a word or edit one. Your last seven days, at a
+                        <div class="tile-head"><svg class="i"><use href="#i-flame" /></svg><span data-i18n="features.streak.head">Streaks</span></div>
+                        <h3 data-i18n="features.streak.title">A habit you can see.</h3>
+                        <p data-i18n="features.streak.text">A day counts when you finish a session, add a word or edit one. Your last seven days, at a
                             glance.</p>
                         <div class="week" id="weekStrip">
                             <div class="week-flame"><svg class="i"><use href="#i-flame" /></svg><b
@@ -714,7 +734,7 @@
                     </article>
 
                     <article class="tile tile-goal" data-reveal>
-                        <div class="tile-head"><svg class="i"><use href="#i-trend" /></svg>Daily goal</div>
+                        <div class="tile-head"><svg class="i"><use href="#i-trend" /></svg><span data-i18n="features.goal.head">Daily goal</span></div>
                         <div class="ring" id="goalRing" style="--p: 0">
                             <svg viewBox="0 0 120 120" aria-hidden="true">
                                 <circle cx="60" cy="60" r="52" class="ring-bg" />
@@ -722,12 +742,12 @@
                             </svg>
                             <div class="ring-label"><b id="goalNum">0</b><span>/ 25</span></div>
                         </div>
-                        <p>Pick a goal from 1 to 999 words a day.</p>
+                        <p data-i18n="features.goal.text">Pick a goal from 1 to 999 words a day.</p>
                     </article>
 
                     <article class="tile tile-blitz" data-reveal>
                         <div class="tile-head"><svg class="i"><use href="#i-zap" /></svg>Daily Blitz</div>
-                        <h3>One tap, the right practice.</h3>
+                        <h3 data-i18n="features.blitz.title">One tap, the right practice.</h3>
                         <div class="blitz">
                             <span class="blitz-chip c-blue"><svg class="i"><use href="#i-zap" /></svg>Quick Sprint</span>
                             <span class="blitz-chip c-violet"><svg class="i"><use href="#i-moon" /></svg>Today's Words</span>
@@ -737,9 +757,9 @@
                     </article>
 
                     <article class="tile tile-stats" data-reveal>
-                        <div class="tile-head"><svg class="i"><use href="#i-chart" /></svg>Statistics</div>
-                        <h3>Know where you stand.</h3>
-                        <p>14-day activity, accuracy by word type and category, your hardest words and your most
+                        <div class="tile-head"><svg class="i"><use href="#i-chart" /></svg><span data-i18n="features.stats.head">Statistics</span></div>
+                        <h3 data-i18n="features.stats.title">Know where you stand.</h3>
+                        <p data-i18n="features.stats.text">14-day activity, accuracy by word type and category, your hardest words and your most
                             practised.</p>
                         <div class="bars" id="bars" aria-hidden="true">
                             <i style="--h:30"></i><i style="--h:55"></i><i style="--h:20"></i><i style="--h:70"></i><i
@@ -750,9 +770,9 @@
                     </article>
 
                     <article class="tile tile-xlsx" data-reveal>
-                        <div class="tile-head"><svg class="i"><use href="#i-sheet" /></svg>Import &amp; export</div>
-                        <h3>Your words, in a spreadsheet.</h3>
-                        <p>Export everything to one Excel file — words, mastery and history — and restore it on a new
+                        <div class="tile-head"><svg class="i"><use href="#i-sheet" /></svg><span data-i18n="features.xlsx.head">Import &amp; export</span></div>
+                        <h3 data-i18n="features.xlsx.title">Your words, in a spreadsheet.</h3>
+                        <p data-i18n="features.xlsx.text">Export everything to one Excel file — words, mastery and history — and restore it on a new
                             phone. Opens in Excel, Google Sheets and LibreOffice.</p>
                         <div class="sheet" aria-hidden="true">
                             <div class="sheet-row head"><span>baseWord</span><span>translation</span><span>type</span></div>
@@ -763,29 +783,29 @@
                     </article>
 
                     <article class="tile tile-keys" data-reveal>
-                        <div class="tile-head"><svg class="i"><use href="#i-keyboard" /></svg>Special characters<span class="only-badge"><svg class="flag" aria-hidden="true"><use href="#flag-de" /></svg>German only</span></div>
-                        <div class="keys" aria-label="German special characters">
+                        <div class="tile-head"><svg class="i"><use href="#i-keyboard" /></svg><span data-i18n="features.keys.head">Special characters</span><span class="only-badge"><svg class="flag" aria-hidden="true"><use href="#flag-de" /></svg><span data-i18n="features.keys.badge">German only</span></span></div>
+                        <div class="keys" aria-label="German special characters" data-i18n-aria-label="features.keys.aria">
                             <kbd>ä</kbd><kbd>ö</kbd><kbd>ü</kbd><kbd>ß</kbd><kbd>Ä</kbd><kbd>Ö</kbd><kbd>Ü</kbd>
                         </div>
-                        <p>Only for German learners — the bar sits right above your keyboard while you type.</p>
+                        <p data-i18n="features.keys.text">Only for German learners — the bar sits right above your keyboard while you type.</p>
                     </article>
 
                     <article class="tile tile-tts" data-reveal>
-                        <div class="tile-head"><svg class="i"><use href="#i-volume" /></svg>Pronunciation</div>
+                        <div class="tile-head"><svg class="i"><use href="#i-volume" /></svg><span data-i18n="features.tts.head">Pronunciation</span></div>
                         <div class="tts">
                             <span class="tts-word" id="ttsWord">Ausstellung</span>
                             <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                         </div>
-                        <p>Hear any word in German or English, using your phone's own voices.</p>
+                        <p data-i18n="features.tts.text">Hear any word in German or English, using your phone's own voices.</p>
                     </article>
 
                     <article class="tile tile-notify" data-reveal>
-                        <div class="tile-head"><svg class="i"><use href="#i-bell" /></svg>Gentle reminders</div>
+                        <div class="tile-head"><svg class="i"><use href="#i-bell" /></svg><span data-i18n="features.notify.head">Gentle reminders</span></div>
                         <div class="toasts" aria-hidden="true">
                             <div class="toast"><b>Word of the Day</b>serendipity — a happy accident</div>
                             <div class="toast"><b>Keep your streak</b>One quick session keeps it alive.</div>
                         </div>
-                        <p>Word of the Day, streak and goal reminders, a weekly summary — each with its own switch.</p>
+                        <p data-i18n="features.notify.text">Word of the Day, streak and goal reminders, a weekly summary — each with its own switch.</p>
                     </article>
                 </div>
             </div>
@@ -795,15 +815,15 @@
         <section class="film" id="film">
             <div class="container">
                 <header class="section-head center" data-reveal>
-                    <p class="eyebrow">The film</p>
-                    <h2 class="section-title">Nookab in <em class="serif">90 seconds.</em></h2>
+                    <p class="eyebrow" data-i18n="film.eyebrow">The film</p>
+                    <h2 class="section-title" data-i18n="film.title">Nookab in <em class="serif">90 seconds.</em></h2>
                 </header>
                 <div class="film-frame" id="filmFrame">
-                    <img class="film-poster" src="media/promo-poster.webp" alt="Nookab promo video — Stop learning someone else's words"
+                    <img class="film-poster" src="media/promo-poster.webp" alt="Nookab promo video — Stop learning someone else's words" data-i18n-alt="film.alt"
                         loading="lazy" width="1280" height="720">
-                    <button class="film-play" type="button" id="filmPlay" aria-label="Play the Nookab film">
+                    <button class="film-play" type="button" id="filmPlay" aria-label="Play the Nookab film" data-i18n-aria-label="film.play">
                         <span class="film-play-btn"><svg class="i"><use href="#i-play" /></svg></span>
-                        <span class="film-play-label">Play film · 1:30 · YouTube</span>
+                        <span class="film-play-label" data-i18n="film.label">Play film · 1:30 · YouTube</span>
                     </button>
                 </div>
             </div>
@@ -813,23 +833,23 @@
         <section class="privacy" id="offline">
             <div class="container privacy-layout">
                 <div class="privacy-copy" data-reveal>
-                    <p class="eyebrow">Offline</p>
-                    <h2 class="section-title">Airplane mode is <em class="serif">a feature.</em></h2>
-                    <p class="section-lead">No account, no server, no analytics. Your vocabulary lives on your phone,
+                    <p class="eyebrow" data-i18n="offline.eyebrow">Offline</p>
+                    <h2 class="section-title" data-i18n="offline.title">Airplane mode is <em class="serif">a feature.</em></h2>
+                    <p class="section-lead" data-i18n="offline.lead">No account, no server, no analytics. Your vocabulary lives on your phone,
                         and every core feature works without an internet connection.</p>
 
                     <div class="airplane" id="airplane">
                         <div class="airplane-bar">
-                            <span>Airplane mode</span>
+                            <span data-i18n="offline.air.label">Airplane mode</span>
                             <button class="switch" type="button" role="switch" aria-checked="false" id="airSwitch"
-                                aria-label="Toggle airplane mode demo"><span></span></button>
+                                aria-label="Toggle airplane mode demo" data-i18n-aria-label="offline.air.aria"><span></span></button>
                         </div>
                         <ul class="airplane-list">
-                            <li>Add &amp; edit words</li>
-                            <li>Flashcards, Quiz, Spelling</li>
-                            <li>Statistics &amp; streaks</li>
-                            <li>Excel import &amp; export</li>
-                            <li>Reminders</li>
+                            <li data-i18n="offline.air.l1">Add &amp; edit words</li>
+                            <li data-i18n="offline.air.l2">Flashcards, Quiz, Spelling</li>
+                            <li data-i18n="offline.air.l3">Statistics &amp; streaks</li>
+                            <li data-i18n="offline.air.l4">Excel import &amp; export</li>
+                            <li data-i18n="offline.air.l5">Reminders</li>
                         </ul>
                     </div>
                 </div>
@@ -837,36 +857,36 @@
                 <div class="privacy-cards">
                     <article class="p-card" data-reveal>
                         <svg class="i"><use href="#i-user-x" /></svg>
-                        <h3>No account</h3>
-                        <p>No sign-up, no email, no password. Open the app and start adding words.</p>
+                        <h3 data-i18n="offline.c1.title">No account</h3>
+                        <p data-i18n="offline.c1.text">No sign-up, no email, no password. Open the app and start adding words.</p>
                     </article>
                     <article class="p-card" data-reveal>
                         <svg class="i"><use href="#i-phone" /></svg>
-                        <h3>Stays on your phone</h3>
-                        <p>No cloud copy, no tracking, and your words are never used to train AI.</p>
+                        <h3 data-i18n="offline.c2.title">Stays on your phone</h3>
+                        <p data-i18n="offline.c2.text">No cloud copy, no tracking, and your words are never used to train AI.</p>
                     </article>
                     <article class="p-card" data-reveal>
                         <svg class="i"><use href="#i-sheet" /></svg>
-                        <h3>Yours to take</h3>
-                        <p>Export everything to XLSX anytime — it's a real spreadsheet, not a locked format.</p>
+                        <h3 data-i18n="offline.c3.title">Yours to take</h3>
+                        <p data-i18n="offline.c3.text">Export everything to XLSX anytime — it's a real spreadsheet, not a locked format.</p>
                     </article>
                     <article class="p-card" data-reveal>
                         <svg class="i"><use href="#i-sparkles" /></svg>
-                        <h3>Online only if you choose</h3>
-                        <p>AI Auto-Fill is optional and uses your own key. Nothing else needs a connection.</p>
+                        <h3 data-i18n="offline.c4.title">Online only if you choose</h3>
+                        <p data-i18n="offline.c4.text">AI Auto-Fill is optional and uses your own key. Nothing else needs a connection.</p>
                     </article>
                 </div>
             </div>
         </section>
 
         <!-- ===================== NUMBERS ===================== -->
-        <section class="numbers" aria-label="Nookab in numbers">
+        <section class="numbers" aria-label="Nookab in numbers" data-i18n-aria-label="numbers.aria">
             <div class="container numbers-row">
-                <div class="num" data-reveal><b data-count="3">3</b><span>practice modes</span></div>
-                <div class="num" data-reveal><b data-count="0">0</b><span>accounts needed</span></div>
-                <div class="num" data-reveal><b><small>€</small><span data-count="0">0</span></b><span>for every
+                <div class="num" data-reveal><b data-count="3">3</b><span data-i18n="numbers.n1">practice modes</span></div>
+                <div class="num" data-reveal><b data-count="0">0</b><span data-i18n="numbers.n2">accounts needed</span></div>
+                <div class="num" data-reveal><b><small data-i18n="numbers.cur">€</small><span data-count="0">0</span></b><span data-i18n="numbers.n3">for every
                         feature</span></div>
-                <div class="num" data-reveal><b><span data-count="100">100</span><small>%</small></b><span>core
+                <div class="num" data-reveal><b><span data-count="100">100</span><small>%</small></b><span data-i18n="numbers.n4">core
                         features offline</span></div>
             </div>
         </section>
@@ -875,41 +895,41 @@
         <section class="faq" id="faq">
             <div class="container faq-layout">
                 <header class="section-head" data-reveal>
-                    <p class="eyebrow">FAQ</p>
-                    <h2 class="section-title">Questions, <em class="serif">answered.</em></h2>
-                    <p class="section-lead">Something missing? <a href="mailto:contact.nookab@gmail.com">Email us</a>
+                    <p class="eyebrow" data-i18n="faq.eyebrow">FAQ</p>
+                    <h2 class="section-title" data-i18n="faq.title">Questions, <em class="serif">answered.</em></h2>
+                    <p class="section-lead" data-i18n="faq.lead">Something missing? <a href="mailto:contact.nookab@gmail.com">Email us</a>
                         — a real person reads every message.</p>
                 </header>
 
                 <div class="faq-list">
                     <details class="faq-item" data-reveal>
-                        <summary>What is Nookab?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q1">What is Nookab?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>An offline-first vocabulary notebook for people who want to practise the words they
+                            <p data-i18n="faq.a1">An offline-first vocabulary notebook for people who want to practise the words they
                                 actually meet. Instead of a pre-built course, you add words from your own reading,
                                 watching and conversations — then practise them with flashcards, quizzes and spelling.
                             </p>
                         </div>
                     </details>
                     <details class="faq-item" data-reveal>
-                        <summary>Is it really free?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q2">Is it really free?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>Yes. Every practice mode, chart and setting is available from day one. No subscriptions,
+                            <p data-i18n="faq.a2">Yes. Every practice mode, chart and setting is available from day one. No subscriptions,
                                 no in-app purchases, no locked features.</p>
                         </div>
                     </details>
                     <details class="faq-item" data-reveal>
-                        <summary>Does it work offline?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q3">Does it work offline?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>Yes. Adding words, every practice mode, statistics, streaks, reminders and Excel
+                            <p data-i18n="faq.a3">Yes. Adding words, every practice mode, statistics, streaks, reminders and Excel
                                 import/export all work in airplane mode. The only feature that needs internet is the
                                 optional AI Auto-Fill.</p>
                         </div>
                     </details>
                     <details class="faq-item" data-reveal>
-                        <summary>Which languages can I learn?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q4">Which languages can I learn?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>German or English — you choose one when you start. English learners get past tense
+                            <p data-i18n="faq.a4">German or English — you choose one when you start. English learners get past tense
                                 and past participle for verbs and comparative and superlative for adjectives; German
                                 learners get color-coded articles, plurals, genitive and full conjugations. German
                                 learners can also switch the app interface to German. AI Auto-Fill can translate into
@@ -917,34 +937,34 @@
                         </div>
                     </details>
                     <details class="faq-item" data-reveal>
-                        <summary>How does Nookab decide what I practise?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q5">How does Nookab decide what I practise?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>Each session mixes weak, learning, practicing and mastered words (roughly 40/30/20/10),
+                            <p data-i18n="faq.a5">Each session mixes weak, learning, practicing and mastered words (roughly 40/30/20/10),
                                 with the words you're most likely to forget first. Unlike strict spaced-repetition
                                 apps, it never blocks you from practising any word.</p>
                         </div>
                     </details>
                     <details class="faq-item" data-reveal>
-                        <summary>What is AI Auto-Fill?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q6">What is AI Auto-Fill?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>An optional helper, off by default. With your own free Google Gemini API key, one tap
+                            <p data-i18n="faq.a6">An optional helper, off by default. With your own free Google Gemini API key, one tap
                                 suggests a word's translation, grammar, examples and more. Only the word you typed is
                                 sent — directly from your phone to Google, never to us. Always give the suggestions a
                                 quick check.</p>
                         </div>
                     </details>
                     <details class="faq-item" data-reveal>
-                        <summary>How do I move to a new phone?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q7">How do I move to a new phone?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>Go to Settings → Import &amp; Export and export your vocabulary as an Excel file. Import
+                            <p data-i18n="faq.a7">Go to Settings → Import &amp; Export and export your vocabulary as an Excel file. Import
                                 it on the new phone and your words, mastery and practice history come with it. Since
                                 everything lives on your device, this file is also your backup.</p>
                         </div>
                     </details>
                     <details class="faq-item" data-reveal>
-                        <summary>Who made Nookab?<span class="faq-icon"></span></summary>
+                        <summary><span data-i18n="faq.q8">Who made Nookab?</span><span class="faq-icon"></span></summary>
                         <div class="faq-body">
-                            <p>An SQA engineer learning German, who kept losing new words to notebooks and scattered
+                            <p data-i18n="faq.a8">An SQA engineer learning German, who kept losing new words to notebooks and scattered
                                 apps. Every feature in Nookab solves a problem from that journey. It's built and
                                 published by Hanan Atelier.</p>
                         </div>
@@ -959,12 +979,12 @@
                 <div class="cta-glow" aria-hidden="true"></div>
                 <div class="cta-copy" data-reveal>
                     <span class="cta-mark"><svg viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo-mark" /></svg></span>
-                    <h2 class="cta-title">Your next word<br>is <em class="serif">waiting.</em></h2>
-                    <p>Download Nookab free and add the first word you meet today.</p>
+                    <h2 class="cta-title" data-i18n="cta.title">Your next word<br>is <em class="serif">waiting.</em></h2>
+                    <p data-i18n="cta.text">Download Nookab free and add the first word you meet today.</p>
                     <a class="play-badge play-badge-lg"
                         href="https://play.google.com/store/apps/details?id=com.hananatelier.nookab" target="_blank"
-                        rel="noopener" aria-label="Get it on Google Play">
-                        <img src="images/GooglePlay_Badge.svg" alt="Get it on Google Play" width="216" height="64"
+                        rel="noopener" aria-label="Get it on Google Play" data-i18n-aria-label="cta.play">
+                        <img src="images/GooglePlay_Badge.svg" alt="Get it on Google Play" data-i18n-alt="cta.play" width="216" height="64"
                             loading="lazy">
                     </a>
                 </div>
@@ -997,49 +1017,49 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="#top" class="brand" aria-label="Nookab home">
+                    <a href="#top" class="brand" aria-label="Nookab home" data-i18n-aria-label="nav.home">
                         <span class="brand-mark"><svg viewBox="0 0 1024 1024" aria-hidden="true"><use href="#logo-mark" /></svg></span>
                         <span class="brand-name">Nookab</span>
                     </a>
-                    <p>Where words become yours.</p>
+                    <p data-i18n="footer.tagline">Where words become yours.</p>
                 </div>
                 <div class="footer-cols">
                     <div>
-                        <h4>Product</h4>
-                        <a href="#how">How it works</a>
-                        <a href="#languages">German &amp; English</a>
-                        <a href="#practice">Practice modes</a>
-                        <a href="#features">Features</a>
+                        <h4 data-i18n="footer.product">Product</h4>
+                        <a href="#how" data-i18n="nav.how">How it works</a>
+                        <a href="#languages" data-i18n="footer.langs">German &amp; English</a>
+                        <a href="#practice" data-i18n="footer.practice">Practice modes</a>
+                        <a href="#features" data-i18n="footer.features">Features</a>
                         <a href="https://play.google.com/store/apps/details?id=com.hananatelier.nookab" target="_blank"
                             rel="noopener">Google Play</a>
                     </div>
                     <div>
-                        <h4>Support</h4>
-                        <a href="#faq">FAQ</a>
+                        <h4 data-i18n="footer.support">Support</h4>
+                        <a href="#faq" data-i18n="nav.faq">FAQ</a>
                         <a href="mailto:contact.nookab@gmail.com">contact.nookab@gmail.com</a>
-                        <a href="https://forms.gle/iurRmAPYfR1rbgUu5" target="_blank" rel="noopener">Report a bug or
+                        <a href="https://forms.gle/iurRmAPYfR1rbgUu5" target="_blank" rel="noopener" data-i18n="footer.bug">Report a bug or
                             request a feature</a>
                     </div>
                     <div>
-                        <h4>Legal</h4>
-                        <a href="pages/privacy.html">Privacy Policy</a>
-                        <a href="pages/terms.html">Terms of Service</a>
+                        <h4 data-i18n="footer.legal">Legal</h4>
+                        <a href="pages/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+                        <a href="pages/terms.html" data-i18n="footer.terms">Terms of Service</a>
                     </div>
                 </div>
             </div>
             <div class="footer-word" aria-hidden="true">Nookab</div>
             <div class="footer-bottom">
-                <span>© 2026 Hanan Atelier. Made with care for language learners.</span>
-                <span>Android and Google Play are trademarks of Google LLC.</span>
+                <span data-i18n="footer.copy">© 2026 Hanan Atelier. Made with care for language learners.</span>
+                <span data-i18n="footer.tm">Android and Google Play are trademarks of Google LLC.</span>
             </div>
         </div>
     </footer>
 
     <!-- Film modal (hero button) -->
-    <div class="modal" id="filmModal" role="dialog" aria-modal="true" aria-label="Nookab film" hidden>
+    <div class="modal" id="filmModal" role="dialog" aria-modal="true" aria-label="Nookab film" data-i18n-aria-label="modal.aria" hidden>
         <div class="modal-backdrop" data-close-film></div>
         <div class="modal-box">
-            <button class="modal-close" type="button" aria-label="Close" data-close-film><svg class="i"><use href="#i-x" /></svg></button>
+            <button class="modal-close" type="button" aria-label="Close" data-i18n-aria-label="modal.close" data-close-film><svg class="i"><use href="#i-x" /></svg></button>
             <div class="modal-player" id="modalPlayer"></div>
         </div>
     </div>
@@ -1047,6 +1067,7 @@
     <script src="js/vendor/gsap.min.js" defer></script>
     <script src="js/vendor/ScrollTrigger.min.js" defer></script>
     <script src="js/vendor/lenis.min.js" defer></script>
+    <script src="js/i18n.js" defer></script>
     <script src="js/script.js" defer></script>
     <script>
         if ('serviceWorker' in navigator) {

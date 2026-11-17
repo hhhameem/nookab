@@ -15,9 +15,7 @@
         (function () {
             var t = null;
             try { t = localStorage.getItem('nookab-theme'); } catch (e) { }
-            if (t !== 'light' && t !== 'dark') {
-                t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
+            if (t !== 'dark') t = 'light'; // light is the default theme
             document.documentElement.setAttribute('data-theme', t);
             var m = document.querySelector('meta[name="theme-color"]');
             if (m) m.setAttribute('content', t === 'dark' ? '#070a08' : '#f5f0eb');

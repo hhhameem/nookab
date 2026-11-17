@@ -141,12 +141,21 @@
     /* ---------------- manifesto words ---------------- */
     var manifesto = $('#manifesto');
     var mWords = [];
-    if (manifesto && !reduceMotion) {
+    var i18n = window.NookabI18n;
+    // numbers in website copy follow the page language (e.g. Bengali digits)
+    var fmt = function (n) { return i18n ? i18n.num(n) : String(n); };
+
+    // split the manifesto into words so they can light up on scroll;
+    // re-run whenever the language changes (the translation replaces the text)
+    function splitManifesto() {
+        mWords = [];
+        if (!manifesto || reduceMotion) return;
         var text = manifesto.textContent.replace(/\s+/g, ' ').trim();
+        var hl = i18n ? i18n.t('manifesto.highlight') : 'yours';
         manifesto.textContent = '';
         text.split(' ').forEach(function (word, i, arr) {
             var span = document.createElement('span');
-            span.className = 'w' + (/^yours/.test(word) ? ' hl' : '');
+            span.className = 'w' + (word.indexOf(hl) === 0 ? ' hl' : '');
             span.textContent = word;
             manifesto.appendChild(span);
             if (i < arr.length - 1) manifesto.appendChild(document.createTextNode(' '));
@@ -154,16 +163,18 @@
         });
         manifesto.setAttribute('aria-label', text);
     }
+    splitManifesto();
 
     /* ---------------- reveal + one-shot "in view" effects ---------------- */
-    function countTo(el, to, from, dur) {
-        if (reduceMotion) { el.textContent = to; return; }
+    function countTo(el, to, from, dur, plain) {
+        var show = function (n) { el.textContent = plain ? n : fmt(n); };
+        if (reduceMotion) { show(to); return; }
         var start = null;
         function step(t) {
             if (!start) start = t;
             var p = clamp((t - start) / dur, 0, 1);
             var e = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.round(from + (to - from) * e);
+            show(Math.round(from + (to - from) * e));
             if (p < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
@@ -172,8 +183,8 @@
     $$('#bars i').forEach(function (b, i) { b.style.setProperty('--i', i); });
 
     var onceHandlers = {
-        weekStrip: function () { countTo($('#streakNum'), 3, 0, 1200); },
-        goalRing: function (el) { el.style.setProperty('--p', 72); countTo($('#goalNum'), 18, 0, 1600); },
+        weekStrip: function () { countTo($('#streakNum'), 3, 0, 1200, true); }, // app UI mock: keep Latin digits
+        goalRing: function (el) { el.style.setProperty('--p', 72); countTo($('#goalNum'), 18, 0, 1600, true); },
         airplane: function () { setTimeout(function () { setAir(true); }, 500); },
         keys: function (el) { pressKeys(el); }
     };
@@ -492,7 +503,7 @@
         if (meter) {
             var p = reduceMotion ? 96 : Math.round(progressOf(meter, 0.9, 0.3) * 96);
             meter.style.setProperty('--p', p);
-            meterValue.textContent = p;
+            meterValue.textContent = fmt(p);
             var tierIdx = p > 90 ? 2 : p > 40 ? 1 : 0;
             tiers.forEach(function (t, i) { t.classList.toggle('is-current', i === tierIdx); });
         }
@@ -574,4 +585,16 @@
         // refresh after fonts/images settle
         window.addEventListener('load', function () { window.ScrollTrigger.refresh(); });
     }
+
+    /* ---------------- language changes (js/i18n.js) ---------------- */
+    function formatCounts() {
+        $$('[data-count]').forEach(function (el) { el.textContent = fmt(+el.getAttribute('data-count')); });
+    }
+    formatCounts();
+    document.addEventListener('nookab:lang', function () {
+        splitManifesto();
+        formatCounts();
+        requestTick();
+        if (hasGsap) window.ScrollTrigger.refresh();
+    });
 })();

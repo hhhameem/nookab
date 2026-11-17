@@ -2565,7 +2565,7 @@ html.js .tile-notify.is-in .toast {
 }
 
 .airplane-list li::after {
-    content: 'works';
+    content: var(--works-label, 'works');
     padding: 3px 10px;
     border-radius: 999px;
     font-size: 12px;
@@ -3245,8 +3245,8 @@ html.reveal-ready .flip-card:nth-child(3) { transition-delay: .24s; }
         right: 50%;
         top: 70%;
         transform: translate(50%, -50%);
-        width: 400px;
-        height: 400px;
+        width: min(400px, 100vw);
+        height: min(400px, 100vw);
     }
 
     .phone-mode {
@@ -3845,4 +3845,183 @@ html.js .hero-proof { animation-delay: .56s; }
 .modal-player {
     position: absolute;
     inset: 0;
+}
+
+
+/* =========================================================
+   Multi-language (English · বাংলা · Deutsch)
+   ========================================================= */
+html.i18n-pending body {
+    visibility: hidden;
+}
+
+/* language dropdown in the nav */
+.lang-menu {
+    position: relative;
+}
+
+.lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 40px;
+    padding: 0 10px 0 11px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--text);
+    transition: background-color .25s;
+}
+
+.lang-btn:hover,
+.lang-btn[aria-expanded="true"] {
+    background: var(--line);
+}
+
+.lang-btn .i {
+    width: 18px;
+    height: 18px;
+}
+
+.lang-btn .lang-chev {
+    width: 14px;
+    height: 14px;
+    opacity: .6;
+    transition: transform .3s var(--ease-out);
+}
+
+.lang-btn[aria-expanded="true"] .lang-chev {
+    transform: rotate(180deg);
+}
+
+.lang-list {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    z-index: 120;
+    min-width: 184px;
+    padding: 6px;
+    list-style: none;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+    animation: fade-up .3s var(--ease-out);
+}
+
+.lang-list[hidden] {
+    display: none;
+}
+
+.lang-list button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+    color: var(--text);
+    transition: background-color .2s;
+}
+
+.lang-list button:hover,
+.lang-list button:focus-visible {
+    background: var(--line);
+    outline: none;
+}
+
+.lang-list button small {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--muted);
+}
+
+.lang-list button[aria-checked="true"] {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.lang-list button[aria-checked="true"] small {
+    color: var(--accent);
+}
+
+.lang-list button[lang="bn"] span {
+    font-family: 'Hind Siliguri', 'Nirmala UI', 'Noto Sans Bengali', sans-serif;
+}
+
+/* ---------- Bangla typography ---------- */
+:root:lang(bn) {
+    --font-display: 'Bricolage Grotesque', 'Anek Bangla', 'Hind Siliguri', 'Nirmala UI', sans-serif;
+    --font-body: 'Inter', 'Hind Siliguri', 'Nirmala UI', 'Noto Sans Bengali', system-ui, sans-serif;
+    --font-serif: 'Instrument Serif', 'Tiro Bangla', 'Nirmala UI', serif;
+}
+
+/* tight tracking breaks Bengali conjuncts and vowel signs */
+:root:lang(bn) body * {
+    letter-spacing: normal !important;
+}
+
+:root:lang(bn) body {
+    line-height: 1.75;
+}
+
+:root:lang(bn) .hero-title {
+    font-size: clamp(2.3rem, 4.5vw, 4.3rem);
+    line-height: 1.22;
+}
+
+:root:lang(bn) .hero-title .line {
+    white-space: normal;
+    padding-bottom: .18em;
+    margin-bottom: -.12em;
+}
+
+:root:lang(bn) .section-title,
+:root:lang(bn) .cta-title,
+:root:lang(bn) .manifesto-text {
+    line-height: 1.3;
+}
+
+:root:lang(bn) .section-title {
+    font-size: clamp(2rem, 4.6vw, 3.8rem);
+}
+
+:root:lang(bn) .manifesto-text {
+    font-size: clamp(1.6rem, 3.6vw, 3rem);
+}
+
+:root:lang(bn) .how-step h3,
+:root:lang(bn) .lang-title,
+:root:lang(bn) .tile h3,
+:root:lang(bn) .weak-card h3,
+:root:lang(bn) .mix-card h3,
+:root:lang(bn) .mode-copy h3 {
+    line-height: 1.35;
+}
+
+:root:lang(bn) .mode-tagline,
+:root:lang(bn) .footer-brand p {
+    line-height: 1.5;
+}
+
+/* German words run long: let the hero lines wrap on small screens */
+@media (max-width: 640px) {
+    :root:lang(de) .hero-title .line {
+        white-space: normal;
+    }
+
+    .lang-btn .lang-chev {
+        display: none;
+    }
+
+    .lang-btn {
+        padding: 0 9px;
+    }
 }
