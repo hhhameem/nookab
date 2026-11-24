@@ -1,4 +1,4 @@
-const CACHE_NAME = "nookab-cache-v8";
+const CACHE_NAME = "nookab-cache-v9";
 const STATIC_ASSETS = [
   "./",
   "./site.webmanifest",
