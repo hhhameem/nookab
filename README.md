@@ -94,7 +94,7 @@ Nookab currently supports building vocabulary for **German** and **English** lea
 
 - **Email:** [contact.nookab@gmail.com](mailto:contact.nookab@gmail.com)
 - **Bug Reports & Feature Requests:** [Report a Bug or Request a New Feature](https://forms.gle/iurRmAPYfR1rbgUu5)
-- [Privacy Policy](https://hhhameem.github.io/nookab/pages/privacy.html) · [Terms of Service](https://hhhameem.github.io/nookab/pages/terms.html)
+- [Privacy Policy](https://nookab.pages.dev/pages/privacy) · [Terms of Service](https://nookab.pages.dev/pages/terms)
 
 ---
 

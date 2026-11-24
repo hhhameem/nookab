@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hhhameem.github.io/nookab/sitemap.xml
+Sitemap: https://nookab.pages.dev/sitemap.xml
