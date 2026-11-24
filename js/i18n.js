@@ -21,7 +21,7 @@
     var T = {
         /* =============================== BANGLA =============================== */
         bn: {
-            'meta.title': 'Nookab — যেখানে শব্দ হয়ে ওঠে আপনার নিজের',
+            'meta.title': 'Nookab — জার্মান ও ইংরেজি শেখার অফলাইন শব্দখাতা',
             'meta.desc': 'Nookab হলো জার্মান আর ইংরেজি শিখছেন এমন সবার জন্য একটি অফলাইন শব্দখাতা। চলার পথে যে শব্দগুলো পান, সেগুলো জমিয়ে রাখুন, Flashcards, Quiz আর Spelling দিয়ে অনুশীলন করুন, আর শব্দগুলোকে করে নিন একান্ত নিজের। সম্পূর্ণ ফ্রি, কোনো অ্যাকাউন্ট লাগে না।',
             'manifesto.highlight': 'নিজের',
             'air.works': 'চলছে',
@@ -216,7 +216,7 @@
 
         /* =============================== GERMAN =============================== */
         de: {
-            'meta.title': 'Nookab — Wo Wörter zu deinen werden',
+            'meta.title': 'Nookab — Offline-Vokabelheft für Deutsch & Englisch',
             'meta.desc': 'Nookab ist das Offline-Vokabelheft für alle, die Deutsch oder Englisch lernen. Speichere die Wörter, die dir begegnen, übe sie mit Flashcards, Quiz und Spelling und mach sie zu deinen eigenen. Kostenlos und ohne Konto.',
             'manifesto.highlight': 'deiner',
             'air.works': 'läuft',

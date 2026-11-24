@@ -1,7 +1,6 @@
-const CACHE_NAME = "nookab-cache-v7";
+const CACHE_NAME = "nookab-cache-v8";
 const STATIC_ASSETS = [
   "./",
-  "./index.html",
   "./site.webmanifest",
   "./css/style.css",
   "./js/i18n.js",
@@ -12,8 +11,8 @@ const STATIC_ASSETS = [
   "./images/app/dashboard.webp",
   "./images/GooglePlay_Badge.svg",
   "./media/promo-poster.webp",
-  "./pages/terms.html",
-  "./pages/privacy.html",
+  "./pages/terms",
+  "./pages/privacy",
   "./fonts/Inter-latin.woff2",
   "./icons/favicon.ico",
   "./icons/icon.png",
@@ -49,10 +48,15 @@ self.addEventListener("fetch", (e) => {
 
   e.respondWith(
     caches.match(e.request).then((cached) => {
-      if (cached) return cached;
+      // Browsers refuse a redirected response for a page navigation (blank page),
+      // so hand back a clean copy if one was ever stored.
+      if (cached) return cached.redirected ? cleanCopy(cached) : cached;
 
       return fetch(e.request).then((response) => {
         if (!response || response.status !== 200) return response;
+        // Cloudflare Pages redirects /index.html → / and /x.html → /x;
+        // never cache those redirect results.
+        if (response.redirected) return response;
 
         const clone = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
@@ -61,3 +65,14 @@ self.addEventListener("fetch", (e) => {
     }),
   );
 });
+
+function cleanCopy(response) {
+  return response.blob().then(
+    (body) =>
+      new Response(body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+      }),
+  );
+}

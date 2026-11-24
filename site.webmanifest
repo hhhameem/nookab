@@ -2,7 +2,7 @@
     "name": "Nookab",
     "short_name": "Nookab",
     "description": "The offline vocabulary notebook for German and English learners.",
-    "start_url": "/nookab/",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#f5f0eb",
     "theme_color": "#0c4429",
