@@ -6,6 +6,8 @@ Nookab is an offline-first vocabulary companion for self-directed language learn
 
 [Get it on Google Play](https://play.google.com/store/apps/details?id=com.hananatelier.nookab) — free, no account needed.
 
+**Website:** [nookab.pages.dev](https://nookab.pages.dev/) (available in English, Deutsch and বাংলা)
+
 ---
 
 ## Why Nookab?
@@ -58,18 +60,19 @@ A mastery-based algorithm classifies words into tiers and surfaces the ones you'
 - **Daily Targets** — Set a daily practice goal with a circular progress ring
 - **German Special Characters** — Floating keyboard helper for ä, ö, ü, ß and capitals
 - **Text-to-Speech** — German and English pronunciation via speaker icon
+- **AI Auto-Fill (optional)** — Suggests translations, grammar and examples using your own free Gemini key; off by default, and your word goes straight from your phone to Google
 - **14-Day Activity Chart** — Visual bar graph of daily practice
 
 ---
 
 ## Privacy-First by Design
 
-- **100% Offline** — Every feature works in airplane mode
+- **Offline-First** — Everything works in airplane mode except the optional AI Auto-Fill
 - **No Accounts** — No sign-up, no email, no password
 - **Your Data Stays Local** — Everything lives on your device
 - **No AI Training** — Your vocabulary is never used for ML training
 
-No cloud sync. No servers. No tracking. No social feeds. No dark patterns.
+No cloud sync. No Nookab servers. No tracking. No social feeds. No dark patterns.
 
 ---
 
@@ -79,7 +82,7 @@ No cloud sync. No servers. No tracking. No social feeds. No dark patterns.
 |---|---|
 | Practice Modes | 3 |
 | Accounts Required | 0 |
-| Offline Functional | 100% |
+| Works Offline | Everything except optional AI Auto-Fill |
 | Price | Free forever |
 
 ---
@@ -88,13 +91,57 @@ No cloud sync. No servers. No tracking. No social feeds. No dark patterns.
 
 Nookab currently supports building vocabulary for **German** and **English** learners.
 
+- **German learners** get color-coded articles (der/die/das), plurals, genitive and full conjugations
+- **English learners** get past tense and past participle for verbs, and comparative and superlative for adjectives
+- **AI Auto-Fill** can translate into English, German, Bangla, Spanish, Portuguese or French
+
 ---
 
 ## Contact
 
 - **Email:** [contact.nookab@gmail.com](mailto:contact.nookab@gmail.com)
 - **Bug Reports & Feature Requests:** [Report a Bug or Request a New Feature](https://forms.gle/iurRmAPYfR1rbgUu5)
+- **Website:** [nookab.pages.dev](https://nookab.pages.dev/)
+- **Google Play:** [Nookab on Google Play](https://play.google.com/store/apps/details?id=com.hananatelier.nookab)
 - [Privacy Policy](https://nookab.pages.dev/pages/privacy) · [Terms of Service](https://nookab.pages.dev/pages/terms)
+
+---
+
+## About This Repository
+
+This repository contains the source of the Nookab website, [nookab.pages.dev](https://nookab.pages.dev/), a static site hosted on **Cloudflare Pages**. There is no build step.
+
+| Path | Contents |
+|---|---|
+| `index.html` | Landing page |
+| `pages/privacy.html`, `pages/terms.html` | Privacy Policy and Terms of Service (served as `/pages/privacy` and `/pages/terms`) |
+| `css/style.css`, `js/script.js` | Styles and page interactions |
+| `js/i18n.js` | German and Bangla translations of the website copy |
+| `js/vendor/` | GSAP, ScrollTrigger and Lenis |
+| `sw.js` | Service worker for offline caching |
+| `sitemap.xml`, `robots.txt`, `site.webmanifest` | SEO and PWA metadata |
+
+### Preview locally
+
+Run Cloudflare's local server from the repository root, so URLs behave as they do on the live site:
+
+```
+npx wrangler pages dev .
+```
+
+Then open the address it prints (usually `http://localhost:8788`). A plain static server such as `python -m http.server` will not resolve the extensionless links (`pages/privacy`, `pages/terms`), and opening the HTML files directly from disk will not work either.
+
+### Deploy
+
+Pushes to `main` deploy automatically when the Cloudflare Pages project is connected to this repository. To deploy manually, run this from the repository root:
+
+```
+npx wrangler pages deploy . --project-name nookab --branch main
+```
+
+### Before committing
+
+See [AGENTS.md](AGENTS.md): minify `css/style.css` and `js/script.js`, and bump `CACHE_NAME` in `sw.js` whenever static assets change.
 
 ---
 
